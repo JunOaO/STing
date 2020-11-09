@@ -1,0 +1,109 @@
+#loginf:hover {
+	cursor: pointer;
+}
+
+#bjoinf:hover{
+	cursor: pointer;
+}
+
+.loginText {
+	font-size: 12px;
+}
+
+#topsearch {
+   width: 700px;
+   margin: 0 auto;
+}
+
+#topsearch #homelogo {
+   float: left;
+   width: 200px;
+   height: 200px;
+}
+
+.topsearch {
+   margin-top: 100px;
+}
+
+#topnavbar {
+   clear: both;
+   width: 700px;
+   margin: 0 auto;
+   /* position: fixed; */
+   list-style-type: none;
+   background-color: pink;
+   /* float: left; */
+}
+
+#blurbUp { /* 메뉴바 위 광고 */
+   position: absolute;
+   /* margin : 0 auto; */
+   left: calc(50% - 400px);
+   top: 270px; width : 800px;
+   height: 50px;
+   background-color: yellow;
+   width: 800px;
+}
+
+#blurbR {
+	board : 1px solid red;
+	float: right;
+	width: 300px;
+	height: 300px;
+}
+
+.topmenubar2 {
+   display: none;
+   position: absolute;
+   min-width: 160px;
+   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+   z-index: 1;
+}
+
+.topmenubar {
+   width: 100px;
+   float: left;
+   margin: 0 20px;
+   float: left;
+}
+
+.topmenubar:hover>.topmenubar2 {
+   display: block;
+}
+
+.loginbox {
+   margin-top: 100px;
+   position: relative;
+   left: 1500px;
+   border: 1px solid green;
+   width: 177px;
+   margin-right: 200px;
+
+   
+ /*   margin-top : 100px;
+   float: right;
+   border: 1px solid green;
+   margin-right: 200px; */
+}
+
+#loginID {
+   float: left;
+}
+
+#loginPW {
+   clear: left;
+   float: left;
+}
+
+#loginBT {
+   clear: left;
+   float: left;
+}
+
+.join {
+   clear: left;
+}
+
+.join>a {
+   font-size: 10px;
+}

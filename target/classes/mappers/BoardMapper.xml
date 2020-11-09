@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncs.BoardMapper">
+	<!-- ***************** search 관련 start ***************** -->
+	<sql id="search">
+		<choose>
+			<when test="searchType=='football'.toString()">
+				and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+				or
+				content like CONCAT(CONCAT('%',#{keyowrd}),'%'))
+			</when>
+			<when test="searchType=='baseball'.toString()">
+				and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+				or
+				content like CONCAT(CONCAT('%',#{keyowrd}),'%'))
+			</when>
+			<when test="searchType=='basketball'.toString()">
+				and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+				or
+				content like CONCAT(CONCAT('%',#{keyowrd}),'%'))
+			</when>
+			<when test="searchType=='tennis'.toString()">
+				and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+				or
+				content like CONCAT(CONCAT('%',#{keyowrd}),'%'))
+			</when>
+			<when test="searchType=='bicycle'.toString()">
+				and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+				or
+				content like CONCAT(CONCAT('%',#{keyowrd}),'%'))
+			</when>
+			<otherwise> ) </otherwise>
+		</choose>
+	</sql>
+
+	<sql id="sportsFrom">
+		<choose>
+			<when test="searchType=='football'.toString()">
+				from footballboard
+			</when>
+			<when test="searchType=='baseball'.toString()">
+				from baseballboard
+			</when>
+			<when test="searchType=='football'.toString()">
+				from footballboard
+			</when>
+			<when test="searchType=='football'.toString()">
+				from footballboard
+			</when>
+			<when test="searchType=='football'.toString()">
+				from footballboard
+			</when>
+			<when test="searchType=='football'.toString()">
+				from footballboard
+			</when>
+		</choose>
+
+	</sql>
+
+	<select id="searchRowCount" resultType="int">
+		<![CDATA[
+			select count(*) from #{searchType} where ( seq> 0 ]]>
+		<include refid="search"></include>
+	</select>
+
+	<select id="searchList" resultType="vo.STBoardVO">
+
+		SELECT * FROM
+		(select b.*, ROW_NUMBER() OVER(order by seq) rnum <include refid="sportsFrom"></include> b
+			<![CDATA[ where seq > 0 ]]>
+		<include refid="search"></include>
+		where rum bteween #{sno} and #{eno}
+	</select>
+	<!-- ***************** search 관련 end ***************** -->
+
+	<insert id="baseballInsert">
+		insert into baseballboard values ((select
+		nvl(max(seq),0)+1 from
+		baseballboard),'','',#{title},#{content},sysdate,#{team},'',#{local},'',#{sports},0,'')
+	</insert>
+
+	<select id="baseBallselectList" resultType="vo.STBoardVO">
+		select * from
+		baseballboard
+	</select>
+
+
+
+</mapper>

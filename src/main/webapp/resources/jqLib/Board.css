@@ -1,0 +1,66 @@
+h3 {
+	color: #347ab5;
+}
+
+.bord_header {
+	/* padding-bottom: 100px; */
+	width : 795px;
+	margin : 100px auto 10px auto;
+}
+
+.this_board {
+	margin-left: 50px;
+	float: left;
+}
+
+.board_button {
+	width: 120px;
+	height: 80px;
+	font-size: 20px;
+	background-color: #347ab5;
+	color: white;
+	border: none;
+	border-radius: 5px;
+}
+
+.board_title {
+	height: 80px;
+	text-align: center;
+	float: left;
+	margin-left: 50px;
+	margin-bottom: 10px;
+}
+
+#boardView {
+	clear: both;
+	width : 700px;
+	margin: 10px auto 0 auto;
+}
+
+#tr1 {
+	/* align="center" height=30 bgcolor="#b2dffc" */
+	height: 30px;
+	text-align: center;
+	background-color: #b2dffc;
+	border: none;
+	border-radius: 8px;
+}
+
+.td1 {
+	border: none;
+	border-radius: 8px;
+}
+
+#td1 {
+	margin-right: 10px;
+}
+
+.btn_group {
+	width: 800px;
+	height: 50px;
+	margin: 0 auto;
+}
+
+.input_button {
+	float: right;
+}
