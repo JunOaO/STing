@@ -125,7 +125,17 @@ public class PageMaker {
 	public void setCri(SearchCriteria cri) {
 		this.cri = cri;
 	}
-
+	
+	public String makeQuery(int currPage) {
+		
+		// ver02 : 요청 uri 에 search 기능 추가
+		UriComponents uriComponents = 
+				UriComponentsBuilder.newInstance()
+				.queryParam("currPage", currPage)
+				.queryParam("perPageRow", cri.getPerPageRow())
+				.build();
+		return uriComponents.toString();
+	} // makeQuery
 
 	// searchQuery
 	public String searchQuery(int currPage) {

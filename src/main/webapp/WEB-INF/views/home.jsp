@@ -46,19 +46,19 @@ $(function() {
 				id="homelogo"></a>
 			<div id="searchBar">
 				<select name="searchType" id="searchType">
-					<option value="footballboard"
+					<option value="football"
 						<c:out value="${pageMaker.cri.searchType eq 'football' ? 'selected' : '' }" />>
 						축구</option>
-					<option value="baseballboard"
+					<option value="baseball"
 						<c:out value="${pageMaker.cri.searchType eq 'baseball' ? 'selected' : '' }" />>
 						야구</option>
-					<option value="basketballboard"
+					<option value="basketball"
 						<c:out value="${pageMaker.cri.searchType eq 'basketball' ? 'selected' : '' }" />>
 						농구</option>
-					<option value="tennisboard"
+					<option value="tennis"
 						<c:out value="${pageMaker.cri.searchType eq 'tennis' ? 'selected' : '' }" />>
 						테니스</option>
-					<option value="bicycleboard"
+					<option value="bicycle"
 						<c:out value="${pageMaker.cri.searchType eq 'bicycle' ? 'selected' : '' }" />>
 						자전거</option>
 				</select> <input type="text" class="topsearch" id="keyword" name="keyword" value="${pageMaker.cri.keyword}">

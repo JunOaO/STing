@@ -84,17 +84,7 @@ public class HomeController {
 
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-	/*	
-		List<STBoardVO> football = new ArrayList<STBoardVO>();
 
-		football = service.fmainList();
-		if (football != null) {
-			mv.addObject("football", football);
-		} else {
-			mv.addObject("message", "~~ 게시글이 없습니다 ~~");
-		}
-		*/
-		
 		String formattedDate = dateFormat.format(date);
 
 		model.addAttribute("serverTime", formattedDate);

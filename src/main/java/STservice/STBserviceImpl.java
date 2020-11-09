@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cri.Criteria;
 import cri.SearchCriteria;
 import jdbcUtil.STBoardDAO;
 import vo.STBoardVO;
@@ -36,15 +37,13 @@ public class STBserviceImpl implements STBservice{
 	} // insert
 	
 	@Override
-	public List<STBoardVO> baseBallselectList(){
-		return dao.baseBallselectList();
+	public List<STBoardVO> baseBallselectList(Criteria cri){
+		return dao.baseBallselectList(cri);
 	}
 
 	@Override
-	public List<STBoardVO> baseBallselectList(STBoardVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public STBoardVO baseballSelectOne(STBoardVO vo) {
+		return dao.baseballSelectOne(vo);
 	}
-	
 	
 }

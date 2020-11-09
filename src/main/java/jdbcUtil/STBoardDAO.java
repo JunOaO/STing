@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import cri.Criteria;
 import cri.SearchCriteria;
 import vo.STBoardVO;
 import vo.STPageVO;
@@ -37,8 +38,12 @@ public class STBoardDAO {
 			return sqlSession.update(NS + "baseballInsert",vo);
 		}
 		
-		public List<STBoardVO> baseBallselectList(){
-			return sqlSession.selectList(NS + "baseBallselectList");
+		public List<STBoardVO> baseBallselectList(Criteria cri){
+			return sqlSession.selectList(NS + "baseBallselectList", cri);
+		}
+		
+		public STBoardVO baseballSelectOne(STBoardVO vo){
+			return (STBoardVO) sqlSession.selectList(NS + "baseballSelectOne",vo);
 		}
 		
 }// class

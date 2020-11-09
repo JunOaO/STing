@@ -2,6 +2,7 @@ package STservice;
 
 import java.util.List;
 
+import cri.Criteria;
 import cri.SearchCriteria;
 import vo.STBoardVO;
 
@@ -15,8 +16,8 @@ public interface STBservice {
 
 	int baseballInsert(STBoardVO vo);
 
-	List<STBoardVO> baseBallselectList(STBoardVO vo);
+	STBoardVO baseballSelectOne(STBoardVO vo);
 
-	List<STBoardVO> baseBallselectList();
+	List<STBoardVO> baseBallselectList(Criteria cri);
 
 }

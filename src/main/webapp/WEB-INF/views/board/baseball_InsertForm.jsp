@@ -8,14 +8,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>야구 글쓰기</title>
 <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.11.3.min.js"/>"></script>
 <script src="resources/jqLib/memberCheck.js"></script>
 <script type="text/javascript" src="<c:url value="/resources/smarteditor/js/HuskyEZCreator.js"/>" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/writeForm.js"/>"></script>
-<script type="text/javascript" charset="utf-8">
-		sessionStorage.setItem("contextpath", "${pageContext.request.contextPath}");
-	</script>
+
+<link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>"/>
+<link rel="stylesheet" type="text/css" href="/resources/css/test.css">
+	
 <link rel="stylesheet" media="only screen and (min-width:981px)">
 <link rel="stylesheet" media="only screen and (max-width:980px)">
+
+<script type="text/javascript" charset="utf-8">
+		sessionStorage.setItem("contextpath", "${pageContext.request.contextPath}");
+</script>
+
+
+
+	
+	
+	
+	
+	
+<script>
+	function categoryChange(e) {
+	var good_a = ['1', '2', '3'];
+	var good_b = ["1", "2", "3", "4", "5", "7", "10"];
+	var target = document.getElementById("good");
+
+	if(e.value == "a") var d = good_a;
+	else var d = good_b;
+
+	target.options.length = 0;
+
+	for (x in d) {
+		var opt = document.createElement("option");
+		opt.value = d[x];
+		opt.innerHTML = d[x];
+		target.appendChild(opt);
+	}	
+}
+</script>
+
 
 <style>
 h3{
@@ -46,12 +80,7 @@ h3{
 	margin-left: 50px;
 	
 }
-.board_all{
-	clear: left;
-	margin-left: 50px;
-	width: 1000px;
-	
-}
+.board_all{clear: left;}
 
 .label_title {
     display: block;
@@ -109,16 +138,15 @@ h3{
 }
 
 .input_content{
-	width: 730px;
+	width: 600px;
 	height:300px;
 	float:left;
-	clear: both;
 	border-radius:8px;
 	
 }
 .board_all{
 	
-	
+	margin-left: 50px;
 }
 .div_title{
 	
@@ -172,6 +200,11 @@ h3{
 	cursor: pointer;
 }
 
+.input_content{
+	font-size: 20px;
+	font-weight: bold;
+	color:#347ab5; 
+}
 .label_Configuration{
 	display: block;
     text-align: center;
@@ -201,15 +234,26 @@ select{
 #good{
 	margin-right: 10px;
 }
-.div_content{
-	 
+#test_button{
+	width: 60px;
+	height: 27px;
+	line-height:27px;
+	font-size: 18px;
+	float: left;
+	background-color: #ea4335;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
 }
-
+#file { display:none; } 
 
 </style>
+
+
 </head>
 <body>
-<form action="baseballinsert" method="post" id="frm" enctype="multipart/form-data">
+<form action="basebalinsert" method="post" enctype="multipart/form-data">
 <div class="bord_header">
 	<div class="this_board">
 	<button type="button" class="board_button" id="board_button" onclick="location.href='baseball_Board'">야구 게시판 </button>
@@ -223,58 +267,41 @@ select{
 <div class="board_all">
 	<div class="div_title">
 		<label class="label_title">제&nbsp;목</label>
-		<input type="text" name="title" id="title" class="input_title" value="" placeholder="제목입력" required>
+		<input type="text" name="title" id="" class="input_title" value="" placeholder="제목입력" required>
 	</div>
 	
 	<div class="Configuration">
 		<label class="label_Configuration">구&nbsp;성</label>
-		<select onchange="categoryChange(this)" name="team" id="category">
+		<select onchange="categoryChange(this)" id="category" name="config">
 			<option>팀/개인</option>			
 			<option value="a">팀</option>
 			<option value="b">개인</option>
 		</select>
 
-		<select name="person" id="good">
-			<option>필요인원</option>
+		<select id="good" name="config">
+			<option >필요인원</option>
 		</select>
 		
-		<select name="local" id="select_local">
+		<select id="select_local" name="local">
 			<option>지역</option>
 			<option>서울</option>
 			<option>인천</option>
 			<option>경기북부</option>
 			<option>경기남부</option>
 		</select>
-		<script>
-	function categoryChange(e) {
-	var good_a = ["1팀", "2팀", "3팀"];
-	var good_b = ["1명", "2명", "3명", "4명", "5명", "7명이상", "10명이상"];
-	var target = document.getElementById("good");
-
-	if(e.value == "a") var d = good_a;
-	else var d = good_b;
-
-	target.options.length = 0;
-
-	for (x in d) {
-		var opt = document.createElement("option");
-		opt.value = d[x];
-		opt.innerHTML = d[x];
-		target.appendChild(opt);
-	}	
-}
-</script>
 		
 		
 	</div>
 	<div class="div_file">
 		<label class="label_file">첨부파일</label>
+		
 		<button type="button" class="button_file" id="button_image" onclick="location.href='image'">사진</button>
 		<button type="button" class="button_file" id="button_map" onclick="location.href='map'">지도</button>
-	</div>
+		
 	<div class="div_content">
 		<!-- <label class="label_content">내&nbsp;용</label> -->
-		<textarea name="content" id="smarteditor" class="input_content" placeholder="제목입력" maxlength="2048" style="resize: none; overflow-y:scroll; " required>사진과 지도를 첨부하여 자신의 위치를 공유해보세요.</textarea>
+		<textarea name="content" id="smarteditor" class="input_content" value="" placeholder="제목입력" maxlength="2048" style="resize: none; overflow-y:scroll; " required>사진과 지도를 첨부하여 자신의 위치를 공유해보세요.</textarea>
+			
 	</div>
 	
 	<div class="div_btn">
@@ -289,9 +316,6 @@ select{
 </form>
 </body>
 </html>
-
-
-
 
 <!-- direction: ltr;
 line-height: 1.34;

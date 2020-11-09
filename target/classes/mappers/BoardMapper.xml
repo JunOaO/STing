@@ -7,29 +7,29 @@
 	<sql id="search">
 		<choose>
 			<when test="searchType=='football'.toString()">
-				and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+				and title like CONCAT(CONCAT('%',#{keyword}),'%')
 				or
-				content like CONCAT(CONCAT('%',#{keyowrd}),'%'))
+				content like CONCAT(CONCAT('%',#{keyword}),'%'))
 			</when>
 			<when test="searchType=='baseball'.toString()">
-				and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+				and title like CONCAT(CONCAT('%',#{keyword}),'%')
 				or
-				content like CONCAT(CONCAT('%',#{keyowrd}),'%'))
+				content like CONCAT(CONCAT('%',#{keyword}),'%'))
 			</when>
 			<when test="searchType=='basketball'.toString()">
-				and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+				and title like CONCAT(CONCAT('%',#{keyword}),'%')
 				or
-				content like CONCAT(CONCAT('%',#{keyowrd}),'%'))
+				content like CONCAT(CONCAT('%',#{keyword}),'%'))
 			</when>
 			<when test="searchType=='tennis'.toString()">
-				and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+				and title like CONCAT(CONCAT('%',#{keyword}),'%')
 				or
-				content like CONCAT(CONCAT('%',#{keyowrd}),'%'))
+				content like CONCAT(CONCAT('%',#{keyword}),'%'))
 			</when>
 			<when test="searchType=='bicycle'.toString()">
-				and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+				and title like CONCAT(CONCAT('%',#{keyword}),'%')
 				or
-				content like CONCAT(CONCAT('%',#{keyowrd}),'%'))
+				content like CONCAT(CONCAT('%',#{keyword}),'%'))
 			</when>
 			<otherwise> ) </otherwise>
 		</choose>
@@ -57,8 +57,7 @@
 	</sql>
 
 	<select id="searchRowCount" resultType="int">
-		<![CDATA[
-			select count(*) from #{searchType} where ( seq> 0 ]]>
+			select count(*) <include refid="sportsFrom"></include> <![CDATA[ where ( seq> 0 ]]>
 		<include refid="search"></include>
 	</select>
 
@@ -68,7 +67,7 @@
 		(select b.*, ROW_NUMBER() OVER(order by seq) rnum <include refid="sportsFrom"></include> b
 			<![CDATA[ where seq > 0 ]]>
 		<include refid="search"></include>
-		where rum bteween #{sno} and #{eno}
+		where rnum between #{sno} and #{eno}
 	</select>
 	<!-- ***************** search 관련 end ***************** -->
 
@@ -79,8 +78,11 @@
 	</insert>
 
 	<select id="baseBallselectList" resultType="vo.STBoardVO">
-		select * from
-		baseballboard
+		select * from baseballboard
+	</select>
+	
+	<select id="baseballSelectOne" resultType="vo.STBoardVO">
+		select * from baseballboard where seq=#{seq}
 	</select>
 
 
