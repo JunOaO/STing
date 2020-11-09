@@ -43,17 +43,14 @@
 			<when test="searchType=='baseball'.toString()">
 				from baseballboard
 			</when>
-			<when test="searchType=='football'.toString()">
-				from footballboard
+			<when test="searchType=='basketball'.toString()">
+				from basketballboard
 			</when>
-			<when test="searchType=='football'.toString()">
-				from footballboard
+			<when test="searchType=='tennis'.toString()">
+				from tennisboard
 			</when>
-			<when test="searchType=='football'.toString()">
-				from footballboard
-			</when>
-			<when test="searchType=='football'.toString()">
-				from footballboard
+			<when test="searchType=='bicycle'.toString()">
+				from bicycleboard
 			</when>
 		</choose>
 
