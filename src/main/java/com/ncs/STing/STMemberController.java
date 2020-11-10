@@ -21,16 +21,37 @@ public class STMemberController {
 	  @Autowired 
 	  STMemberService service;
 	 
-	
+	/* 회원 가입 & ID 중복 체크 start */
 	@RequestMapping(value = "/bjoinf")
 	public ModelAndView bjoinf(ModelAndView mv) {
 		mv.setViewName("member/joinForm");
 		return mv;
-	}	
+	}
+	
+	// ID Dup Check
+			@RequestMapping(value="/idDupCheck")
+			public ModelAndView idDupCheck(ModelAndView mv , STMemberVO vo) {
+				//client 로 부터 전달된 id의 존재여부 확인 : selectone()
+				//notnull ( 존재하면 ) : 사용불가
+				//null ( 존재하지 않으면 ) : 사용가능 (먼저 입력한 ID보관)
+				mv.addObject("newId",vo.getId());
+				if(service.selectOne(vo) != null) {
+					//사용불가
+					mv.addObject("idUse","F");
+				}else {
+					//사용가능
+					mv.addObject("idUse","T");
+				}
+				mv.setViewName("member/idDupCheck");
+				return mv;
+			} // idDupCheck 
+			
+	/* 회원 가입 & ID 중복 체크 end */		
+	
 	
 	@RequestMapping(value = "/loginf")
 	public ModelAndView loginf(ModelAndView mv) {
-		mv.setViewName("member/loginForm");
+		mv.setViewName("login/loginForm");
 		return mv;
 	}
 	
@@ -71,7 +92,7 @@ public class STMemberController {
 		mv.addObject("id",id);
 		mv.addObject("message", message);
 		mv.addObject("loginSuccess", loginSuccess);
-		mv.setViewName("member/loginForm");
+		mv.setViewName("login/loginForm");
 		return mv;
 	} // login
 	
@@ -84,13 +105,13 @@ public class STMemberController {
 		if ((session != null) && (session.getAttribute("logID") != null)) {
 			session.invalidate();
 			message = " LogOut 성공 !!! ~~~";
+			mv.addObject("logout",true);
 		} else
 			message = " 당신은 Login 하지 않았습니다. !!! ~~~";
 
 		// Service 결과 처리
 		if (message != null)
-			mv.addObject("message", message);
-		mv.addObject("logout",true);
+		mv.addObject("message", message);
 		mv.setViewName("home");
 		return mv;
 	} // logout

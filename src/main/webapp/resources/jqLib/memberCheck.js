@@ -36,6 +36,20 @@ function pwCheck(){
 	}
 }
 
+function repwCheck() {
+	var passowrd = $('#password').val();
+	var repassword = $('#repassword').val();
+
+		if (passowrd.equals(repassword)) {
+			$('#repwMessage').html('');
+			return true;
+		} else {
+			$('#repwMessage').html('비밀번호가 동일 하지 않습니다.');
+			$('#repassword').focus();
+			return false;
+		}
+}
+
 //****************************************************************************************************************************************
 function nmCheck(){
 	var name=$('#name').val();

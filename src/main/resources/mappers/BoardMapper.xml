@@ -62,7 +62,6 @@
 	</select>
 
 	<select id="searchList" resultType="vo.STBoardVO">
-
 		SELECT * FROM
 		(select b.*, ROW_NUMBER() OVER(order by seq) rnum <include refid="sportsFrom"></include> b
 			<![CDATA[ where seq > 0 ]]>

@@ -30,7 +30,7 @@
 	function idOk(){
 		opener.document.getElementById('id').value='${newId}';
 		//joinForm 의 submit 활성화
-		opener.document.getElementById('submit').disabled='';
+		opener.document.getElementById('submit');
 		opener.document.getElementById('idDup').disabled='disabled';
 		opener.$('#id').attr('readonly','readonly');
 		// opener.$('#id').prop('readonly',true);
@@ -40,7 +40,7 @@
 </script>
 <style>
 	body{   
-  		background-color: #E6E6FA ;
+  		
   		font-family: 맑은고딕;
 		}
 	#wrap{     
@@ -50,28 +50,46 @@
 	h3 {
  		/* font-family: 맑은고딕, Times, serif; */
 	  	font-size: 30px;
-  		color: #00008B;
-  		font-weight: normal;
+  		color:#347ab5;
+  		font-weight: bold;
 		}
 /* 	input[type=button], input[type=submit] {
   		float: right;
 	} */
+	.input_userID{
+		height: 30px;
+		margin-top: 10px;
+		border-radius: 8px;
+	}
+	.input_userIDCK{
+		height: 36px;
+		border-radius: 8px;
+		
+	}
+	#msgBlock{
+		color:#ea4335;
+		font-weight: bold;
+	}
+	#idok{
+		border-radius: 5px;
+	}
+	
 </style>
 </head>
 <body>
 <div id="wrap">
-	<h3>** ID 중복 확인  **</h3>
+	<h3>ID 중복 확인</h3>
 	<form action="idDupCheck" method="post">
-		UserID : 
-		<input type="text" name="id" id="id" value="">
-		<input type="submit" value="ID중복확인" onclick="return idCheck()"><br>
+		 
+		<input type="text" name="id" id="id" class="input_userID" placeholder="UserID">
+		<input type="submit" value="ID중복확인" class="input_userIDCK" onclick="return idCheck()"><br>
 		<span id="idMessage" class="message"></span>	
 	</form>
-	<br><br><hr><br>
+	<br><br><br>
 	<div id="msgBlock">
 		<c:if test="${idUse=='T'}">
 			${newId} 는 사용가능 합니다.
-			<input type="button" value="ID OK" onclick="idOk()">
+			<input type="button" value="사용" id="idok" onclick="idOk()">
 			<!-- idOk() : 입력한 Id 값을 사용가능하도록 해주고 현재(this)창은 close -->
 			
 		</c:if>

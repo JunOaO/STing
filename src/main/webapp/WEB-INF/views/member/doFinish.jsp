@@ -1,49 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>** Do Finish ** </title>
+<title>** doFinish **</title>
 </head>
 <body>
-<h2> ** Spring NVC2 요청 처리 결과 ** </h2>
+<h2>** Spring MVC2 요청 처리 결과 **</h2>
 
-<!-- ******************************************************************* -->
-
-<!-- ** Member / join ** -->
-
-<c:if test="${fCode =='MJS'}">
-=>${message} <br>
-&nbsp;&nbsp;&nbsp;&nbsp; 로그인후 계속 이용 하세요.
+<!-- ** Member ** -->
+<c:if test="${fCode=='MJS'}">
+&nbsp;&nbsp;&nbsp;&nbsp;로그인후 이용하세요.
 <a href="loginf">[Login]</a><br>
-<a href="home">[home]</a><br>
-
 </c:if>
 <c:if test="${fCode=='MJF'}">
-&nbsp;&nbsp;&nbsp;&nbsp; 입력갑에 오류가 있습니다.
+&nbsp;&nbsp;&nbsp;&nbsp;입력값에 오류가 있습니다~~
 <a href="#" onclick="history.back()">[다시하기]</a><br>
 </c:if>
 
-<!-- ******************************************************************* -->
 
-<!-- ** Member / update ** -->
 <c:if test="${fCode=='MUF'}">
  => ${message} &nbsp;&nbsp;
 <a href="#" onclick="history.back()">[다시하기]</a> <br>
 </c:if>
-
-<!-- ******************************************************************* -->
-
-<!-- ** Member / delete ** -->
 <c:if test="${fCode=='MDS'}">
-${message}
+ => ${message} &nbsp;&nbsp;
 </c:if>
-<c:if test="${fCode=='MDf'}">
-<a href="#" onclick="history.back()">[다시하기]</a>
-<button onclick="history.back(")>다시하기</button>
+
+<c:if test="${fCode=='MDF'}">
+ => ${message} <br>
+   &nbsp;&nbsp;&nbsp;&nbsp;서비스에 장애가 발생 했습니다.&nbsp;&nbsp;잠시후 다시 하세요 ~~<br>
+ <a href="#" onclick="history.back()">[이전으로]</a> <br>
 </c:if>
+
+<!-- ** Baord ** -->
+<c:if test="${fCode=='BF'}">
+ => ${message} &nbsp;&nbsp;
+<a href="#" onclick="history.back()">[다시하기]</a> <br>
+</c:if>
+
 <hr>
 <a href="home">[Home]</a>
 </body>
