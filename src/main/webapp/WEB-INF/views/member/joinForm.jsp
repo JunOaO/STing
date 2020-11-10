@@ -237,7 +237,7 @@ body{
             <input type="text" name="nickname" id="nickname" class="input_height" placeholder="닉네임" required>
             <div id="nickMessage" class="message"></div>
          </div>
-
+ 
          <div class="form_group">
             <input type="email" name="email" id="email" class="input_height" placeholder="e-mail" required>
             <div id="emailMessage" class="message"></div>
