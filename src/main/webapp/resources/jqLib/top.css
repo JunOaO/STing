@@ -1,3 +1,10 @@
+/* html{
+	background-color: gray;
+} */
+
+body{ 
+	min-width: 800px;
+}
 #loginf:hover {
 	cursor: pointer;
 }
@@ -35,16 +42,42 @@
    /* float: left; */
 }
 
+#blurlogin{
+	width: 1100px;
+	border : 1px solid red;
+	height: 50px;
+	margin-top: 50px; 
+	margin-bottom: 50px;
+	margin-left: 550px; 
+}
 #blurbUp { /* 메뉴바 위 광고 */
-   position: absolute;
-   /* margin : 0 auto; */
+  /* position: absolute;
+    margin : 0 auto; 
    left: calc(50% - 400px);
-   top: 270px; width : 800px;
+   top: 270px;*/
    height: 50px;
    background-color: yellow;
    width: 800px;
-}
+   float: left;
+} 
+.loginbox {
+   /* margin-top: 100px; */
+   /* position: relative; */
+   /* float : left; */
+   /* left: 1500px; */
+   border: 1px solid green;
+   width: 177px;
+   height : 50px;
+   float: right;
+   /* margin-right: 200px; */
+   /* margin-left: 200px; */
 
+   
+ /*   margin-top : 100px;
+   float: right;
+   border: 1px solid green;
+   margin-right: 200px; */
+}
 #blurbR {
 	board : 1px solid red;
 	float: right;
@@ -71,20 +104,8 @@
    display: block;
 }
 
-.loginbox {
-   margin-top: 100px;
-   position: relative;
-   left: 1500px;
-   border: 1px solid green;
-   width: 177px;
-   margin-right: 200px;
 
-   
- /*   margin-top : 100px;
-   float: right;
-   border: 1px solid green;
-   margin-right: 200px; */
-}
+
 
 #loginID {
    float: left;
@@ -107,3 +128,17 @@
 .join>a {
    font-size: 10px;
 }
+
+
+.newBoardDiv{
+	width: 800px;
+	margin: 0 auto;
+	border: 1px solid red;
+	height: 200px; 
+}
+#footballDiv>table td{
+	width: 200px;
+}
+.title{width: 500px;}
+.nickname{width: 50px;}
+.regdate{width: 50px; }

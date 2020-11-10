@@ -45,5 +45,15 @@ public class STBserviceImpl implements STBservice{
 	public STBoardVO baseballSelectOne(STBoardVO vo) {
 		return dao.baseballSelectOne(vo);
 	}
+
+	@Override
+	public int boardRowCount(SearchCriteria cri) {
+		return dao.boardRowCount(cri);
+	}
+
+	@Override
+	public List<STBoardVO> baseBallselectList() {
+		return dao.baseBallselectList();
+	}
 	
 }

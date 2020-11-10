@@ -300,7 +300,7 @@ select{
 		
 	<div class="div_content">
 		<!-- <label class="label_content">내&nbsp;용</label> -->
-		<textarea name="content" id="smarteditor" class="input_content" value="" placeholder="제목입력" maxlength="2048" style="resize: none; overflow-y:scroll; " required>사진과 지도를 첨부하여 자신의 위치를 공유해보세요.</textarea>
+		<textarea name="content" id="smarteditor" class="input_content" value="" placeholder="제목입력" maxlength="2048" style="resize: none; overflow-y:scroll;" required>사진과 지도를 첨부하여 자신의 위치를 공유해보세요.</textarea>
 			
 	</div>
 	

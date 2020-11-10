@@ -1,11 +1,14 @@
 package com.ncs.STing;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.Provider.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.tribes.group.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -103,7 +106,7 @@ public class STMemberController {
 	} // login
 	
 	@RequestMapping(value = "/logout")
-	public ModelAndView logout(HttpServletRequest request, ModelAndView mv) {
+	public ModelAndView logout(HttpServletRequest request, ModelAndView mv,HttpServletResponse response) {
 
 		String message = "";
 		HttpSession session = request.getSession(false);

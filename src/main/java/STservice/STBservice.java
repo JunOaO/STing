@@ -19,5 +19,9 @@ public interface STBservice {
 	STBoardVO baseballSelectOne(STBoardVO vo);
 
 	List<STBoardVO> baseBallselectList(Criteria cri);
+	
+	List<STBoardVO> baseBallselectList();
+
+	int boardRowCount(SearchCriteria cri);
 
 }

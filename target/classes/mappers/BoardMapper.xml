@@ -83,6 +83,11 @@
 	<select id="baseballSelectOne" resultType="vo.STBoardVO">
 		select * from baseballboard where seq=#{seq}
 	</select>
+	
+	<select id="boardRowCount" resultType="int">
+			select count(*) from baseballboard <![CDATA[ where ( seq> 0 ]]>
+		<include refid="search"></include>
+	</select>
 
 
 

@@ -26,7 +26,7 @@ public class STBoardDAO {
 		public int searchRowCount(SearchCriteria cri) {
 			return sqlSession.selectOne(NS+ "searchRowCount",cri);
 		}
-	
+		
 		public List<STBoardVO> searchList(SearchCriteria cri) {
 			return sqlSession.selectList(NS + "searchList", cri);
 		}
@@ -41,9 +41,16 @@ public class STBoardDAO {
 		public List<STBoardVO> baseBallselectList(Criteria cri){
 			return sqlSession.selectList(NS + "baseBallselectList", cri);
 		}
+		public List<STBoardVO> baseBallselectList(){
+			return sqlSession.selectList(NS + "baseBallselectList");
+		}
 		
 		public STBoardVO baseballSelectOne(STBoardVO vo){
 			return (STBoardVO) sqlSession.selectList(NS + "baseballSelectOne",vo);
+		}
+		
+		public int boardRowCount(SearchCriteria cri) {
+			return sqlSession.selectOne(NS+ "boardRowCount",cri);
 		}
 		
 }// class

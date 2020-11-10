@@ -52,7 +52,7 @@ public class STBoardController {
 	@RequestMapping(value = "/sports")
 	public ModelAndView sports (ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
 		cri.setSnoEno();
-		mv.addObject("sports",service.searchList(cri));
+		mv.addObject("Banana",service.searchList(cri));
 		pageMaker.setCri(cri);
 		pageMaker.setTotalRow(service.searchRowCount(cri));
 		mv.addObject("pageMaker",pageMaker);
@@ -98,18 +98,25 @@ public class STBoardController {
 	}
 	@RequestMapping(value = "/baseball_Board")
 	public ModelAndView baseballList(HttpServletRequest request,ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
-		
-		if(request.getParameter("message") != null) 
-			mv.addObject("message",request.getParameter("message"));
-
+		cri.setSnoEno();
 		mv.addObject("Banana",service.baseBallselectList(cri));
 		pageMaker.setCri(cri);
-		pageMaker.setTotalRow(service.searchRowCount(cri));
+		pageMaker.setTotalRow(service.boardRowCount(cri));
 		
 		mv.addObject("pageMaker",pageMaker);
 		mv.setViewName("board/baseball_Board");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/baseball_NewBoard")
+	public ModelAndView baseball_NewBoard(ModelAndView mv) {
+		mv.addObject("Newbaseball",service.baseBallselectList());		
+		
+		mv.setViewName("home");
+		return mv;
+	}
+	
+	
 	@RequestMapping(value = "/basketball_Board")
 	public ModelAndView basketballList(ModelAndView mv) {
 		mv.setViewName("board/basketball_Board");
