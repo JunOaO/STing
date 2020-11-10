@@ -8,15 +8,17 @@ import vo.STMemberVO;
 
 //@Component
 @Service
-public class STMemberService {
+public class STMServiceImpl implements STMservice {
 	
 	@Autowired
 	STMemberDAO dao;
 	
+	@Override
 	public int insert(STMemberVO vo) {
 		return dao.insert(vo);
 	}
 	
+	@Override
 	public STMemberVO selectOne(STMemberVO vo) {
 		return dao.selectOne(vo);
 	}

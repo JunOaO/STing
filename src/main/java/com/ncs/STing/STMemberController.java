@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import STservice.STMemberService;
+import STservice.STMservice;
 import vo.STMemberVO;
 
 
@@ -19,8 +19,9 @@ import vo.STMemberVO;
 public class STMemberController {
 	
 	  @Autowired 
-	  STMemberService service;
-	 
+	  STMservice service;
+
+	//***********************************************************************************************************************
 	/* 회원 가입 & ID 중복 체크 start */
 	@RequestMapping(value = "/bjoinf")
 	public ModelAndView bjoinf(ModelAndView mv) {
@@ -45,10 +46,10 @@ public class STMemberController {
 				mv.setViewName("member/idDupCheck");
 				return mv;
 			} // idDupCheck 
-			
 	/* 회원 가입 & ID 중복 체크 end */		
+	//***********************************************************************************************************************
 	
-	
+	//***********************************************************************************************************************
 	@RequestMapping(value = "/loginf")
 	public ModelAndView loginf(ModelAndView mv) {
 		mv.setViewName("login/loginForm");
@@ -58,7 +59,9 @@ public class STMemberController {
 	@RequestMapping(value = "/login")
 	public ModelAndView jslogin(HttpServletRequest request, HttpServletResponse response, ModelAndView mv,
 			STMemberVO vo) {
-
+ System.out.println(vo.getId());
+ System.out.println(vo.getPassword());
+ System.out.println(vo);
 		// jsonView 사용시 response 의 한글 처리
 		response.setContentType("text/html; charset=UTF-8");
 
@@ -68,7 +71,10 @@ public class STMemberController {
 		String loginSuccess = "F";
 		// 입력값 확인
 		if (id.length() > 0 && password.length() > 0) {
+			System.out.println(vo);
 			vo = service.selectOne(vo);
+			System.out.println(vo);
+
 
 			// 2. 성공(로그인 정보 보관) -> index
 			// 실패 (재로그인 유도) -> loginForm
@@ -115,14 +121,28 @@ public class STMemberController {
 		mv.setViewName("home");
 		return mv;
 	} // logout
-	/*
-	 * @RequestMapping(value="/insert") public ModelAndView insert(ModelAndView
-	 * mv,STMemberVO vo) { String message =null; String url = "member/doFinish";
-	 * 
-	 * if(service.insert(vo) > 0) { message =" 가입에 성공 하였습니다.로그인후 이용하세요.";
-	 * mv.addObject("fCode","MJS"); }else { message="가입에 실패하였습니다.다시 하세요.";
-	 * mv.addObject("fCode","MJF"); } if(message != null) {
-	 * mv.addObject("message",message); } mv.setViewName(url); return mv; }
-	 */
+	//***********************************************************************************************************************
+	
+	//***********************************************************************************************************************	
+		@RequestMapping(value="/insert")
+		public ModelAndView insert(ModelAndView mv,STMemberVO vo) {
+			String message =null;
+			String url = "member/doFinish";
+			
+			if(service.insert(vo) > 0) {
+				message =" 가입에 성공 하였습니다.로그인후 이용하세요.";
+				mv.addObject("fCode","MJS");
+			}else {
+				message="가입에 실패하였습니다.다시 하세요.";
+				mv.addObject("fCode","MJF");
+				mv.setViewName(url);
+			}
+			if(message != null) {
+				mv.addObject("message",message);
+			}
+			mv.setViewName(url);
+			return mv;
+		}
+	//***********************************************************************************************************************	
 
 }

@@ -19,12 +19,7 @@
 </style>
 
 <script>
-$(function() {
-	
-	$('#loginf').click(function() {
-		$('#loginf').css('display', 'none');
-	}); // loginf
-	
+$(function() {	
 	$('#searchBtn').on ("click",function(){
 		location.href ="sports"
 				+"${pageMaker.makeQuery(1)}"

@@ -4,7 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ncs.MemberMapper">
 
-	
-	
+	<insert id="insert">
+		insert into stmember
+		values(#{id},#{password},#{name},#{nickname}
+		,#{email},#{birthd},#{gender},'','','')
+	</insert>
+
+	<select id="selectOne" resultType="vo.STMemberVO">
+		select * from stmember where id=#{id}
+	</select>
 
 </mapper>

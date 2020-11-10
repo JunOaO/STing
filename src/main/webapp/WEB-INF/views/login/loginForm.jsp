@@ -90,13 +90,12 @@
 				<td><label for="pw">P W:</label></td>
 				<td><input type="password" name="password" id="password"
 					placeholder="PW 입력"><br> <span id="pwMessage"
-					class="Message"></span>					</td>
+					class="Message"></span></td>
 
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="submit" value="Login" id="login"
-					class="logintext">
+				<td><input type="submit" value="Login" id="login" class="logintext">
 					<div class="join">
 						<a href="bjoinf" onclick="size()">회원가입</a>&nbsp;&nbsp; <a href="#">ID/PW 찾기</a>
 					</div></td>
