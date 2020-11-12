@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import STservice.STMservice;
+import javafx.scene.control.Alert;
 import vo.STMemberVO;
 
 
@@ -125,9 +126,8 @@ public class STMemberController {
 		public ModelAndView insert(ModelAndView mv,STMemberVO vo) {
 			String message =null;
 			String url = "member/doFinish";
-			
 			if(service.insert(vo) > 0) {
-				message =" 가입에 성공 하였습니다.로그인후 이용하세요.";
+				message = "가입에 성공 하였습니다.로그인후 이용하세요.";
 				mv.addObject("fCode","MJS");
 			}else {
 				message="가입에 실패하였습니다.다시 하세요.";

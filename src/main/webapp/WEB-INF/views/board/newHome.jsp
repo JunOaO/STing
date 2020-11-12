@@ -102,15 +102,13 @@
 			</c:if>
 			<div id="resultAreaLogin"></div>
 			<c:if test="${logID != null}">
-					${logID}, ${logNickname}<br>
+					아이디 : ${logID}<br>닉네임 : ${logNickname}<br>
 				<a href="detail?id=${logID }" class="loginText">MyInfo</a>&nbsp;&nbsp; 
 			<a href="logout" class="loginText">LogOut</a>&nbsp;&nbsp;
 			</c:if>
 		</div>
 		<!--  로그인박스  -->
 	</div>
-
-
 
 	<div id="main">
 		<div id="blurbR">옆면 광고판 이드아앙</div>

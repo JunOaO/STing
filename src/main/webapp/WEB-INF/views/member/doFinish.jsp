@@ -12,7 +12,7 @@
 
 <!-- ** Member ** -->
 <c:if test="${fCode=='MJS'}">
-&nbsp;&nbsp;&nbsp;&nbsp;로그인후 이용하세요.
+	alert("로그인후 이용하세요.");
 <a href="loginf">[Login]</a><br>
 </c:if>
 <c:if test="${fCode=='MJF'}">

@@ -69,14 +69,17 @@ function nmCheck(){
 }
 
 //****************************************************************************************************************************************
-
 function nickCheck(){
    var nickname=$('#nickname').val();
-   if (nickname.length<2) {
-      $('#nickMessage').html('닉네임 은 2 글자 이상 입력하세요.');
+   if (nickname.length < 2 || nickname.length > 8) {
+      $('#nickMessage').html('닉네임 은 2 글자 이상, 8 글자 이하로 입력하세요.');
       $('#nickname').focus();
       return false;
-   }else if (nickname.replace(/[a-z.가-힇]/gi,'').length>0) {
+   }/*else if(nickname.length > 8){
+	   $('#nickMessage').html('닉네임 은 2 글자 이상, 8 글자 이하로 입력하세요.');
+	      $('#nickname').focus();
+	      return false;
+   }*/else if (nickname.replace(/[a-z.가-힇]/gi,'').length>0) {
       $('#nickMessage').html('닉네임 은 한글 또는 영문으로만 입력하세요.');
       $('#nickname').focus();
       return false;

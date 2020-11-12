@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="resources/jqLib/top.css">
+<link rel="stylesheet" type="text/css" href="resources/css/top.css">
 <link rel="stylesheet" type="text/css" href="resources/jqLib/Board.css">
 <title>축구게시판</title>
 <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
@@ -14,46 +14,66 @@
 <link rel="stylesheet" media="only screen and (max-width:980px)">
 </head>
 <body>
-	<!-- top start -->
+	<!----------------- TOP Start ----------------->
 	<div id="topsearch">
-		<a href="home"><img src="resources/image/logo_transparent.png" id="homelogo"></a>
-		<input type="text" class="topsearch"> <input type="button"
-			value="확인" class="topsearch">
-		<ul id="topnavbar">
-			<li class="topmenubar"><a href="football_Board">축구</a>
-				<ul class="topmenubar2">
-					<li><a href="stBoard">서울</a></li>
-					<li><a href="#">경기도</a></li>
-					<li><a href="#">성남</a></li>
-					<li><a href="#">광주</a></li>
-				</ul></li>
-			<li class="topmenubar"><a href="baseball_Board">야구</a>
-				<ul class="topmenubar2">
-					<li><a href="#">서울</a></li>
-					<li><a href="#">경기도</a></li>
-					<li><a href="#">성남</a></li>
-					<li><a href="#">광주</a></li>
-				</ul>
-			<li class="topmenubar"><a href="basketball_Board">농구</a>
-				<ul class="topmenubar2">
-					<li><a href="#">서울</a></li>
-					<li><a href="#">경기도</a></li>
-					<li><a href="#">성남</a></li>
-					<li><a href="#">광주</a></li>
-				</ul></li>
-			<li class="topmenubar">자전거
-				<ul class="topmenubar2">
-					<li><a href="#">서울</a></li>
-					<li><a href="#">경기도</a></li>
-					<li><a href="#">성남</a></li>
-					<li><a href="#">광주</a></li>
-				</ul>
-			</li>
-			<li><a href="#">자유 게시판</a></li>
-			</ul>
+		<a href="home"><img src="resources/image/logo_transparent.png"
+			id="homelogo"></a>
+		<div id="searchBar">
+			<select name="searchType" id="searchType">
+				<option value="football"
+					<c:out value="${pageMaker.cri.searchType eq 'football' ? 'selected' : '' }" />>
+					축구</option>
+				<option value="baseball"
+					<c:out value="${pageMaker.cri.searchType eq 'baseball' ? 'selected' : '' }" />>
+					야구</option>
+				<option value="basketball"
+					<c:out value="${pageMaker.cri.searchType eq 'basketball' ? 'selected' : '' }" />>
+					농구</option>
+				<option value="tennis"
+					<c:out value="${pageMaker.cri.searchType eq 'tennis' ? 'selected' : '' }" />>
+					테니스</option>
+				<option value="bicycle"
+					<c:out value="${pageMaker.cri.searchType eq 'bicycle' ? 'selected' : '' }" />>
+					자전거</option>
+			</select> <input type="text" class="topsearch" id="keyword" name="keyword"
+				value="${pageMaker.cri.keyword}">
+			<button class="topsearch" id="searchBtn">확인</button>
+		</div>
 	</div>
-	<div id="blurbUp">광고판 이드아앙</div>
-	<!-- top end -->
+	<ul id="topnavbar">
+		<li class="topmenubar"><a href="football_Board">축구</a>
+			<ul class="topmenubar2">
+				<li><a href=football_Board>서울</a></li>
+				<li><a href="#">경기도</a></li>
+				<li><a href="#">성남</a></li>
+				<li><a href="#">광주</a></li>
+			</ul></li>
+		<li class="topmenubar"><a href="baseball_Board">야구</a>
+			<ul class="topmenubar2">
+				<li><a href="#">서울</a></li>
+				<li><a href="#">경기도</a></li>
+				<li><a href="#">성남</a></li>
+				<li><a href="#">광주</a></li>
+			</ul>
+		<li class="topmenubar"><a href="basketball_Board">농구</a>
+			<ul class="topmenubar2">
+				<li><a href="#">서울</a></li>
+				<li><a href="#">경기도</a></li>
+				<li><a href="#">성남</a></li>
+				<li><a href="#">광주</a></li>
+			</ul></li>
+		<li class="topmenubar"><a href="#">자전거</a>
+			<ul class="topmenubar2">
+				<li><a href="#">서울</a></li>
+				<li><a href="#">경기도</a></li>
+				<li><a href="#">성남</a></li>
+				<li><a href="#">광주</a></li>
+			</ul></li>
+		<li><a href="#">자유 게시판</a></li>
+	</ul>
+	<div id="blurlogin">
+		<div id="blurbUp">광고판 이드아앙</div>
+		<!----------------- TOP end ----------------->
 
 	<div class="bord_header">
 		<div class="this_board">

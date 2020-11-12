@@ -72,7 +72,7 @@ function inCheck(){
       $('#nameMessage').html('이름 을 확인 하세요 ~~');
       $('#name').focus();
    }
-   if (nickCheck==false) {
+   if (niCheck==false) {
 	   alert("incheckNick "+nickCheck);
       $('#nickMessage').html('닉네임 을 확인 하세요 ~~');
       $('#nickname').focus();
@@ -263,15 +263,11 @@ body{
          <div class="form_group">
               <input type="hidden" name="profile" value="c"><br>
          </div>
-         
       </div>
       
       <div class="btn_group">
          <br>
          <button type="submit" class="input_button" id="login_btn1" onclick="return inCheck()">완료</button>
-         
-          
-         
       </div>
 <!--       <div class="btn_group">
          <br>
