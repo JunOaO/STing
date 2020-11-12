@@ -79,7 +79,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = { "/", "home" }, method = RequestMethod.GET)
-	public ModelAndView home(Locale locale, Model model, ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
+	public ModelAndView home(Locale locale, Model model, ModelAndView mv) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Date date = new Date();
@@ -88,9 +88,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 
 		model.addAttribute("serverTime", formattedDate);
-		cri.setSnoEno();
-		pageMaker.setCri(cri);
-		mv.addObject("pageMaker",pageMaker);
+		
 		mv.setViewName("home");
 		return mv;
 	}

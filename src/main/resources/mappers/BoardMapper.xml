@@ -71,14 +71,40 @@
 	<!-- ***************** search 관련 end ***************** -->
 
 	<insert id="baseballInsert">
-		insert into baseballboard values ((select
-		nvl(max(seq),0)+1 from
-		baseballboard),'','',#{title},#{content},sysdate,#{team},'',#{local},'',#{sports},0,'')
-	</insert>
-
-	<select id="baseBallselectList" resultType="vo.STBoardVO">
-		select * from baseballboard
+	insert into baseballboard values
+	 ((select nvl(max(seq),0)+1 from baseballboard)
+	,#{id}
+	,#{nickname}
+	,#{title}
+	,#{content}
+	,sysdate
+	,#{team}
+	,#{person}
+	,#{local}
+	,''
+	,''
+	,0
+	,'')
+</insert>
+	
+	<!-- ************************* 최신글 새로 고침   start  ***************************** -->
+	<select id="baseballSelectList" resultType="vo.STBoardVO">
+		select * from baseballboard order by seq desc
 	</select>
+	<select id="footballSelectList" resultType="vo.STBoardVO">
+		select * from footballboard order by seq desc
+	</select>
+	<select id="basketballSelectList" resultType="vo.STBoardVO">
+		select * from basketballboard order by seq desc
+	</select>
+	<select id="tennisSelectList" resultType="vo.STBoardVO">
+		select * from tennisboard order by seq desc
+	</select>
+	<select id="bicycleSelectList" resultType="vo.STBoardVO">
+		select * from bicycleboard order by seq desc
+	</select>
+	
+	<!-- ************************* 최신글 새로 고침 end ***************************** -->
 	
 	<select id="baseballSelectOne" resultType="vo.STBoardVO">
 		select * from baseballboard where seq=#{seq}

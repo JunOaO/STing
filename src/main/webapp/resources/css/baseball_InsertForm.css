@@ -1,0 +1,186 @@
+h3{
+	color:#347ab5;
+}
+.bord_header{
+	padding-bottom: 100px;
+	margin-top: 300px;
+}
+.this_board{
+	margin-left: 50px;
+	float:left;
+}
+.board_button{
+	width: 120px;
+	height: 80px;
+	font-size: 20px;
+	background-color:#347ab5;
+	color:white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.board_title{
+	height: 80px;
+	text-align:center;
+	float:left;
+	margin-left: 50px;
+	
+}
+.board_all{clear: left;}
+
+.label_title {
+    display: block;
+    text-align: center;
+    line-height: 35px;
+  	
+  	width: 120px;
+    /* width: 70px; */
+    height:35px;
+    float: left;
+    clear:both;
+    border-radius:8px;
+    background-color: #b2dffc;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.label_file {
+    display: block;
+    text-align: center;
+    line-height: 35px;
+  	
+  	width: 120px;
+    /* width: 70px; */
+    height:35px;
+    float: left;
+    clear:both;
+    border-radius:8px;
+    background-color: #b2dffc;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.label_content {
+    display: block;
+    text-align: center;
+    line-height: 300px;
+  	
+  	width: 120px;
+    /* width: 70px; */
+    height:300px;
+    float:left;
+    clear : both;
+    
+    border-radius:8px;
+    background-color: #b2dffc;
+    margin-right: 10px;
+}
+.input_title{
+	width: 600px;
+	height: 30px;
+	border-radius:8px;
+	float: left;
+	
+}
+
+.input_content{
+	width: 730px;
+	height:500px;
+	float:left;
+	border-radius:8px;
+	
+}
+.board_all{
+	
+	margin-left: 50px;
+}
+.div_title{
+	
+}
+.button_file{
+	width: 60px;
+	height: 27px;
+	line-height:27px;
+	font-size: 18px;
+	float: left;
+	background-color: #ea4335;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+	
+	
+}
+#button_image{
+	margin-right: 10px;
+	cursor: pointer;
+	
+}
+.div_file{
+	
+}
+.div_btn{
+	/* width: 688px; */
+	width: 738px;
+	height: 50px;
+	
+}
+.input_button{
+	width: 50px;
+	height: 30px;
+	font-size: 16px;
+	margin-top: 10px;
+	background-color: #fbbc05;
+	border: none;
+	border-radius: 5px;
+	color: white;
+}
+
+#login_btn1{
+	float: right;
+	margin-left: 10px;
+	cursor: pointer;
+}
+#login_btn2{
+	float: right;
+	cursor: pointer;
+}
+
+.input_content{
+	font-size: 20px;
+	font-weight: bold;
+	color:#347ab5; 
+}
+.label_Configuration{
+	display: block;
+    text-align: center;
+    line-height: 35px;
+  	
+  	width: 120px;
+    /* width: 70px; */
+    height:35px;
+    float: left;
+    clear:both;
+    border-radius:8px;
+    background-color: #b2dffc;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+select{
+	float: left;
+	height: 30px;
+	border-radius:8px;
+	background-color: #f8f8f8;
+	cursor: pointer;
+}
+
+#category{
+	margin-right: 10px;
+	
+	
+}
+#good{
+	margin-right: 10px;
+}
+
+#file { display:none; }

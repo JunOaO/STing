@@ -14,7 +14,7 @@ public class STBserviceImpl implements STBservice{
 	
 	@Autowired
 	STBoardDAO dao;
-	
+
 	// ** SearchCriteria List
 	@Override
 	public int searchRowCount(SearchCriteria cri) {
@@ -37,8 +37,8 @@ public class STBserviceImpl implements STBservice{
 	} // insert
 	
 	@Override
-	public List<STBoardVO> baseBallselectList(Criteria cri){
-		return dao.baseBallselectList(cri);
+	public List<STBoardVO> baseballSelectList(Criteria cri){
+		return dao.baseballSelectList(cri);
 	}
 
 	@Override
@@ -51,9 +51,30 @@ public class STBserviceImpl implements STBservice{
 		return dao.boardRowCount(cri);
 	}
 
+	/************************** 최신글 새로 고침 start ******************************/
 	@Override
-	public List<STBoardVO> baseBallselectList() {
-		return dao.baseBallselectList();
+	public List<STBoardVO> baseballSelectList() {
+		return dao.baseballSelectList();
 	}
 	
+	@Override
+	public List<STBoardVO> footballSelectList() {
+		return dao.footballSelectList();
+	}
+
+	@Override
+	public List<STBoardVO> basketballSelectList() {
+		return dao.basketballSelectList();
+	}
+
+	@Override
+	public List<STBoardVO> tennisSelectList() {
+		return dao.tennisSelectList();
+	}
+
+	@Override
+	public List<STBoardVO> bicycleSelectList() {
+		return dao.bicycleSelectList();
+	}
+	/************************** 최신글 새로 고침 end ******************************/
 }

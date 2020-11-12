@@ -7,8 +7,8 @@ public class STBoardVO {
 	private String title;
 	private String Content;
 	private String regdate;
-	private int team;
-	private int person;
+	private String team;
+	private String person;
 	private String local;
 	private String map;
 	private String sports;
@@ -64,19 +64,19 @@ public class STBoardVO {
 		this.regdate = regdate;
 	}
 
-	public int getTeam() {
+	public String getTeam() {
 		return team;
 	}
 
-	public void setTeam(int team) {
+	public void setTeam(String team) {
 		this.team = team;
 	}
 
-	public int getPerson() {
+	public String getPerson() {
 		return person;
 	}
 
-	public void setPerson(int person) {
+	public void setPerson(String person) {
 		this.person = person;
 	}
 

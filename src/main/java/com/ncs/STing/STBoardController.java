@@ -1,13 +1,11 @@
 package com.ncs.STing;
 
-import java.io.Console;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.ModelAndView;
 
 import STservice.STBservice;
@@ -31,23 +30,12 @@ import cri.SearchCriteria;
 import vo.STBoardVO;
 
 @Controller
-public class STBoardController {
+public class STBoardController implements ServletContextAware{
 	
 	@Autowired
 	STBservice service;
 	
 	private ServletContext context;
-
-	@RequestMapping(value = "/FBdetail")
-	public ModelAndView FBdetail(ModelAndView mv, STBoardVO vo) {
-		
-		vo = service.fbdetail(vo);
-		
-		mv.addObject("one", vo);		
-		mv.setViewName("board/football_BDetail");
-		
-		return mv;
-	}
 	
 	@RequestMapping(value = "/sports")
 	public ModelAndView sports (ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
@@ -56,7 +44,7 @@ public class STBoardController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalRow(service.searchRowCount(cri));
 		mv.addObject("pageMaker",pageMaker);
-		mv.setViewName("board/"+cri.getSearchType()+"_Board");
+		mv.setViewName("board/"+cri.getSearchType()+"_Board"); 
 		return mv;
 	}
 	
@@ -96,10 +84,12 @@ public class STBoardController {
 		mv.setViewName("board/football_Board");
 		return mv;
 	}
+	
+//==================================================================================================================================================
 	@RequestMapping(value = "/baseball_Board")
 	public ModelAndView baseballList(HttpServletRequest request,ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
 		cri.setSnoEno();
-		mv.addObject("Banana",service.baseBallselectList(cri));
+		mv.addObject("Banana",service.baseballSelectList(cri));
 		pageMaker.setCri(cri);
 		pageMaker.setTotalRow(service.boardRowCount(cri));
 		
@@ -108,14 +98,43 @@ public class STBoardController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/baseball_NewBoard")
-	public ModelAndView baseball_NewBoard(ModelAndView mv) {
-		mv.addObject("Newbaseball",service.baseBallselectList());		
+	@RequestMapping(value="/board_Detail")
+	public ModelAndView boardDetail(HttpServletRequest request , ModelAndView mv , STBoardVO vo) {
+		vo = service.baseballSelectOne(vo);
+		if(vo != null) {
+			mv.addObject("Detail",vo);
+			//Detail or Update 확인
+			if("U".equals(request.getParameter("code"))) {
+				//update
+				mv.setViewName("board/baseball_UpdateForm");
+			}else {
+				mv.setViewName("board/baseball_DetailForm");
+			}
+		}
+		else {
+			mv.addObject("message","출력할 자료가 없습니다.");
+			mv.setViewName("redirect:baseball_Board");
+		}
+		return mv;
+	}//baseballBoard  
+//==================================================================================================================================================
+	
+	
+	@RequestMapping(value = "/NewBoard")
+	public ModelAndView baseball_NewBoard(ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
+		cri.setSnoEno();
+		pageMaker.setCri(cri);
+		mv.addObject("pageMaker",pageMaker);
+		mv.addObject("newBaseball",service.baseballSelectList());		
+		mv.addObject("newFootBall",service.footballSelectList());		
+		mv.addObject("newBasketBall",service.basketballSelectList());		
+		mv.addObject("newTennis",service.tennisSelectList());		
+		mv.addObject("newBicycle",service.bicycleSelectList());		
+		mv.setViewName("board/newHome");
 		
-		mv.setViewName("home");
 		return mv;
 	}
-	
+//==================================================================================================================================================
 	
 	@RequestMapping(value = "/basketball_Board")
 	public ModelAndView basketballList(ModelAndView mv) {
@@ -133,22 +152,25 @@ public class STBoardController {
 		return mv;
 	}
 	
+//==================================================================================================================================================	
 	
-	
-	@RequestMapping(value="/basebalinsert")
-	public ModelAndView baseballInsert(ModelAndView mv , STBoardVO vo) {
-		if(service.baseballInsert(vo)>0) {
-			//성공 -> blist
-			mv.addObject("message","새글등록 성공");
-			mv.setViewName("redirect:baseball_Board");
-		}else {
-			//실패 -> doFinish
-			mv.addObject("message","새글등록 실패");
-			mv.addObject("fCode","BF");
-			mv.setViewName("member/doFinish");
-		}
-		return mv;
-	}//binsert
+		@RequestMapping(value="/basebalinsert")
+		public ModelAndView baseballInsert(ModelAndView mv , STBoardVO vo) {
+			if(service.baseballInsert(vo)>0) {
+				//성공 -> blist
+				System.out.println(vo);
+				mv.addObject("message","새글등록 성공");
+				mv.setViewName("redirect:baseball_Board");
+			}else {
+				//실패 -> doFinish
+				mv.addObject("message","새글등록 실패");
+				mv.addObject("fCode","BF");
+				mv.setViewName("member/doFinish");
+			}
+			return mv;
+		}//binsert
+
+//==================================================================================================================================================
 	
 	@RequestMapping(value = "/file_uploader_html5", method = RequestMethod.POST)
 	public void file_uploader_html5(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -246,19 +268,8 @@ public class STBoardController {
 		response.sendRedirect(return1+return2+return3);
 	}
 	
-	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public ModelAndView write(HttpServletRequest request) throws IOException, FileUploadException {
-		String title = request.getParameter("title");
-		String smarteditor = request.getParameter("smarteditor");
-//		
-//		System.out.println("title = " + title);
-//		System.out.println("content = " + smarteditor);
-		ModelAndView model = new ModelAndView("write");
-		model.addObject("title", title);
-		model.addObject("smarteditor", smarteditor);
-		return model;
-	}
 	
+	@Override
 	public void setServletContext(ServletContext servletContext) {
 		this.context = servletContext;
 	}

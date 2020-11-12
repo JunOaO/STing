@@ -62,9 +62,6 @@ public class STMemberController {
 	@RequestMapping(value = "/login")
 	public ModelAndView jslogin(HttpServletRequest request, HttpServletResponse response, ModelAndView mv,
 			STMemberVO vo) {
- System.out.println(vo.getId());
- System.out.println(vo.getPassword());
- System.out.println(vo);
 		// jsonView 사용시 response 의 한글 처리
 		response.setContentType("text/html; charset=UTF-8");
 
@@ -74,11 +71,7 @@ public class STMemberController {
 		String loginSuccess = "F";
 		// 입력값 확인
 		if (id.length() > 0 && password.length() > 0) {
-			System.out.println(vo);
 			vo = service.selectOne(vo);
-			System.out.println(vo);
-
-
 			// 2. 성공(로그인 정보 보관) -> index
 			// 실패 (재로그인 유도) -> loginForm
 			if (vo == null) {
@@ -90,6 +83,7 @@ public class STMemberController {
 					HttpSession session = request.getSession();
 					session.setAttribute("logID", id);
 					session.setAttribute("logName", vo.getName());
+					session.setAttribute("logNickname", vo.getNickname());
 					loginSuccess = "T";
 				} else {
 					message = " Password 오류 ~~~ ";

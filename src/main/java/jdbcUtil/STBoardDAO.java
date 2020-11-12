@@ -38,15 +38,31 @@ public class STBoardDAO {
 			return sqlSession.update(NS + "baseballInsert",vo);
 		}
 		
-		public List<STBoardVO> baseBallselectList(Criteria cri){
-			return sqlSession.selectList(NS + "baseBallselectList", cri);
+		public List<STBoardVO> baseballSelectList(Criteria cri){
+			return sqlSession.selectList(NS + "baseballSelectList", cri);
 		}
-		public List<STBoardVO> baseBallselectList(){
-			return sqlSession.selectList(NS + "baseBallselectList");
+		/************************** 최신글 새로 고침 start ******************************/
+		
+		public List<STBoardVO> baseballSelectList(){
+			return sqlSession.selectList(NS + "baseballSelectList");
+		}
+		public List<STBoardVO> footballSelectList(){
+			return sqlSession.selectList(NS + "footballSelectList");
+		}
+		public List<STBoardVO> basketballSelectList(){
+			return sqlSession.selectList(NS + "basketballSelectList");
+		}
+		public List<STBoardVO> tennisSelectList(){
+			return sqlSession.selectList(NS + "tennisSelectList");
+		}
+		public List<STBoardVO> bicycleSelectList(){
+			return sqlSession.selectList(NS + "bicycleSelectList");
 		}
 		
+		/************************** 최신글 새로 고침 end ******************************/
+		
 		public STBoardVO baseballSelectOne(STBoardVO vo){
-			return (STBoardVO) sqlSession.selectList(NS + "baseballSelectOne",vo);
+			return (STBoardVO) sqlSession.selectOne(NS + "baseballSelectOne",vo);
 		}
 		
 		public int boardRowCount(SearchCriteria cri) {

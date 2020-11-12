@@ -18,9 +18,15 @@ public interface STBservice {
 
 	STBoardVO baseballSelectOne(STBoardVO vo);
 
-	List<STBoardVO> baseBallselectList(Criteria cri);
-	
-	List<STBoardVO> baseBallselectList();
+	List<STBoardVO> baseballSelectList(Criteria cri);
+
+	/************************** 최신글 새로 고침 start **************************/
+	List<STBoardVO> baseballSelectList();
+	List<STBoardVO> footballSelectList();
+	List<STBoardVO> basketballSelectList();
+	List<STBoardVO> tennisSelectList();
+	List<STBoardVO> bicycleSelectList();
+	/************************** 최신글 새로 고침 end **************************/
 
 	int boardRowCount(SearchCriteria cri);
 
