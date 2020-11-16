@@ -12,6 +12,7 @@ import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -28,6 +29,8 @@ import STservice.STBservice;
 import cri.PageMaker;
 import cri.SearchCriteria;
 import vo.STBoardVO;
+import vo.STMatchingVO;
+import vo.STMemberVO;
 
 @Controller
 public class STBoardController implements ServletContextAware{
@@ -36,6 +39,43 @@ public class STBoardController implements ServletContextAware{
 	STBservice service;
 	
 	private ServletContext context;
+	
+	/******************************************** 매칭 Start ********************************************/
+	@RequestMapping(value = "/matchingf")
+	public ModelAndView matchingf(ModelAndView mv, STBoardVO vo, STMatchingVO mvo) {
+		mv.addObject("matching_team",service.baseballSelectOne(vo));
+		mv.addObject("matching",service.matchingSelect(mvo));
+		mv.setViewName("board/matching_Board");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/matching")
+	public ModelAndView matching(ModelAndView mv, STMatchingVO mvo,STBoardVO vo, STMemberVO  memvo,HttpServletRequest request) {
+		String id = null;
+		
+		HttpSession session = request.getSession(false);
+		
+		mv.addObject("matching_team",service.baseballSelectOne(vo));
+		vo = service.baseballSelectOne(vo);
+		mvo.setLeader_id(vo.getId());
+		
+		id = (String)session.getAttribute("logID");
+		mvo.setMatching_id(id);
+		service.matchingInsert(mvo);
+		service.matchingUpdate(memvo);
+		mv.setViewName("board/matching_Board");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/partyplay")
+	public ModelAndView partyplay(ModelAndView mv, STMemberVO vo, STMatchingVO mvo) {
+		System.out.println("partyplay mvo="+mvo);
+		mv.addObject("partyplay"  ,service.memberpartyplay(mvo));
+		mv.setViewName("board/matching_Board");
+		return mv;
+	}
+	/******************************************** 매칭 End ********************************************/
+	
 	
 	@RequestMapping(value = "/sports")
 	public ModelAndView sports (ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
@@ -97,7 +137,8 @@ public class STBoardController implements ServletContextAware{
 		mv.setViewName("board/baseball_Board");
 		return mv;
 	}
-	
+
+	/******************* 디테일, 수정 & 삭제 start *******************/
 	@RequestMapping(value="/board_Detail")
 	public ModelAndView boardDetail(HttpServletRequest request , ModelAndView mv , STBoardVO vo) {
 		vo = service.baseballSelectOne(vo);
@@ -116,10 +157,44 @@ public class STBoardController implements ServletContextAware{
 			mv.setViewName("redirect:baseball_Board");
 		}
 		return mv;
-	}//baseballBoard  
-//==================================================================================================================================================
+	}//baseballBoard
 	
+	@RequestMapping(value="/baseball_Update")
+	public ModelAndView baseballUpdate(ModelAndView mv , STBoardVO vo) {
+				
+		if ( service.baseballUpdate(vo) > 0 ) {
+			// Update 성공 => baseballBoard
+			mv.addObject("message","글 수정 성공");
+			mv.setViewName("redirect:baseball_Board");
+			
+		}else {
+			// Update 실패 => 실패 message, doFinish 출력
+			mv.addObject("message","글 수정 실패");
+			mv.addObject("fCode","BF");
+			mv.setViewName("member/doFinish");
+		}
+		return mv;
+	}//baseball_Update
 	
+	@RequestMapping(value="/baseball_Delete")
+	public ModelAndView baseballDelete(ModelAndView mv,STBoardVO vo) {
+		
+		int count = service.baseballDelete(vo);
+		System.out.println(" Delete 갯수 =>" +count+"개");
+		
+		if(count > 0) {
+			mv.addObject("message","글삭제 성공");
+			mv.setViewName("redirect:baseball_Board");
+		}else {
+			mv.addObject("message","글삭제 실패");
+			mv.setViewName("member/doFinish");
+		}
+		
+		return mv;
+	}
+	/******************* 디테일, 수정 & 삭제 end *******************/
+	
+//================================ 최신글 불러오기 start ==========================================================
 	@RequestMapping(value = "/NewBoard")
 	public ModelAndView baseball_NewBoard(ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
 		cri.setSnoEno();
@@ -134,7 +209,7 @@ public class STBoardController implements ServletContextAware{
 		
 		return mv;
 	}
-//==================================================================================================================================================
+//================================ 최신글 불러오기 end ==========================================================
 	
 	@RequestMapping(value = "/basketball_Board")
 	public ModelAndView basketballList(ModelAndView mv) {
@@ -154,11 +229,11 @@ public class STBoardController implements ServletContextAware{
 	
 //==================================================================================================================================================	
 	
-		@RequestMapping(value="/basebalinsert")
+		@RequestMapping(value="/baseballinsert")
 		public ModelAndView baseballInsert(ModelAndView mv , STBoardVO vo) {
 			if(service.baseballInsert(vo)>0) {
 				//성공 -> blist
-				System.out.println(vo);
+				service.boardLeaderUpdate(vo);
 				mv.addObject("message","새글등록 성공");
 				mv.setViewName("redirect:baseball_Board");
 			}else {

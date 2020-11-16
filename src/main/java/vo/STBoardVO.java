@@ -8,13 +8,22 @@ public class STBoardVO {
 	private String Content;
 	private String regdate;
 	private String team;
-	private String person;
+	private int person;
 	private String local;
 	private String map;
 	private String sports;
 	private String reple;
 	private int cnt;
 	private String image;
+	private int leadermatching;
+	
+	public int getLeadermatching() {
+		return leadermatching;
+	}
+
+	public void setLeadermatching(int leadermatching) {
+		this.leadermatching = leadermatching;
+	}
 
 	public int getSeq() {
 		return seq;
@@ -72,11 +81,11 @@ public class STBoardVO {
 		this.team = team;
 	}
 
-	public String getPerson() {
+	public int getPerson() {
 		return person;
 	}
 
-	public void setPerson(String person) {
+	public void setPerson(int person) {
 		this.person = person;
 	}
 
@@ -133,6 +142,7 @@ public class STBoardVO {
 		return "STBoardVO [seq=" + seq + ", id=" + id + ", nickname=" + nickname + ", title=" + title + ", Content="
 				+ Content + ", regdate=" + regdate + ", team=" + team + ", person=" + person + ", local=" + local
 				+ ", map=" + map + ", sports=" + sports + ", reple=" + reple + ", cnt=" + cnt + ", image=" + image
-				+ "]";
+				+ ", leader_mc=" + leadermatching + "]";
 	}
+
 }

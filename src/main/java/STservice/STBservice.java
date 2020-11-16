@@ -5,16 +5,20 @@ import java.util.List;
 import cri.Criteria;
 import cri.SearchCriteria;
 import vo.STBoardVO;
+import vo.STMatchingVO;
+import vo.STMemberVO;
 
-public interface STBservice {
+public interface STBservice{
 
 	List<STBoardVO> searchList(SearchCriteria cri);
 	
 	int searchRowCount(SearchCriteria cri);
 
-	STBoardVO fbdetail(STBoardVO vo);
-
 	int baseballInsert(STBoardVO vo);
+
+	/******************* 모집글 횟수 start *******************/
+	int boardLeaderUpdate(STBoardVO vo);
+	/******************* 모집글 횟수 end *******************/
 
 	STBoardVO baseballSelectOne(STBoardVO vo);
 
@@ -29,5 +33,20 @@ public interface STBservice {
 	/************************** 최신글 새로 고침 end **************************/
 
 	int boardRowCount(SearchCriteria cri);
+
+	/************************** 수정 & 삭제 start **************************/
+	int baseballUpdate(STBoardVO vo);
+	int baseballDelete(STBoardVO vo);
+	/************************** 수정 & 삭제 end **************************/
+	
+	/**************************  매칭 start ******************************/
+	int matchingInsert(STMatchingVO mvo);
+	List<STMatchingVO> matchingSelect(STMatchingVO mvo);
+	
+	int matchingUpdate(STMemberVO memvo);
+	
+	int memberpartyplay(STMatchingVO mvo);
+	/**************************  매칭 end ******************************/
+
 
 }

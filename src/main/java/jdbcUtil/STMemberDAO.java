@@ -28,8 +28,16 @@ public class STMemberDAO {
 		return sqlSession.insert(NS+"insert",vo);
 	}
 	
+	public List<STMemberVO> selectList() {
+		return sqlSession.selectList(NS+"selectList");
+	}
+	
 	public STMemberVO selectOne(STMemberVO vo) {
 		return sqlSession.selectOne(NS+"selectOne",vo);
 	} // selectOne
+	
+	public int delete(STMemberVO vo) {
+		return sqlSession.delete(NS+"delete",vo);
+	}
 
 } // class

@@ -8,8 +8,8 @@ public class STMemberVO {
 	private String email;
 	private String birthd;
 	private String gender;
-	private String matching;
-	private String partyplay;
+	private int matching;
+	private int partyplay;
 	private String profile;
 
 	public String getId() {
@@ -68,19 +68,19 @@ public class STMemberVO {
 		this.gender = gender;
 	}
 
-	public String getMatching() {
+	public int getMatching() {
 		return matching;
 	}
 
-	public void setMatching(String matching) {
+	public void setMatching(int matching) {
 		this.matching = matching;
 	}
 
-	public String getPartyplay() {
+	public int getPartyplay() {
 		return partyplay;
 	}
 
-	public void setPartyplay(String partyplay) {
+	public void setPartyplay(int partyplay) {
 		this.partyplay = partyplay;
 	}
 

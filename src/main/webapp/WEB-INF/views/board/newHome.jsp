@@ -23,7 +23,6 @@
 <script>
 	$(function() {
 		$('#searchBtn').on("click", function() {
-			alert("검색 버튼");
 					location.href = "sports"
 								  + "${pageMaker.makeQuery(1)}"
 								  + "&searchType=" + $('#searchType').val()
@@ -59,42 +58,23 @@
 			<button class="topsearch" id="searchBtn">확인</button>
 		</div>
 	</div>
+	<div >
 	<ul id="topnavbar">
-		<li class="topmenubar"><a href="football_Board">축구</a>
-			<ul class="topmenubar2">
-				<li><a href=football_Board>서울</a></li>
-				<li><a href="#">경기도</a></li>
-				<li><a href="#">성남</a></li>
-				<li><a href="#">광주</a></li>
-			</ul></li>
-		<li class="topmenubar"><a href="baseball_Board">야구</a>
-			<ul class="topmenubar2">
-				<li><a href="#">서울</a></li>
-				<li><a href="#">경기도</a></li>
-				<li><a href="#">성남</a></li>
-				<li><a href="#">광주</a></li>
-			</ul>
-		<li class="topmenubar"><a href="basketball_Board">농구</a>
-			<ul class="topmenubar2">
-				<li><a href="#">서울</a></li>
-				<li><a href="#">경기도</a></li>
-				<li><a href="#">성남</a></li>
-				<li><a href="#">광주</a></li>
-			</ul></li>
-		<li class="topmenubar"><a href="#">자전거</a>
-			<ul class="topmenubar2">
-				<li><a href="#">서울</a></li>
-				<li><a href="#">경기도</a></li>
-				<li><a href="#">성남</a></li>
-				<li><a href="#">광주</a></li>
-			</ul></li>
-		<li><a href="#">자유 게시판</a></li>
+		<li class="topmenubar"><a href="football_Board">축구</a></li>
+		<li class="topmenubar"><a href="baseball_Board">야구</a></li>
+		<li class="topmenubar"><a href="basketball_Board">농구</a></li>
+		<li class="topmenubar"><a href="#">자전거</a></li>
+		<li class="topmenubar" id="freeboard"><a href="#">자유 게시판</a></li>
+		<c:if test="${logID == 'admin' }">
+			<li class="topmenubar"><a href="list">회원 목록</a></li>
+		</c:if>
 	</ul>
+	</div>
 	<div id="blurlogin">
-		<div id="blurbUp">광고판 이드아앙</div>
-		<!----------------- TOP end ----------------->
-
-		<div class="loginbox">
+		<!-- <div> -->
+		<img id="blurbUp" alt="광고 자리" src="resources/image/modify.gif">
+		<!--</div>-->	
+	<div id="loginbox">
 			<c:if test="${ empty logID}">
 				<span id="loginf">[로 그 인]</span>
 				<br>
@@ -102,12 +82,13 @@
 			</c:if>
 			<div id="resultAreaLogin"></div>
 			<c:if test="${logID != null}">
-					아이디 : ${logID}<br>닉네임 : ${logNickname}<br>
+					${logID}<br>${logNickname}<br>
 				<a href="detail?id=${logID }" class="loginText">MyInfo</a>&nbsp;&nbsp; 
 			<a href="logout" class="loginText">LogOut</a>&nbsp;&nbsp;
 			</c:if>
-		</div>
-		<!--  로그인박스  -->
+	</div>
+	<!--  로그인박스  -->
+	<!----------------- TOP end ----------------->
 	</div>
 
 	<div id="main">
@@ -126,10 +107,10 @@
 						<td>${newFootBall.seq}</td>
 						<td class="title_over">
 						<c:if test="${logID != null}">
-						<a href="board_Detail?seq=${newFootBall.seq}">[${newFootBall.local}]&nbsp;${newFootBall.title}</a>
+						<a href="board_Detail?seq=${newFootBall.seq}">[${newFootBall.local}][${newFootBall.team}]&nbsp;${newFootBall.title}</a>
 						</c:if>
 						<c:if test="${logID == null}">
-						[${newFootBall.local}]&nbsp;${newFootBall.title}
+						[${newFootBall.local}][${newFootBall.team}]&nbsp;${newFootBall.title}
 						</c:if>
 						</td>
 						<td>${newFootBall.nickname}</td>
@@ -153,10 +134,10 @@
 						<td>${newBaseball.seq}</td>
 						<td class="title_over">
 						<c:if test="${logID != null }">
-						<a href="board_Detail?seq=${newBaseball.seq}">[${newBaseball.local}]&nbsp;${newBaseball.title}</a>
+						<a href="board_Detail?seq=${newBaseball.seq}">[${newBaseball.local}][${newBaseball.team}]&nbsp;${newBaseball.title}</a>
 						</c:if>
 						<c:if test="${logID == null }">
-						[${newBaseball.local}]&nbsp;${newBaseball.title}
+						[${newBaseball.local}][${newBaseball.team}]&nbsp;${newBaseball.title}
 						</c:if>
 						</td>
 						<td>${newBaseball.nickname}</td>
@@ -180,10 +161,10 @@
 						<td>${newBasketBall.seq}</td>
 						<td class="title_over">
 						<c:if test="${logID != null }">
-						<a href="javascript:;">[${newBasketBall.local}]&nbsp;${newBasketBall.title}</a>
+						<a href="javascript:;">[${newBasketBall.local}][${newBasketBall.team}]&nbsp;${newBasketBall.title}</a>
 						</c:if>
 						<c:if test="${logID == null }">
-						[${newBasketBall.local}]&nbsp;${newBasketBall.title}
+						[${newBasketBall.local}][${newBasketBall.team}]&nbsp;${newBasketBall.title}
 						</c:if>
 						</td>
 						<td>${newBasketBall.nickname}</td>
@@ -208,10 +189,10 @@
 						<td>${newTennis.seq}</td>
 						<td class="title_over">
 						<c:if test="${logID != null }">
-						<a href="javascript:;">[${newTennis.local}]&nbsp;${newTennis.title}</a>
+						<a href="javascript:;">[${newTennis.local}][${newTennis.team}]&nbsp;${newTennis.title}</a>
 						</c:if>
 						<c:if test="${logID == null }">
-						[${newTennis.local}]&nbsp;${newTennis.title}
+						[${newTennis.local}][${newTennis.team}]&nbsp;${newTennis.title}
 						</c:if>
 						</td>
 						<td>${newTennis.nickname}</td>
@@ -235,10 +216,10 @@
 						<td>${newBicycle.seq}</td>
 						<td class="title_over">
 						<c:if test="${logID != null }">
-						<a href="javascript:;">[${newBicycle.local}]&nbsp;${newBicycle.title}</a>
+						<a href="javascript:;">[${newBicycle.local}][${newBicycle.team}]&nbsp;${newBicycle.title}</a>
 						</c:if>
 						<c:if test="${logID == null }">
-						[${newBicycle.local}]&nbsp;${newBicycle.title}
+						[${newBicycle.local}][${newBicycle.team}]&nbsp;${newBicycle.title}
 						</c:if>
 						</td>
 						<td>${newBicycle.id}</td>
@@ -342,20 +323,5 @@ map varchar2(1000),
 sports varchar2(10),
 reple varchar2(100),
 cnt number(5) default 0,
-image varchar2(100));
+image varchar2(100));-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- -->

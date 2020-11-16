@@ -7,11 +7,19 @@
 	<insert id="insert">
 		insert into stmember
 		values(#{id},#{password},#{name},#{nickname}
-		,#{email},#{birthd},#{gender},'','','')
+		,#{email},#{birthd},#{gender},0,0,'',0)
 	</insert>
+	
+	<select id="selectList" resultType="vo.STMemberVO">
+		select * from stmember where id != 'admin' order by id
+	</select>
 
 	<select id="selectOne" resultType="vo.STMemberVO">
 		select * from stmember where id=#{id}
 	</select>
+	
+	<delete id="delete">
+		delete from stmember where id=#{id}
+	</delete>
 
 </mapper>

@@ -70,22 +70,36 @@
 	</select>
 	<!-- ***************** search 관련 end ***************** -->
 
+	<!-- ***************** board 새글 등록 start ***************** -->
 	<insert id="baseballInsert">
-	insert into baseballboard values
-	 ((select nvl(max(seq),0)+1 from baseballboard)
-	,#{id}
-	,#{nickname}
-	,#{title}
-	,#{content}
-	,sysdate
-	,#{team}
-	,#{person}
-	,#{local}
-	,''
-	,''
-	,0
-	,'')
-</insert>
+		insert into baseballboard values
+	 	((select nvl(max(seq),0)+1 from baseballboard)
+		,#{id}
+		,#{nickname}
+		,#{title}
+		,#{content}
+		,sysdate
+		,#{team}
+		,#{person}
+		,#{local}
+		,''
+		,''
+		,0
+		,'')
+	</insert>
+	<!-- ***************** 야구 새글 등록 end ***************** -->
+	
+	<!-- *************************  매칭 모집 횟수 start ************************* -->
+	<update id="boardLeaderUpdate">
+	update stmember set leadermatching = leadermatching+1 where id = #{id}
+	</update>
+	
+	<update id="memberpartyplay">
+	update stmember set partyplay = partyplay+1 where id = (select matching_id from matchingboard where seq = #{seq})
+	</update>
+	
+	
+	<!-- *************************  매칭 모집 횟수 end ************************* -->
 	
 	<!-- ************************* 최신글 새로 고침   start  ***************************** -->
 	<select id="baseballSelectList" resultType="vo.STBoardVO">
@@ -106,6 +120,32 @@
 	
 	<!-- ************************* 최신글 새로 고침 end ***************************** -->
 	
+	<!-- ************************* board 수정 & 삭제 start ***************************** -->
+	<update id="baseballUpdate">
+		update baseballboard set title=#{title},team=#{team},person=#{person},local=#{local},content=#{content} where seq=#{seq}
+	</update>
+	
+	<delete id="baseballDelete">
+		delete from baseballboard where seq=#{seq}
+	</delete>
+	
+	
+	<!-- ************************* board 수정 & 삭제 end ***************************** -->
+	
+	<!-- **************************  매칭 start ****************************** -->
+	<insert id="matchingInsert">
+	insert into matchingboard values(#{seq},#{leader_id}, #{matching_id})
+	</insert>
+	
+	<select id="matchingSelect" resultType="vo.STMatchingVO">
+	select * from matchingboard where seq = #{seq}
+	</select>
+	
+	<update id="matchingUpdate">
+	update stmember set matching = matching+1 where id = #{id}
+	</update>
+	<!-- **************************  매칭 end ****************************** -->
+	
 	<select id="baseballSelectOne" resultType="vo.STBoardVO">
 		select * from baseballboard where seq=#{seq}
 	</select>
@@ -114,7 +154,5 @@
 			select count(*) from baseballboard <![CDATA[ where ( seq> 0 ]]>
 		<include refid="search"></include>
 	</select>
-
-
 
 </mapper>

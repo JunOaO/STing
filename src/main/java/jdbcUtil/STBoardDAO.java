@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 import cri.Criteria;
 import cri.SearchCriteria;
 import vo.STBoardVO;
+import vo.STMatchingVO;
+import vo.STMemberVO;
 import vo.STPageVO;
 
 // ** Board Table 의 CRUD 구현
@@ -37,6 +39,12 @@ public class STBoardDAO {
 		public int baseballInsert(STBoardVO vo) {
 			return sqlSession.update(NS + "baseballInsert",vo);
 		}
+		
+		/******************* 모집글 횟수 start *******************/
+		public int boardLeaderUpdate(STBoardVO vo) {
+			return sqlSession.update(NS + "boardLeaderUpdate",vo);
+		}
+		/******************* 모집글 횟수 end *******************/
 		
 		public List<STBoardVO> baseballSelectList(Criteria cri){
 			return sqlSession.selectList(NS + "baseballSelectList", cri);
@@ -68,5 +76,30 @@ public class STBoardDAO {
 		public int boardRowCount(SearchCriteria cri) {
 			return sqlSession.selectOne(NS+ "boardRowCount",cri);
 		}
+		
+		/************************** board 수정 & 삭제 start ******************************/
+		public int baseballUpdate(STBoardVO vo) {
+			return sqlSession.update(NS+ "baseballUpdate",vo);
+		}
+		
+		public int baseballDelete(STBoardVO vo) {
+			return sqlSession.delete(NS+ "baseballDelete",vo);
+		}
+		/************************** board 수정 & 삭제 end ******************************/
+		
+		/************************** board 매칭 start ******************************/
+		public int matchingInsert(STMatchingVO mvo) {
+			return sqlSession.insert(NS+"matchingInsert",mvo);
+		}
+		public List<STMatchingVO> matchingSelect(STMatchingVO mvo) {
+			return sqlSession.selectList(NS+"matchingSelect",mvo);
+		}
+		public int matchingUpdate(STMemberVO memvo) {
+			return sqlSession.update(NS+"matchingUpdate",memvo);
+		}
+		public int memberpartyplay(STMatchingVO mvo) {
+			return sqlSession.update(NS+"memberpartyplay",mvo);
+		}
+		/************************** board 매칭 end ******************************/
 		
 }// class

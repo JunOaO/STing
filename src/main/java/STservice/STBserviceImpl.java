@@ -9,6 +9,8 @@ import cri.Criteria;
 import cri.SearchCriteria;
 import jdbcUtil.STBoardDAO;
 import vo.STBoardVO;
+import vo.STMatchingVO;
+import vo.STMemberVO;
 @Service
 public class STBserviceImpl implements STBservice{
 	
@@ -25,16 +27,18 @@ public class STBserviceImpl implements STBservice{
 	public List<STBoardVO> searchList(SearchCriteria cri){
 		return dao.searchList(cri);
 	}
-	
-	@Override
-	public STBoardVO fbdetail(STBoardVO vo) {
-		return dao.fbdetail(vo);
-	}
-	
+
 	@Override
 	public int baseballInsert(STBoardVO vo) {  
 		return dao.baseballInsert(vo);  // 처리된 row 갯수 return	 
 	} // insert
+	
+	/******************* 모집글 횟수 start *******************/
+	@Override
+	public int boardLeaderUpdate(STBoardVO vo) {  
+		return dao.boardLeaderUpdate(vo);  // 처리된 row 갯수 return	 
+	} // boardLeaderUpdate
+	/******************* 모집글 횟수 end *******************/
 	
 	@Override
 	public List<STBoardVO> baseballSelectList(Criteria cri){
@@ -77,4 +81,39 @@ public class STBserviceImpl implements STBservice{
 		return dao.bicycleSelectList();
 	}
 	/************************** 최신글 새로 고침 end ******************************/
+
+	/************************** 수정 & 삭제 start ******************************/
+	@Override
+	public int baseballUpdate(STBoardVO vo) {  
+		return dao.baseballUpdate(vo);  	 
+	} // baseballUpdate
+	
+	@Override
+	public int baseballDelete(STBoardVO vo) {  
+		return dao.baseballDelete(vo);  	 
+	} // baseballDelete
+	/************************** 수정 & 삭제 end ******************************/
+
+	/************************** board 매칭 start ******************************/
+	@Override
+	public int matchingInsert(STMatchingVO mvo) {
+		return dao.matchingInsert(mvo);
+	}
+	
+	@Override
+	public List<STMatchingVO> matchingSelect(STMatchingVO mvo) {
+		return dao.matchingSelect(mvo);
+	}
+	
+	@Override
+	public int matchingUpdate(STMemberVO memvo) {
+		return dao.matchingUpdate(memvo);
+	}
+	
+	@Override
+	public int memberpartyplay(STMatchingVO mvo) {
+		return dao.memberpartyplay(mvo);
+	}
+	/************************** board 매칭 end ******************************/
+
 }

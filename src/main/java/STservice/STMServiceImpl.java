@@ -1,5 +1,7 @@
 package STservice;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +21,19 @@ public class STMServiceImpl implements STMservice {
 	}
 	
 	@Override
+	public List<STMemberVO> selectList() {
+		return dao.selectList();
+	}
+	
+	@Override
 	public STMemberVO selectOne(STMemberVO vo) {
 		return dao.selectOne(vo);
 	}
+
+	@Override
+	public int delete(STMemberVO vo) {
+		return dao.delete(vo);
+	}
+
 
 } // class

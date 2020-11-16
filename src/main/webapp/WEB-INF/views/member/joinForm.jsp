@@ -249,15 +249,15 @@ body{
          </div>
       
          <div class="form_group">
-              <input type="radio" name="gender" value="mail">남
-              <input type="radio" name="gender" value="femail">여
+              <input type="radio" name="gender" value="male">남
+              <input type="radio" name="gender" value="female">여
          </div>
          
          <div class="form_group">
-              <input type="hidden" name="matching" value="a">
+              <input type="hidden" name="matching" value= 0>
          </div>
          <div class="form_group">
-              <input type="hidden" name="partplay" value="b">
+              <input type="hidden" name="partplay" value= 0>
          </div>
          
          <div class="form_group">

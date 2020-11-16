@@ -17,21 +17,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- 
 create  table STmember (    
 id varchar2(30) primary key ,
@@ -124,17 +109,11 @@ sports varchar2(10),
 cnt number(5) default 0,
 image varchar2(100));
 
-
-
-
-
-
-
-
-
-
-
-
+create  table matchingboard (    
+seq number(5) ,
+leader_id varchar2(30),
+matching_id varchar2(30)  primary key
+);
 
 
 

@@ -12,8 +12,10 @@
 
 <!-- ** Member ** -->
 <c:if test="${fCode=='MJS'}">
-	alert("로그인후 이용하세요.");
-<a href="loginf">[Login]</a><br>
+	<script>
+		alert("로그인후 이용하세요.");
+		window.close();
+	</script>
 </c:if>
 <c:if test="${fCode=='MJF'}">
 &nbsp;&nbsp;&nbsp;&nbsp;입력값에 오류가 있습니다~~
@@ -26,7 +28,9 @@
 <a href="#" onclick="history.back()">[다시하기]</a> <br>
 </c:if>
 <c:if test="${fCode=='MDS'}">
- => ${message} &nbsp;&nbsp;
+  <script>
+  	alert($(message));
+  </script>
 </c:if>
 
 <c:if test="${fCode=='MDF'}">
