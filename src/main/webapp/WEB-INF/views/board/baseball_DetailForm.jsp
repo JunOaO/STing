@@ -34,7 +34,7 @@
 
 function matchingf() {
 	open('matchingf'+"?seq=${Detail.seq}&id=${logID}","_blank",
-	"toolbar=no,member=yes,scrollbars=yes,resizeble=yes,width=400,height=500");
+	"toolbar=no,member=yes,scrollbars=yes,resizeble=yes,width=620,height=500");
 }
 
 </script>

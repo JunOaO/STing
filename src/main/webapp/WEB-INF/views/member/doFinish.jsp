@@ -11,6 +11,12 @@
 <h2>** Spring MVC2 요청 처리 결과 **</h2>
 
 <!-- ** Member ** -->
+<c:if test="${fCode=='PUS'}">
+<script>
+window.opener.location.reload();
+window.close();
+</script>
+</c:if>
 <c:if test="${fCode=='MJS'}">
 	<script>
 		alert("로그인후 이용하세요.");
@@ -28,9 +34,7 @@
 <a href="#" onclick="history.back()">[다시하기]</a> <br>
 </c:if>
 <c:if test="${fCode=='MDS'}">
-  <script>
-  	alert($(message));
-  </script>
+ => ${message} &nbsp;&nbsp;
 </c:if>
 
 <c:if test="${fCode=='MDF'}">

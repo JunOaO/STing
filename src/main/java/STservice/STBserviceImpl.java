@@ -106,6 +106,11 @@ public class STBserviceImpl implements STBservice{
 	}
 	
 	@Override
+	public STMatchingVO idcheckSelect2(STMatchingVO mvo) {
+		return dao.idcheckSelect2(mvo);
+	}
+	
+	@Override
 	public int matchingUpdate(STMemberVO memvo) {
 		return dao.matchingUpdate(memvo);
 	}
@@ -113,6 +118,10 @@ public class STBserviceImpl implements STBservice{
 	@Override
 	public int memberpartyplay(STMatchingVO mvo) {
 		return dao.memberpartyplay(mvo);
+	}
+	@Override
+	public int partyplayD(STMatchingVO mvo) {
+		return dao.partyplayD(mvo);
 	}
 	/************************** board 매칭 end ******************************/
 

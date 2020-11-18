@@ -56,10 +56,40 @@ a{
 	white-space: nowrap;
 }
 
-.baseballsearch{
-	width: 200px;
+#topsearch{
+	margin-top:10px;
+	margin-bottom:10px;
+	
+	background-image: url("../image/Basebal_Board_Top4.png");
+	background-repeat:no-repeat;
+	background-size : cover;
+	
+	border-radius: 8px;
+	line-height: 250px;
+	
 }
 
+.baseballsearch{
+	width: 200px;
+	height: 25px;
+	border: none;
+	border-radius: 5px;
+	background-color: #eff0f2;
+	outline: none;
+	margin-left: -5px;
+	
+}
+#searchBtn{
+	width:50px;
+	height: 30px;
+	margin-top: 3px;
+	border: none;
+	border-radius: 10px;
+	outline: none;
+	cursor: pointer;
+	margin-right: 10px;
+}
+ 
 table{
 	clear: both;
 	margin-top: 10px;
@@ -88,10 +118,16 @@ table{
 	margin-left: 50px;
 	margin-top: 20px;
 }
-#login_btn1{
-	float: right;
+
+.input_button{
+	float:right;
 }
+
 #login_btn2{
-	float: right;
+	
 	margin-left: 10px;
+}
+
+#loginf{
+	float: right;
 }

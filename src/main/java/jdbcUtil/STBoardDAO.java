@@ -94,11 +94,20 @@ public class STBoardDAO {
 		public List<STMatchingVO> matchingSelect(STMatchingVO mvo) {
 			return sqlSession.selectList(NS+"matchingSelect",mvo);
 		}
+		public List<STMatchingVO> idcheckSelect(STMatchingVO mvo) {
+			return sqlSession.selectList(NS+"idcheckSelect",mvo);
+		}
+		public STMatchingVO idcheckSelect2(STMatchingVO mvo) {
+			return sqlSession.selectOne(NS+"idcheckSelect2",mvo);
+		}
 		public int matchingUpdate(STMemberVO memvo) {
 			return sqlSession.update(NS+"matchingUpdate",memvo);
 		}
 		public int memberpartyplay(STMatchingVO mvo) {
 			return sqlSession.update(NS+"memberpartyplay",mvo);
+		}
+		public int partyplayD(STMatchingVO mvo) {
+			return sqlSession.update(NS+"partyplayD",mvo);
 		}
 		/************************** board 매칭 end ******************************/
 		

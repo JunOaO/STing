@@ -1,5 +1,23 @@
+#STing{
+   font-size: 65px;
+   font-family: cursive;
+   text-align: center;
+   color:#347ab5;
+}
+#logid{
+	font-size: 25px;
+	font-weight:bold;
+	margin-top: -10px;
+}
 p,h1{text-align: center;}
 a { text-decoration:none } 
+#logprofile{
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+}
+
+
 .div_info{
 	width: 400px;
 	height: 35px;
@@ -30,10 +48,9 @@ a { text-decoration:none }
 
 #div_all{
 	width:510px;
-	height:610px;
+	height:510px;
 	margin-left: auto;
 	margin-right: auto;
-	padding-top:  115px;
 	/* background-image: url("../image/join_running.jpg"); */
 	border-radius: 5px;
 }
@@ -43,7 +60,7 @@ a { text-decoration:none }
 
 	margin:auto;
 }
-#button_home{
+#button_update{
 	width: 60px;
 	height: 30px; 
 	background-color: #eff0f2;
@@ -52,9 +69,8 @@ a { text-decoration:none }
 	border:none;
 	border-radius:5px;
 	cursor: pointer;
-	
 }
-#button_out{
+.button_out{
 	width: 80px;
 	height: 30px;
 	text-align:center;
@@ -65,7 +81,19 @@ a { text-decoration:none }
 	border-radius:5px;
 	background-color: #eff0f2;
 	float: right; 
+	margin-left: 10px;
 }
+#admin_update{
+	width: 60px;
+	height: 30px; 
+	background-color: #eff0f2;
+	float: right; 
+	margin-left: 10px;
+	border:none;
+	border-radius:5px;
+	cursor: pointer;
+}
+
 #div_button{
 	width: 510px;
 	height: 40px;

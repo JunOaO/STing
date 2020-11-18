@@ -2,6 +2,7 @@ package STservice;
 
 import java.util.List;
 
+import vo.STBoardVO;
 import vo.STMemberVO;
 
 public interface STMservice {
@@ -13,6 +14,12 @@ public interface STMservice {
 	int delete(STMemberVO vo);
 	
 	List<STMemberVO> selectList();
+
+	int profileUpdate(STMemberVO vo);
+	
+	STBoardVO matchingTitle(STBoardVO bvo);
+
+	int update(STMemberVO vo);
 
 	
 	

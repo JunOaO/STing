@@ -42,10 +42,12 @@ public interface STBservice{
 	/**************************  매칭 start ******************************/
 	int matchingInsert(STMatchingVO mvo);
 	List<STMatchingVO> matchingSelect(STMatchingVO mvo);
+	STMatchingVO idcheckSelect2(STMatchingVO mvo);
 	
 	int matchingUpdate(STMemberVO memvo);
 	
 	int memberpartyplay(STMatchingVO mvo);
+	int partyplayD(STMatchingVO mvo);
 	/**************************  매칭 end ******************************/
 
 

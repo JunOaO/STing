@@ -1,28 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>joinForm</title>
+<title>DetailForm</title>
 <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
 <script src="resources/jqLib/memberCheck.js"></script>
 <link rel="stylesheet" media="only screen and (min-width:981px)">
 <link rel="stylesheet" media="only screen and (max-width:980px)">
 
-<link rel="stylesheet" type="text/css"
-	href="resources/css/detailForm.css">
-
+<link rel="stylesheet" type="text/css" href="resources/css/detailForm.css">
+<script>
+$(function() {
+	$('#logprofile').on("click",function(){
+		window.open("logprofile"+"?id=${myInfo.id}","_blank",
+        "toolbar=no,menubar=yes,scrollbars=yes,resizable=yes,width=500,height=400");	
+	});
+});
+</script>
 </head>
 <body>
 
 
 	<form action="insert" method="post">
-
-		<p>STing</p>
+		<div id="STing"><a href="home">STing</a></div>      
 		<h1>내 정 보</h1>
+		<p><img src="${myInfo.profile}" width="90" height="90" id="logprofile"></p> <%-- onclick="location.href='detail?id=${myInfo.profile}&code=P'" --%>
+		<p id="logid">${logID}</p>
+		<div style="width:300px; margin: 0 auto;">
+		<c:if test="${matchingTitle.seq != null }">
+		번 호 : ${matchingTitle.seq}<br>
+		제 목 : ${matchingTitle.title}<br>
+		신청중 입니다.
+		</c:if>
+		</div>
+		
 		<div id="div_all">
 			<div id="div_all2">
 				<div>
@@ -63,16 +79,17 @@
 				</div>
 			</div>
 		</div>
-		<div id="div_button">
-         <input type="button" id="button_home" value="홈"  onclick="location.href='home'">
-         <!-- <input type="button" id="button_out" value="회원탈퇴1" onclick="location.href='delete'"> -->
+        
+	  <div id="div_button">
+         <input type="button" id="button_update" value="수정"  onclick="location.href='detail?id=${myInfo.id}&code=U'">
          <c:if test="${logID =='admin' }">
-            <a href="delete?id=${myInfo.id}" id="button_out" onclick="if(!confirm('정말 탈퇴 하시겠습니까?')){return false;}">회원탈퇴</a>
+            <a href="delete?id=${myInfo.id}" class="button_out" onclick="if(!confirm('정말 탈퇴 하시겠습니까?')){return false;}">강제탈퇴</a>
          </c:if>
          <c:if test="${logID != 'admin' }">
-            <a href="delete" id="button_out" onclick="if(!confirm('정말 탈퇴 하시겠습니까?')){return false;}">회원탈퇴</a>
+            <a href="delete" class="button_out" onclick="if(!confirm('정말 탈퇴 하시겠습니까?')){return false;}">회원탈퇴</a>
          </c:if>
       </div>
+
 	</form>
 </body>
 </html>

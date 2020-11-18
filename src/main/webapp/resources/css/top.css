@@ -18,15 +18,12 @@ body{
 }
 
 #topsearch {
-   width: 700px;
+   width:1200px;
+   height:250px;
    margin: 0 auto;
 }
 
-#topsearch #homelogo {
-   float: left;
-   width: 200px;
-   height: 200px;
-}
+
 
 .topsearch {
    margin-top: 100px;
@@ -35,13 +32,24 @@ body{
 #topnavbar {
    clear: both;
    width: 100%;
+   height:40px;
+   line-height:40px;
+   flex:content;
    text-align : center;   
    /* position: fixed; */
    list-style-type: none;
-   background-color: pink;
+   background-color: #b2dffc;
    /* float: left; */
-   display : flex;
-   justify-content: center;
+   display : inline-flex;
+  
+   justify-content: space-evenly
+}
+
+.topmenubar {
+   width: 100px;
+   margin: 0 20px;
+   font-size: 20px;
+   font-weight: bold;
 }
 
 #blurlogin{
@@ -61,6 +69,8 @@ body{
    width: 700px;
    float: left;
    margin: 25px auto 25px 300px;
+   border: none;
+   border-radius: 8px;
 }
 #loginbox {
    /* margin-top: 100px; */
@@ -101,10 +111,7 @@ body{
 	margin-right:  50px;
 }
 
-.topmenubar {
-   width: 100px;
-   margin: 0 20px;
-}
+
 
 .topmenubar:hover>.topmenubar2 {
    display: block;

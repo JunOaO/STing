@@ -1,9 +1,18 @@
 package vo;
 
-public class STMatchingVO{
+public class STMatchingVO {
 	private int seq;
-	private String leader_id;
-	private String matching_id;
+	private String leaderid;
+	private String matchingid;
+	private int seq_step;
+
+	public int getSeq_step() {
+		return seq_step;
+	}
+
+	public void setSeq_step(int seq_step) {
+		this.seq_step = seq_step;
+	}
 
 	public int getSeq() {
 		return seq;
@@ -13,24 +22,26 @@ public class STMatchingVO{
 		this.seq = seq;
 	}
 
-	public String getLeader_id() {
-		return leader_id;
+	public String getLeaderid() {
+		return leaderid;
 	}
 
-	public void setLeader_id(String leader_id) {
-		this.leader_id = leader_id;
+	public void setLeaderid(String leaderid) {
+		this.leaderid = leaderid;
 	}
 
-	public String getMatching_id() {
-		return matching_id;
+	public String getMatchingid() {
+		return matchingid;
 	}
 
-	public void setMatching_id(String matching_id) {
-		this.matching_id = matching_id;
+	public void setMatchingid(String matchingid) {
+		this.matchingid = matchingid;
 	}
 
 	@Override
 	public String toString() {
-		return "STMatchingVO [seq=" + seq + ", leader_id=" + leader_id + ", matching_id=" + matching_id + "]";
+		return "STMatchingVO [seq=" + seq + ", leaderid=" + leaderid + ", matchingid=" + matchingid + ", seq_step="
+				+ seq_step + "]";
 	}
+
 }

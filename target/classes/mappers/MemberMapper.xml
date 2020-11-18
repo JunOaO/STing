@@ -21,5 +21,18 @@
 	<delete id="delete">
 		delete from stmember where id=#{id}
 	</delete>
+	
+	<select id="matchingTitle" resultType="vo.STBoardVO">
+		select seq,title from baseballboard where seq = #{seq}
+	</select>
+	
+	<update id="update">
+		update stmember set password=#{password},name=#{name},nickname=#{nickname}
+		,email=#{email},birthd=#{birthd},gender=#{gender},profile=#{profile} where id=#{id}
+	</update>
+	
+	<update id="profileUpdate">
+		update stmember set profile=#{profile} where id=#{id}
+	</update>
 
 </mapper>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jdbcUtil.STMemberDAO;
+import vo.STBoardVO;
 import vo.STMemberVO;
 
 //@Component
@@ -33,6 +34,21 @@ public class STMServiceImpl implements STMservice {
 	@Override
 	public int delete(STMemberVO vo) {
 		return dao.delete(vo);
+	}
+	
+	@Override
+	public int profileUpdate(STMemberVO vo) {
+		return dao.profileUpdate(vo);
+	}
+
+	@Override
+	public STBoardVO matchingTitle(STBoardVO bvo) {
+		return dao.matchingTitle(bvo);
+	}
+	
+	@Override
+	public int update(STMemberVO vo) {
+		return dao.update(vo);
 	}
 
 

@@ -38,11 +38,24 @@
 			
 	</div>
 	<ul id="topnavbar">
+		<c:if test="${logID != null }">
 		<li class="topmenubar"><a href="football_Board">축구</a></li>
 		<li class="topmenubar"><a href="baseball_Board">야구</a></li>
 		<li class="topmenubar"><a href="basketball_Board">농구</a></li>
 		<li class="topmenubar"><a href="#">테니스</a></li>
-		<li><a href="#">자유 게시판</a></li>
+		<li class="topmenubar"><a href="#">자전거</a></li>
+		<li class="topmenubar" id="freeboard"><a href="#">자유 게시판</a></li>
+		</c:if>
+		<c:if test="${logID == null }">
+		<li class="topmenubar"><a href="javscript:;" onclick="javscript:alert('로그인 후 이용해 주세요.');">축구</a></li>
+		<li class="topmenubar"><a href="javscript:;" onclick="javscript:alert('로그인 후 이용해 주세요.');">야구</a></li>
+		<li class="topmenubar"><a href="javscript:;" onclick="javscript:alert('로그인 후 이용해 주세요.');">농구</a></li>
+		<li class="topmenubar"><a href="javscript:;" onclick="javscript:alert('로그인 후 이용해 주세요.');">자전거</a></li>
+		<li class="topmenubar" id="freeboard"><a href="javscript:;" onclick="javscript:alert('로그인 후 이용해 주세요.');">자유 게시판</a></li>
+		</c:if>
+		<c:if test="${logID == 'admin' }">
+			<li class="topmenubar"><a href="list">회원 목록</a></li>
+		</c:if>
 	</ul>
 	<div id="blurlogin">
 		<div><img id="blurbUp" alt="광고 자리" src="resources/image/modify.gif"></div>
@@ -82,11 +95,12 @@
 				<td>${mm.seq}</td>
 				<td class="title_over">
 				<%-- <c:if test="${logID != null}"> --%>
+				<c:if test="${logID != null }">
 						<a href="board_Detail?seq=${mm.seq}">[${mm.local}][${mm.team}]&nbsp;${mm.title}</a>
-				<%-- </c:if> 
-				<c:if test="${logID == null}">
-					[${mm.local}]&nbsp;${mm.title}
-				</c:if> --%>
+				</c:if>
+				<c:if test="${logID == null }">
+						<a href="javascript:;" onclick="javascript: alert('로그인 후 이용해 주세요.');">[${mm.local}][${mm.team}]&nbsp;${mm.title}</a>
+				</c:if>
 				</td>
 				<td>${mm.nickname}</td>
 				<td>${mm.regdate}</td>

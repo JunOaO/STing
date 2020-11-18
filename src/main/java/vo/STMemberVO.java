@@ -1,5 +1,7 @@
 package vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class STMemberVO {
 	private String id;
 	private String password;
@@ -11,6 +13,9 @@ public class STMemberVO {
 	private int matching;
 	private int partyplay;
 	private String profile;
+	
+	private MultipartFile uploadfilef;
+	// form 으로부터 uploadfile 정보를 읽어오기 위한 필드,member table에 추가 안함
 
 	public String getId() {
 		return id;
@@ -91,11 +96,19 @@ public class STMemberVO {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
+	
+	public MultipartFile getUploadfilef() {
+		return uploadfilef;
+	}
+
+	public void setUploadfilef(MultipartFile uploadfilef) {
+		this.uploadfilef = uploadfilef;
+	}
 
 	@Override
 	public String toString() {
 		return "STMemberVO [id=" + id + ", password=" + password + ", name=" + name + ", nickname=" + nickname
 				+ ", email=" + email + ", birthd=" + birthd + ", gender=" + gender + ", matching=" + matching
-				+ ", partyplay=" + partyplay + ", profile=" + profile + "]";
+				+ ", partyplay=" + partyplay + ", profile=" + profile + ", uploadfilef=" + uploadfilef + "]";
 	}
 }

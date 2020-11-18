@@ -95,8 +95,12 @@
 	</update>
 	
 	<update id="memberpartyplay">
-	update stmember set partyplay = partyplay+1 where id = (select matching_id from matchingboard where seq = #{seq})
+	update stmember set partyplay = partyplay+1 where id = (select matchingid from matchingboard where seq = #{seq} and matchingid = #{matchingid})
 	</update>
+	
+	<delete id="partyplayD">
+	delete matchingboard where seq = #{seq} and matchingid = #{matchingid} 
+	</delete>
 	
 	
 	<!-- *************************  매칭 모집 횟수 end ************************* -->
@@ -134,11 +138,15 @@
 	
 	<!-- **************************  매칭 start ****************************** -->
 	<insert id="matchingInsert">
-	insert into matchingboard values(#{seq},#{leader_id}, #{matching_id})
+	insert into matchingboard values(#{seq},#{leaderid}, #{matchingid}, (select nvl(max(seq_step),0)+1 from matchingboard))
 	</insert>
 	
 	<select id="matchingSelect" resultType="vo.STMatchingVO">
-	select * from matchingboard where seq = #{seq}
+	select * from matchingboard where seq = #{seq} order BY seq_step desc
+	</select>
+
+	<select id="idcheckSelect2" resultType="vo.STMatchingVO">
+	select * from matchingboard where seq = #{seq} and matchingid = #{matchingid} order BY seq_step desc
 	</select>
 	
 	<update id="matchingUpdate">

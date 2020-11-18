@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import vo.STBoardVO;
 import vo.STMemberVO;
 import vo.STPageVO;
 
@@ -38,6 +39,18 @@ public class STMemberDAO {
 	
 	public int delete(STMemberVO vo) {
 		return sqlSession.delete(NS+"delete",vo);
+	}
+	
+	public int profileUpdate(STMemberVO vo) {
+		return sqlSession.update(NS+"profileUpdate",vo);
+	}
+	
+	public STBoardVO matchingTitle(STBoardVO bvo) {
+		return sqlSession.selectOne(NS+"matchingTitle",bvo);
+	}
+
+	public int update(STMemberVO vo) {
+		return sqlSession.update(NS+"update",vo);
 	}
 
 } // class

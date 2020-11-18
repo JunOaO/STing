@@ -1,5 +1,7 @@
 package com.ncs.STing;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,9 +11,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import STservice.STMservice;
+import vo.STBoardVO;
 import vo.STMemberVO;
 
 @Controller
@@ -132,19 +136,51 @@ public class STMemberController {
 
 	// ***************************** 회원 가입 start ********************************
 	@RequestMapping(value = "/insert")
-	public ModelAndView insert(ModelAndView mv, STMemberVO vo) {
-		String message = null;
+	public ModelAndView insert(ModelAndView mv, STMemberVO vo,HttpServletRequest request) throws IOException {
+		String message =null;
 		String url = "member/doFinish";
-		if (service.insert(vo) > 0) {
-			message = "가입에 성공 하였습니다.로그인후 이용하세요.";
-			mv.addObject("fCode", "MJS");
-		} else {
-			message = "가입에 실패하였습니다.다시 하세요.";
-			mv.addObject("fCode", "MJF");
+		
+		// ** 배포 와 경로
+		String realPath = request.getRealPath("/");
+		
+		System.out.println("realpath =>" + realPath);
+		
+		if(realPath.contains(".eclipse")) {
+			realPath = "D:/408Mtest/MyWork/STing/src/main/webapp/resources/uploadImage/";			
+		}else {
+			realPath += "resources/uploadImage/";
+		}
+		
+		File f1 = new File(realPath);
+		System.out.println(" before mkDir f1 =>" +f1);
+		if(!f1.exists()) f1.mkdir();
+		
+		System.out.println(" uploadFilef 전송확인 =>" + vo.getUploadfilef());
+		
+		MultipartFile uploadfilef = null;
+		realPath = "D:/408Mtest/MyWork/STing/src/main/webapp/resources/uploadImage/";
+		String file1,file2 = "resources/uploadImage/basicman2.jpg";
+		
+		if(vo.getUploadfilef() != null) {
+			uploadfilef = vo.getUploadfilef();
+			if(!uploadfilef.isEmpty()) {
+				file1 = realPath+uploadfilef.getOriginalFilename();
+				uploadfilef.transferTo(new File(file1));
+				file2="resources/uploadImage/"+uploadfilef.getOriginalFilename();
+			}
+		}
+		vo.setProfile(file2);
+			
+		if(service.insert(vo) > 0) {
+			message =" 가입에 성공 하였습니다.로그인후 이용하세요.";
+			mv.addObject("fCode","MJS");
+		}else {
+			message="가입에 실패하였습니다.다시 하세요.";
+			mv.addObject("fCode","MJF");
 			mv.setViewName(url);
 		}
-		if (message != null) {
-			mv.addObject("message", message);
+		if(message != null) {
+			mv.addObject("message",message);
 		}
 		mv.setViewName(url);
 		return mv;
@@ -153,7 +189,7 @@ public class STMemberController {
 
 	// ***************************** 회원 정보(detail) start ********************************
 	@RequestMapping(value = "/detail")
-	public ModelAndView detail(ModelAndView mv, HttpServletRequest request, STMemberVO vo) {
+	public ModelAndView detail(ModelAndView mv, HttpServletRequest request, STMemberVO vo, STBoardVO bvo) {
 		String id = null;
 		String message = null;
 		String url = "loginf";
@@ -164,11 +200,14 @@ public class STMemberController {
 			id = (String) session.getAttribute("logID");
 			if ("admin".equals(id))
 				id = request.getParameter("id");
+			
 			vo.setId(id);
-
 			vo = service.selectOne(vo);
+			bvo = service.matchingTitle(bvo);
+			System.out.println(bvo);
 			if (vo != null) {
 				mv.addObject("myInfo", vo);
+				mv.addObject("matchingTitle", bvo);
 				// myinfo or update 구분
 				if ("U".equals(request.getParameter("code")))
 					url = "member/updateForm";
@@ -235,5 +274,136 @@ public class STMemberController {
 		return mv;
 	}
 	//***************************** 회원 탈퇴 end ********************************
+	
+	//***************************** 회원 profile 수정 start ********************************
+	
+		@RequestMapping(value="/logprofile")
+		public ModelAndView logprofile(ModelAndView mv,STMemberVO vo,HttpServletRequest request){
+			mv.setViewName("member/profileUpdateForm");
+			return mv;
+		}
+		
+		//***************************** 회원 정보수정 start ********************************
+
+		@RequestMapping(value="/update")
+		public ModelAndView update(ModelAndView mv,STMemberVO vo,HttpServletRequest request) throws IOException{
+			
+			
+			
+		// ** 배포 와 경로
+		String realPath = request.getRealPath("/");
+		
+		System.out.println("realpath =>" + realPath);
+		
+		if(realPath.contains(".eclipse")) {
+			realPath = "D:/408Mtest/MyWork/STing/src/main/webapp/resources/uploadImage/";		
+		}else {
+			realPath += "resources/uploadImage/";
+		}
+		
+		File f1 = new File(realPath);
+		System.out.println(" before mkDir f1 =>" +f1);
+		if(!f1.exists()) f1.mkdir();
+		
+		System.out.println(" uploadFilef 전송확인 =>" + vo.getUploadfilef());
+		
+		MultipartFile uploadfilef = null;
+		realPath = "D:/408Mtest/MyWork/STing/src/main/webapp/resources/uploadImage/";
+		String file1,file2 = "resources/uploadImage/basicman2.jpg";
+		
+		if(vo.getUploadfilef() != null) {
+			uploadfilef = vo.getUploadfilef();
+			if(!uploadfilef.isEmpty()) {
+				file1 = realPath+uploadfilef.getOriginalFilename();
+				uploadfilef.transferTo(new File(file1));
+				file2="resources/uploadImage/"+uploadfilef.getOriginalFilename();
+			}
+		}
+		vo.setProfile(file2);
+			
+			
+			String message = null;
+			String url = "member/doFinish";
+			
+			if(service.update(vo) > 0) {
+				message = "Update 성공";
+				 url= "redirect:detail";
+			}else {
+				message = "update 실패";
+				request.setAttribute("fCode", "MUF");
+			}
+			if(message != null) {
+				mv.addObject("message",message);
+			}
+			mv.setViewName(url);
+			return mv;
+		}
+		
+	//***************************** 회원 정보수정 end ********************************
+		
+		@RequestMapping(value="/profileupdate")
+		public ModelAndView profileupdate(ModelAndView mv,STMemberVO vo,HttpServletRequest request) throws IOException{
+			
+			String id = null;
+		      HttpSession session = request.getSession(false);
+		      id = (String)session.getAttribute("logID");
+		      vo.setId(id);
+			
+			// ** 배포 와 경로
+			String realPath = request.getRealPath("/");
+			
+			System.out.println("realpath =>" + realPath);
+			
+			if(realPath.contains(".eclipse")) {
+				realPath = "D:/408Mtest/MyWork/STing/src/main/webapp/resources/uploadImage/";
+				
+			}else {
+				realPath += "resources\\uploadImage\\";
+			}
+			
+			File f1 = new File(realPath);
+			System.out.println(" before mkDir f1 =>" +f1);
+			if(!f1.exists()) f1.mkdir();
+			
+			System.out.println(" uploadFilef 전송확인 =>" + vo.getUploadfilef());
+			
+			MultipartFile uploadfilef = null;
+			realPath = "D:/408Mtest/MyWork/STing/src/main/webapp/resources/uploadImage/";
+			String file1,file2 = "resources/uploadImage/basicman2.jpg";
+			
+			if(vo.getUploadfilef() != null) {
+				uploadfilef = vo.getUploadfilef();
+				System.out.println(vo.getUploadfilef());
+				if(!uploadfilef.isEmpty()) {
+					file1 = realPath+uploadfilef.getOriginalFilename();
+					System.out.println("**** file1 " + file1);
+					uploadfilef.transferTo(new File(file1));
+					file2="resources/uploadImage/"+uploadfilef.getOriginalFilename();
+					vo.setProfile(file2);
+				}
+			}
+				
+				
+				String message = null;
+				String url = "member/doFinish";
+				
+				if(service.profileUpdate(vo) > 0) {
+					
+					message = "Update 성공";
+					request.setAttribute("fCode", "PUS");
+					 
+				}else {
+					message = "update 실패";
+					request.setAttribute("fCode", "MUF");
+				}
+				if(message != null) {
+					mv.addObject("message",message);
+				}
+				mv.setViewName(url);
+				return mv;
+		
+		}
+		
+	//***************************** 회원 profile 수정  end ********************************
 
 }

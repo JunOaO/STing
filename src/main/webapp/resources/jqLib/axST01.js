@@ -9,8 +9,5 @@ $(function() {
 		open('bjoinf',"_blank",
 				"toolbar=no,member=yes,scrollbars=yes,resizeble=yes,width=855,height=840");
 		}); //bjoinf
-});//ready
-
-function sports(){
 	
-}
+});//ready

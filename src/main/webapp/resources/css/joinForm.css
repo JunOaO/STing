@@ -1,0 +1,82 @@
+p,h2{text-align: center;}
+p{
+   font-size: 65px;
+   font-family: cursive;
+}
+.message{
+   color:black;
+   font-weight: bold;
+   
+}
+h2{
+/*    color:#9d8e8e; */
+   color:#347ab5;
+}
+
+.input_height{
+	height: 30px;
+	width: 250px;
+	border-color:darkgrey;
+    background-color: #fafafa;
+    border-radius: 5px;
+}
+#id{width: 175px;}
+.form_group{
+      margin-bottom: 13px;
+      text-align: center;
+      
+   }
+.input_button{margin-left: auto; margin-right: auto;} 
+.btn_group {
+      width: 250px;
+      margin: 0 auto;
+   }
+   
+div{
+   
+}
+button{
+   width: 250px;
+   height: 30px;
+}
+
+li{
+   float: left; 
+   margin-right: 20px;
+   list-style: none;
+}
+
+
+/* #first{
+   
+   width: 250px;
+   height: 500px;
+   background-color: grey;
+} */
+
+#login_btn1{
+   background-color: #b2dffc;
+   border: none;
+   border-radius: 8px;
+}
+
+#login_btn2{
+   background-color: #fafafa;
+   border: none;
+   border-radius: 8px;
+}
+
+
+
+.form_all{
+   height:400px;
+   text-align:center;
+   background-image: url("../image/join_running.jpg");
+   
+   background-repeat:no-repeat;
+   background-size : cover;
+   border-radius: 8px;
+}
+#input_profile{
+	width: 500px;
+}

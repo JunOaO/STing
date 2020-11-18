@@ -1,0 +1,30 @@
+p,h1{
+	text-align: center;
+}
+h1{
+	margin-bottom: 50px;
+}
+#logprofile{
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+}
+
+#logid{
+	font-size: 25px;
+	font-weight:bold;
+	margin-top: -10px;
+}
+
+#button_update{
+	width: 60px;
+	height: 30px;
+	background-color: #b2dffc;
+   	border: none;
+   	border-radius: 8px;
+   	margin: 0 auto;
+   	cursor: pointer;
+}
+#div_submit{
+	text-align: center;
+}

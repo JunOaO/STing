@@ -20,6 +20,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.ServletContextAware;
@@ -42,37 +43,49 @@ public class STBoardController implements ServletContextAware{
 	
 	/******************************************** 매칭 Start ********************************************/
 	@RequestMapping(value = "/matchingf")
-	public ModelAndView matchingf(ModelAndView mv, STBoardVO vo, STMatchingVO mvo) {
-		mv.addObject("matching_team",service.baseballSelectOne(vo));
+	public ModelAndView matchingf(ModelAndView mv, STBoardVO vo, STMatchingVO mvo,HttpServletRequest request) {
+		String id = null;
+		
+		HttpSession session = request.getSession(false);
+		vo = service.baseballSelectOne(vo);
+		id = (String)session.getAttribute("logID");
+		
+		mv.addObject("matchingTeam",service.baseballSelectOne(vo));
 		mv.addObject("matching",service.matchingSelect(mvo));
+		mvo.setMatchingid(id);
+		mv.addObject("idcheck2",service.idcheckSelect2(mvo));
 		mv.setViewName("board/matching_Board");
+		
 		return mv;
 	}
 	
 	@RequestMapping(value = "/matching")
-	public ModelAndView matching(ModelAndView mv, STMatchingVO mvo,STBoardVO vo, STMemberVO  memvo,HttpServletRequest request) {
+	public ModelAndView matching(ModelAndView mv,STMatchingVO mvo,STBoardVO vo, STMemberVO  memvo,HttpServletRequest request) {
 		String id = null;
 		
 		HttpSession session = request.getSession(false);
-		
-		mv.addObject("matching_team",service.baseballSelectOne(vo));
-		vo = service.baseballSelectOne(vo);
-		mvo.setLeader_id(vo.getId());
-		
 		id = (String)session.getAttribute("logID");
-		mvo.setMatching_id(id);
+		vo = service.baseballSelectOne(vo);
+		
+		mvo.setLeaderid(vo.getId());
+		mvo.setMatchingid(id);
 		service.matchingInsert(mvo);
 		service.matchingUpdate(memvo);
-		mv.setViewName("board/matching_Board");
+		mv.setViewName("redirect:matchingf?seq="+ vo.getSeq());
 		return mv;
 	}
 	
 	@RequestMapping(value = "/partyplay")
-	public ModelAndView partyplay(ModelAndView mv, STMemberVO vo, STMatchingVO mvo) {
-		System.out.println("partyplay mvo="+mvo);
-		mv.addObject("partyplay"  ,service.memberpartyplay(mvo));
-		mv.setViewName("board/matching_Board");
-		return mv;
+	public String partyplay(ModelAndView mv, STMatchingVO mvo) {
+		int seq = mvo.getSeq();
+		String id = mvo.getMatchingid();
+		
+		mvo.setSeq(seq);
+		mvo.setMatchingid(id);
+		
+		service.memberpartyplay(mvo); 
+		service.partyplayD(mvo);
+		return "redirect:/matchingf";
 	}
 	/******************************************** 매칭 End ********************************************/
 	
@@ -140,7 +153,7 @@ public class STBoardController implements ServletContextAware{
 
 	/******************* 디테일, 수정 & 삭제 start *******************/
 	@RequestMapping(value="/board_Detail")
-	public ModelAndView boardDetail(HttpServletRequest request , ModelAndView mv , STBoardVO vo) {
+	public ModelAndView boardDetail(HttpServletRequest request , ModelAndView mv , STBoardVO vo, STMatchingVO mvo) {
 		vo = service.baseballSelectOne(vo);
 		if(vo != null) {
 			mv.addObject("Detail",vo);

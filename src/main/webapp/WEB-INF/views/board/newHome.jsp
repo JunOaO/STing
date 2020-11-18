@@ -55,7 +55,12 @@
 					자전거</option>
 			</select> <input type="text" class="topsearch" id="keyword" name="keyword"
 				value="${pageMaker.cri.keyword}">
+			<c:if test="${logID != null }">
 			<button class="topsearch" id="searchBtn">확인</button>
+			</c:if>
+			<c:if test="${logID == null }">
+			<button class="topsearch" onclick="javascript: alert('로그인 후 이용해 주세요.')">확인</button>
+			</c:if>
 		</div>
 	</div>
 	<div >
@@ -63,7 +68,7 @@
 		<li class="topmenubar"><a href="football_Board">축구</a></li>
 		<li class="topmenubar"><a href="baseball_Board">야구</a></li>
 		<li class="topmenubar"><a href="basketball_Board">농구</a></li>
-		<li class="topmenubar"><a href="#">자전거</a></li>
+		<li class="topmenubar"><a href="#">테니스</a></li>
 		<li class="topmenubar" id="freeboard"><a href="#">자유 게시판</a></li>
 		<c:if test="${logID == 'admin' }">
 			<li class="topmenubar"><a href="list">회원 목록</a></li>
@@ -324,4 +329,5 @@ sports varchar2(10),
 reple varchar2(100),
 cnt number(5) default 0,
 image varchar2(100));-->
+
 
