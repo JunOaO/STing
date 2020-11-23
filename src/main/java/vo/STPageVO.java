@@ -10,7 +10,7 @@ public class STPageVO {
 	private int totalCount; 	// 전체 레코드갯수
 	private int currPage; 		// 현재 페이지번호
 	private int perPage = 5; 	// 페이지당 보여줄 갯수
-	private int perPageNo = 3;
+	private int perPageNo = 5;
 			// 한 화면에 출력되는 PageNo 갯수
 			// => paging2 에서 사용
 

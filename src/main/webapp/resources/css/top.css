@@ -12,7 +12,10 @@ body{
 #bjoinf:hover{
 	cursor: pointer;
 }
-
+#homelogo {
+	width: 200px;
+	height: 200px;
+}
 .loginText {
 	font-size: 12px;
 }

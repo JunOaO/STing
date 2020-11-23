@@ -1,5 +1,8 @@
 package vo;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class STMemberVO {
@@ -13,10 +16,10 @@ public class STMemberVO {
 	private int matching;
 	private int partyplay;
 	private String profile;
-	
+
 	private MultipartFile uploadfilef;
 	// form 으로부터 uploadfile 정보를 읽어오기 위한 필드,member table에 추가 안함
-
+	
 	public String getId() {
 		return id;
 	}

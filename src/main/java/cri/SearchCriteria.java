@@ -5,6 +5,15 @@ public class SearchCriteria extends Criteria {
 
 	private String searchType = "";
 	private String keyword = "";
+	private String sports;
+	
+	public String getSports() {
+		return sports;
+	}
+
+	public void setSports(String sports) {
+		this.sports = sports;
+	}
 
 	public String getSearchType() {
 		return searchType;
@@ -24,7 +33,7 @@ public class SearchCriteria extends Criteria {
 
 	@Override
 	public String toString() {
-		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + "]";
+		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + ", sports=" + sports + "]";
 	}
 
 } // class

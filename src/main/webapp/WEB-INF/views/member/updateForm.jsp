@@ -209,7 +209,7 @@ body{
 
 <form action="update" method="post" enctype="multipart/form-data">
 
-<p> STing</p>
+<a href="home"><p> STing</p></a>
 <h2>내정보 수정</h2>
       <div class="form_all">
          <div class="form_group">

@@ -44,8 +44,9 @@
 				<h3>운동 파트너를 찾아보세요.</h3>
 			</div>
 		</div>
-		<input type="hidden" name="id" value="${logID}"> <input
-			type="hidden" name="nickname" value="${logNickname}">
+		<input type="hidden" name="id" value="${logID}"> 
+		<input type="hidden" name="nickname" value="${logNickname}">
+		<input type = "hidden" name="sports" value="baseball">
 		<div class="board_all">
 			<div class="div_title">
 				<label class="label_title">제&nbsp;목</label> <input type="text"

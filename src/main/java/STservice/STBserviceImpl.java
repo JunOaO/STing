@@ -9,6 +9,7 @@ import cri.Criteria;
 import cri.SearchCriteria;
 import jdbcUtil.STBoardDAO;
 import vo.STBoardVO;
+import vo.STCommentVO;
 import vo.STMatchingVO;
 import vo.STMemberVO;
 @Service
@@ -32,6 +33,10 @@ public class STBserviceImpl implements STBservice{
 	public int baseballInsert(STBoardVO vo) {  
 		return dao.baseballInsert(vo);  // 처리된 row 갯수 return	 
 	} // insert
+	@Override
+	public int footballInsert(STBoardVO vo) {  
+		return dao.footballInsert(vo);  // 처리된 row 갯수 return	 
+	} // insert
 	
 	/******************* 모집글 횟수 start *******************/
 	@Override
@@ -40,19 +45,25 @@ public class STBserviceImpl implements STBservice{
 	} // boardLeaderUpdate
 	/******************* 모집글 횟수 end *******************/
 	
+	//********************* 게시판 출력 start *********************
 	@Override
 	public List<STBoardVO> baseballSelectList(Criteria cri){
 		return dao.baseballSelectList(cri);
 	}
-
 	@Override
-	public STBoardVO baseballSelectOne(STBoardVO vo) {
-		return dao.baseballSelectOne(vo);
+	public List<STBoardVO> footballSelectList(Criteria cri){
+		return dao.footballSelectList(cri);
 	}
+	@Override
+	public List<STBoardVO> basketballSelectList(Criteria cri){
+		return dao.basketballSelectList(cri);
+	}
+	
+	//********************* 게시판 출력 end *********************
 
 	@Override
-	public int boardRowCount(SearchCriteria cri) {
-		return dao.boardRowCount(cri);
+	public STBoardVO boardSelectOne(STBoardVO vo) {
+		return dao.boardSelectOne(vo);
 	}
 
 	/************************** 최신글 새로 고침 start ******************************/
@@ -92,6 +103,16 @@ public class STBserviceImpl implements STBservice{
 	public int baseballDelete(STBoardVO vo) {  
 		return dao.baseballDelete(vo);  	 
 	} // baseballDelete
+	
+	@Override
+	public int footballUpdate(STBoardVO vo) {  
+		return dao.footballUpdate(vo);  	 
+	} // baseballUpdate
+	
+	@Override
+	public int footballDelete(STBoardVO vo) {  
+		return dao.footballDelete(vo);  	 
+	} // baseballDelete
 	/************************** 수정 & 삭제 end ******************************/
 
 	/************************** board 매칭 start ******************************/
@@ -125,4 +146,40 @@ public class STBserviceImpl implements STBservice{
 	}
 	/************************** board 매칭 end ******************************/
 
+	/************************** 댓글입력 & 삭제 start ******************************/
+	@Override
+	public List<STCommentVO> clist(STBoardVO vo) {
+		return dao.clist(vo);
+	}
+	@Override
+	public String clistID(STBoardVO vo) {
+		return dao.clistID(vo);
+	}
+
+	@Override
+	public int commentInsert(STCommentVO cvo) {
+		return dao.commentInsert(cvo);
+	}
+
+	@Override
+	public int commentDelete(STCommentVO cvo) {
+		return dao.commentDelete(cvo);
+	}
+
+	/************************** 댓글 입력 & 삭제 end ******************************/
+	
+	@Override
+	public STMemberVO profileSelect(STMemberVO memvo) {
+		return dao.profileSelect(memvo);
+	}
+	@Override
+	public STBoardVO profileSelect2(STBoardVO vo) {
+		return dao.profileSelect2(vo);
+	}
+	
+	@Override
+	public STCommentVO profileSelectOne(STCommentVO cvo) {
+		return dao.pfofileSelectOne(cvo);
+	}
+	
 }

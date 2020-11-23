@@ -53,7 +53,8 @@
 	function matching() {
 		location.href = "matching"
 					  + "?seq=${matchingTeam.seq}"
-					  + "&id=${logID}";
+					  + "&id=${logID}"
+					  + "&sports=${matchingTeam.sports}";
 	}
 	
 </script>
@@ -87,7 +88,8 @@
 									
 									location.href = "detail"
 							 			  		  + "?seq=${matchingTeam.seq}"
-							  		  			  + "&id=${logID}";
+							  		  			  + "&id=${logID}"
+							  		  			  + "&sports=${matchingTeam.sports}";
 								});
 							} else {
 								self.close();
@@ -123,7 +125,8 @@
 									
 									location.href = "detail"
 							 			  		  + "?seq=${matchingTeam.seq}"
-							  		  			  + "&id=${logID}";
+							  		  			  + "&id=${logID}"
+							  		  			  + "&sports=${matchingTeam.sports}";
 								});
 							} else {
 								self.close();

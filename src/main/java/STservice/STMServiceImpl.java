@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import jdbcUtil.STMemberDAO;
 import vo.STBoardVO;
+import vo.STMatchingVO;
 import vo.STMemberVO;
 
 //@Component
@@ -39,6 +40,10 @@ public class STMServiceImpl implements STMservice {
 	@Override
 	public int profileUpdate(STMemberVO vo) {
 		return dao.profileUpdate(vo);
+	}
+	@Override
+	public int profileReple(STMemberVO vo) {
+		return dao.profileReple(vo);
 	}
 
 	@Override

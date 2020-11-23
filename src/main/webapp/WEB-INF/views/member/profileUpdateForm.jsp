@@ -23,7 +23,7 @@
 <input type="file" name="uploadfilef" id="uploadfilef" hidden="true"/>
 <div class="button" onclick="onclick=document.all.uploadfilef.click()">
 	
-<p><img src="${logProfile}" width="90" height="90" title="이미지 클릭시 변경할수 있습니다." id="logprofile"></p>
+<p><img src="${profile.profile}" width="90" height="90" title="이미지 클릭시 변경할수 있습니다." id="logprofile"></p>
 <p id="logid">${logID}</p>
 </div>
 

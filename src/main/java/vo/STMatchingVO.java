@@ -4,14 +4,14 @@ public class STMatchingVO {
 	private int seq;
 	private String leaderid;
 	private String matchingid;
-	private int seq_step;
-
-	public int getSeq_step() {
-		return seq_step;
+	private String sports;
+	
+	public String getSports() {
+		return sports;
 	}
 
-	public void setSeq_step(int seq_step) {
-		this.seq_step = seq_step;
+	public void setSports(String sports) {
+		this.sports = sports;
 	}
 
 	public int getSeq() {
@@ -40,8 +40,8 @@ public class STMatchingVO {
 
 	@Override
 	public String toString() {
-		return "STMatchingVO [seq=" + seq + ", leaderid=" + leaderid + ", matchingid=" + matchingid + ", seq_step="
-				+ seq_step + "]";
+		return "STMatchingVO [seq=" + seq + ", leaderid=" + leaderid + ", matchingid=" + matchingid + ", sports="
+				+ sports + "]";
 	}
 
 }

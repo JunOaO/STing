@@ -37,10 +37,10 @@
 
 	<sql id="sportsFrom">
 		<choose>
-			<when test="searchType=='football'.toString()">
+			<when test="searchType=='football'.toString() || sports == 'football'">
 				from footballboard
 			</when>
-			<when test="searchType=='baseball'.toString()">
+			<when test="searchType=='baseball'.toString() || sports == 'baseball'">
 				from baseballboard
 			</when>
 			<when test="searchType=='basketball'.toString()">
@@ -53,9 +53,7 @@
 				from bicycleboard
 			</when>
 		</choose>
-
 	</sql>
-
 	<select id="searchRowCount" resultType="int">
 			select count(*) <include refid="sportsFrom"></include> <![CDATA[ where ( seq> 0 ]]>
 		<include refid="search"></include>
@@ -63,14 +61,14 @@
 
 	<select id="searchList" resultType="vo.STBoardVO">
 		SELECT * FROM
-		(select b.*, ROW_NUMBER() OVER(order by seq) rnum <include refid="sportsFrom"></include> b
+		(select b.*, ROW_NUMBER() OVER(order by seq desc) rnum <include refid="sportsFrom"></include> b
 			<![CDATA[ where seq > 0 ]]>
 		<include refid="search"></include>
 		where rnum between #{sno} and #{eno}
 	</select>
 	<!-- ***************** search 관련 end ***************** -->
 
-	<!-- ***************** board 새글 등록 start ***************** -->
+	<!-- ***************** 야구 새글 등록 start ***************** -->
 	<insert id="baseballInsert">
 		insert into baseballboard values
 	 	((select nvl(max(seq),0)+1 from baseballboard)
@@ -83,11 +81,29 @@
 		,#{person}
 		,#{local}
 		,''
-		,''
+		,#{sports}
 		,0
 		,'')
 	</insert>
 	<!-- ***************** 야구 새글 등록 end ***************** -->
+	<!-- ***************** 축구 새글 등록 start ***************** -->
+	<insert id="footballInsert">
+		insert into footballboard values
+	 	((select nvl(max(seq),0)+1 from footballboard)
+		,#{id}
+		,#{nickname}
+		,#{title}
+		,#{content}
+		,sysdate
+		,#{team}
+		,#{person}
+		,#{local}
+		,''
+		,#{sports}
+		,0
+		,'')
+	</insert>
+	<!-- ***************** 축구 새글 등록 end ***************** -->
 	
 	<!-- *************************  매칭 모집 횟수 start ************************* -->
 	<update id="boardLeaderUpdate">
@@ -133,34 +149,75 @@
 		delete from baseballboard where seq=#{seq}
 	</delete>
 	
+	<update id="footballUpdate">
+		update footballboard set title=#{title},team=#{team},person=#{person},local=#{local},content=#{content} where seq=#{seq}
+	</update>
+	
+	<delete id="footballDelete">
+		delete from footballboard where seq=#{seq}
+	</delete>
+	
 	
 	<!-- ************************* board 수정 & 삭제 end ***************************** -->
 	
 	<!-- **************************  매칭 start ****************************** -->
 	<insert id="matchingInsert">
-	insert into matchingboard values(#{seq},#{leaderid}, #{matchingid}, (select nvl(max(seq_step),0)+1 from matchingboard))
+	insert into matchingboard values(#{seq},#{leaderid}, #{matchingid}, #{sports})
 	</insert>
 	
 	<select id="matchingSelect" resultType="vo.STMatchingVO">
-	select * from matchingboard where seq = #{seq} order BY seq_step desc
+	select * from matchingboard where seq = #{seq}
 	</select>
 
 	<select id="idcheckSelect2" resultType="vo.STMatchingVO">
-	select * from matchingboard where seq = #{seq} and matchingid = #{matchingid} order BY seq_step desc
+	select * from matchingboard where seq = #{seq} and matchingid = #{matchingid}
 	</select>
 	
 	<update id="matchingUpdate">
 	update stmember set matching = matching+1 where id = #{id}
 	</update>
 	<!-- **************************  매칭 end ****************************** -->
+	<sql id="boardSelect">
+	<choose>
+		<when test="sports =='football' ">
+		from footballboard
+		</when>
+		<when test="sports == 'baseball' ">
+		from baseballboard
+		</when>
+	</choose>
+	</sql>
 	
-	<select id="baseballSelectOne" resultType="vo.STBoardVO">
-		select * from baseballboard where seq=#{seq}
+	
+	<select id="boardSelectOne" resultType="vo.STBoardVO">
+		select * <include refid="boardSelect"></include> where seq=#{seq}
 	</select>
 	
-	<select id="boardRowCount" resultType="int">
-			select count(*) from baseballboard <![CDATA[ where ( seq> 0 ]]>
-		<include refid="search"></include>
+	<!-- ************************* 댓글 입력 & 삭제 start ***************************** -->
+	<select id="clist" resultType="vo.STCommentVO">
+   		 select * from boardcomment where seq = #{seq} order by root
 	</select>
-
+	<select id="clistID" resultType="vo.STCommentVO">
+   		 select id from boardcomment where seq = #{seq} order by root
+	</select>
+	
+	<insert id="commentInsert" >
+  		 insert into boardcomment values(
+  		 #{seq}, (select nvl(max(root), 0)+1 from boardcomment where seq = #{seq}), #{id},#{nickname}, sysdate, #{recontent}, #{sports}, #{profile})
+	</insert>
+	
+	<delete id="commentDelete">
+   		delete boardcomment where seq = #{seq} and root = #{root}
+	</delete>
+	
+	<!-- ************************* 댓글 입력 & 삭제 end ***************************** -->
+	<!-- <select id="profileSelect" resultType="vo.STCommentVO">
+		select distinct stmember.id, stmember.profile from stmember stmember,boardcomment boardcomment where stmember.id = boardcomment.id
+	</select> -->
+	
+	<select id="profileSelect2" resultType="vo.STBoardVO">
+		select * from stmember where id = #{id}
+	</select>
+	
+	<select id="profileSelectOne"></select>
 </mapper>

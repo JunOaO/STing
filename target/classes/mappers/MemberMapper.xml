@@ -21,9 +21,22 @@
 	<delete id="delete">
 		delete from stmember where id=#{id}
 	</delete>
+	<sql id="detailSelect">
+	<choose>
+	<when test="sports == 'football' ">
+		from footballboard
+	</when>
+	<when test="sports == 'baseball' ">
+		from baseballboard
+	</when>
+	<when test="sports == '' ">
+		from baseballboard
+	</when>
+	</choose>
+	</sql>
 	
 	<select id="matchingTitle" resultType="vo.STBoardVO">
-		select seq,title from baseballboard where seq = #{seq}
+		select * <include refid="detailSelect"></include> where seq = #{seq} and sports = #{sports}
 	</select>
 	
 	<update id="update">
@@ -33,6 +46,10 @@
 	
 	<update id="profileUpdate">
 		update stmember set profile=#{profile} where id=#{id}
+	</update>
+	
+	<update id="profileReple">
+		update boardcomment set profile = #{profile} where id = #{id}
 	</update>
 
 </mapper>

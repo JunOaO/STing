@@ -65,10 +65,11 @@
 	</div>
 	<div >
 	<ul id="topnavbar">
-		<li class="topmenubar"><a href="football_Board">축구</a></li>
-		<li class="topmenubar"><a href="baseball_Board">야구</a></li>
-		<li class="topmenubar"><a href="basketball_Board">농구</a></li>
+		<li class="topmenubar"><a href="sports?sports=football">축구</a></li>
+		<li class="topmenubar"><a href="sports?sports=baseball">야구</a></li>
+		<li class="topmenubar"><a href="sports?sports=basketball">농구</a></li>
 		<li class="topmenubar"><a href="#">테니스</a></li>
+		<li class="topmenubar"><a href="#">자전거</a></li>
 		<li class="topmenubar" id="freeboard"><a href="#">자유 게시판</a></li>
 		<c:if test="${logID == 'admin' }">
 			<li class="topmenubar"><a href="list">회원 목록</a></li>
@@ -88,7 +89,7 @@
 			<div id="resultAreaLogin"></div>
 			<c:if test="${logID != null}">
 					${logID}<br>${logNickname}<br>
-				<a href="detail?id=${logID }" class="loginText">MyInfo</a>&nbsp;&nbsp; 
+				<a href="detail?id=${logID}&sports=" class="loginText">MyInfo</a>&nbsp;&nbsp; 
 			<a href="logout" class="loginText">LogOut</a>&nbsp;&nbsp;
 			</c:if>
 	</div>
@@ -112,7 +113,7 @@
 						<td>${newFootBall.seq}</td>
 						<td class="title_over">
 						<c:if test="${logID != null}">
-						<a href="board_Detail?seq=${newFootBall.seq}">[${newFootBall.local}][${newFootBall.team}]&nbsp;${newFootBall.title}</a>
+						<a href="football_Detail?seq=${newFootBall.seq}&sports=football">[${newFootBall.local}][${newFootBall.team}]&nbsp;${newFootBall.title}</a>
 						</c:if>
 						<c:if test="${logID == null}">
 						[${newFootBall.local}][${newFootBall.team}]&nbsp;${newFootBall.title}
@@ -139,7 +140,7 @@
 						<td>${newBaseball.seq}</td>
 						<td class="title_over">
 						<c:if test="${logID != null }">
-						<a href="board_Detail?seq=${newBaseball.seq}">[${newBaseball.local}][${newBaseball.team}]&nbsp;${newBaseball.title}</a>
+						<a href="baseball_Detail?seq=${newBaseball.seq}&sports=baseball">[${newBaseball.local}][${newBaseball.team}]&nbsp;${newBaseball.title}</a>
 						</c:if>
 						<c:if test="${logID == null }">
 						[${newBaseball.local}][${newBaseball.team}]&nbsp;${newBaseball.title}
@@ -247,16 +248,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 <!-- 
 create  table STmember (    
 id varchar2(30) primary key ,
@@ -266,10 +257,10 @@ nickname varchar2(30),
 email varchar2(100),
 birthd date ,
 gender varchar2(10),
-matching varchar2(5),
-partplay varchar2(5),
-profile varchar2(100)
-);
+matching number(5),
+partplay number(5),
+profile varchar2(100),
+leadermatching number(5));
 
 
 
@@ -280,8 +271,8 @@ nickname varchar2(30),
 title varchar2(200),
 content varchar2(2000),
 regdate date default sysdate,
-team number(3),
-person number(3),
+team varchar2(20),
+person number(5),
 local varchar2(100),
 map varchar2(1000),
 sports varchar2(10),
@@ -295,8 +286,8 @@ nickname varchar2(30),
 title varchar2(200),
 content varchar2(2000),
 regdate date default sysdate,
-team number(3),
-person number(3),
+team varchar2(20),
+person varchar2(20),
 local varchar2(100),
 map varchar2(1000),
 sports varchar2(10),
@@ -307,27 +298,42 @@ image varchar2(100));
 create  table basketballBoard (    
 seq number(5) primary key ,
 id varchar2(20),
+nickname varchar2(30),
 title varchar2(200),
 content varchar2(2000),
 regdate date default sysdate,
+team varchar2(20),
+person number(5),
 local varchar2(100),
 map varchar2(1000),
 sports varchar2(10),
-reple varchar2(100),
 cnt number(5) default 0,
 image varchar2(100));
 
 create  table bicycleBoard (    
 seq number(5) primary key ,
 id varchar2(20),
+nickname varchar2(30),
 title varchar2(200),
 content varchar2(2000),
 regdate date default sysdate,
+team varchar2(20),
+person number(5),
 local varchar2(100),
 map varchar2(1000),
 sports varchar2(10),
-reple varchar2(100),
 cnt number(5) default 0,
-image varchar2(100));-->
+image varchar2(100));
+
+댓글
+create table boardcomment(
+seq number(10),
+root number(10),
+id varchar2(10),
+nickname varchar2(10),
+regdate date,
+recontent varchar2(100),
+profile varchar2(100));
+-->
 
 

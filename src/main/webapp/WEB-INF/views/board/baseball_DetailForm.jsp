@@ -33,7 +33,7 @@
 <script>
 
 function matchingf() {
-	open('matchingf'+"?seq=${Detail.seq}&id=${logID}","_blank",
+	open('matchingf'+"?seq=${Detail.seq}&id=${logID}&sports=baseball","_blank",
 	"toolbar=no,member=yes,scrollbars=yes,resizeble=yes,width=620,height=500");
 }
 
@@ -45,7 +45,8 @@ function matchingf() {
 		<div class="bord_header">
 			<div class="this_board">
 				<button type="button" class="board_button" id="board_button"
-					onclick="location.href='baseball_Board'">야구 게시판</button>
+					onclick="location.href='baseball_Board?sports=baseball'">야구
+					게시판</button>
 			</div>
 			<div class="board_title">
 				<h3>STing 을 통해</h3>
@@ -57,6 +58,7 @@ function matchingf() {
 			<div id="div_title">
 				<h1>${Detail.title}</h1>
 			</div>
+			<img alt="프로필" src="${profile2.profile}">
 			<div id="div_id">
 				<p>${Detail.id}</p>
 			</div>
@@ -81,16 +83,18 @@ function matchingf() {
 				<div id="div_matching">
 					<button type="button" id="button_matching" onclick="matchingf()">매칭하기</button>
 				</div>
-				<div id="div_delete">
-					<a href="baseball_Delete?seq=${Detail.seq}" id="button_delete"
-						onclick="if(!confirm('정말 삭제 하시겠습니까')){return false;}">삭제</a>
-					<%-- <button type="button" id="button_delete" onclick="location.href='baseball_Delete?seq=${Detail.seq}'">삭제</button> --%>
-				</div>
-				<div id="div_update">
-					<button type="button" id="button_update"
-						onclick="location.href='board_Detail?seq=${Detail.seq}&code=U'">수정</button>
+				<c:if test="${logID == Detail.id }">
+					<div id="div_delete">
+						<a href="baseball_Delete?seq=${Detail.seq}" id="button_delete"
+							onclick="if(!confirm('정말 삭제 하시겠습니까')){return false;}">삭제</a>
+						<%-- <button type="button" id="button_delete" onclick="location.href='baseball_Delete?seq=${Detail.seq}'">삭제</button> --%>
+					</div>
 
-				</div>
+					<div id="div_update">
+						<button type="button" id="button_update"
+							onclick="location.href='baseball_Detail?seq=${Detail.seq}&code=U&sports=baseball'">수정</button>
+					</div>
+				</c:if>
 			</div>
 			<div id="div_content">
 				<div id="content_in">${Detail.content}</div>
@@ -102,26 +106,50 @@ function matchingf() {
 				</div>
 				<div>
 					<button type="button" id="button_list"
-						onclick="location.href='baseball_Board'">목록</button>
+						onclick="location.href='baseball_Board?sports=baseball'">목록</button>
 				</div>
 				<div>
 					<button type="button" id="button_home"
 						onclick="location.href='home'">홈</button>
 				</div>
 			</div>
-			<div>
-				<textarea name="reple" id="textarea_reple" placeholder="&nbsp;댓글 입력"
-					maxlength="1024" style="resize: none;"></textarea>
-			</div>
-			<div id="div_reple">
-				<div>
-					<button type="button" id="button_reple" onclick="#">작성완료</button>
-				</div>
-			</div>
 		</div>
 		<footer> </footer>
+	</form>
 
+	<!------------------ 댓글 =------------------------->
+	<form action="comment_insert" method="post">
 
+		<input type="hidden" value="${Detail.seq}" name="seq">
+		<input type="hidden" placeholder="아이디" name="id" value="${logID}"><br>
+		<input type="hidden" placeholder="닉네임" name="nickname" value="${logNickname}">
+		<input type="hidden" name="sports" value="baseball">
+		<input type="hidden" name="profile" value="${logProfile}">
+		<div id="div_reple_output">
+			<c:forEach var="cment" items="${cment}">
+				<div id="reple_output">
+					<span>
+					<img src="${cment.profile}"
+						style="width: 30px; height: 30px;" id="reple_writer_profile">&nbsp;${cment.nickname}
+					</span>
+					<span> ${cment.regdate}<br>
+					</span>
+					<pre>${cment.recontent}</pre>
+					<a href="comment_delelte?seq=${cment.seq}&root=${cment.root}"><span>삭제</span></a>
+				</div>
+			</c:forEach>
+		</div>
+		<div id="div_reple_box">
+			<div>
+				<img src="${profile2.profile}" width="40" height="40" id="logprofile">
+				<p id="logid">${logID}</p>
+			</div>
+			<div>
+				<textarea name="recontent" id="textarea_reple"
+					placeholder="&nbsp;댓글 입력" maxlength="1024" style="resize: none;"></textarea>
+				<input type="submit" id="reple_submit" value="등록">
+			</div>
+		</div>
 	</form>
 </body>
 </html>

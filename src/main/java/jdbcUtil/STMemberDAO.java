@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import vo.STBoardVO;
+import vo.STMatchingVO;
 import vo.STMemberVO;
 import vo.STPageVO;
 
@@ -43,6 +44,9 @@ public class STMemberDAO {
 	
 	public int profileUpdate(STMemberVO vo) {
 		return sqlSession.update(NS+"profileUpdate",vo);
+	}
+	public int profileReple(STMemberVO vo) {
+		return sqlSession.update(NS+"profileReple",vo);
 	}
 	
 	public STBoardVO matchingTitle(STBoardVO bvo) {

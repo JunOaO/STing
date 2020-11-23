@@ -48,6 +48,10 @@ window.close();
  => ${message} &nbsp;&nbsp;
 <a href="#" onclick="history.back()">[다시하기]</a> <br>
 </c:if>
+<c:if test="${fCode=='FF'}">
+ => ${message} &nbsp;&nbsp;
+<a href="#" onclick="history.back()">[다시하기]</a> <br>
+</c:if>
 
 <hr>
 <a href="home">[Home]</a>
