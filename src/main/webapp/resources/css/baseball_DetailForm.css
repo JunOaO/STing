@@ -404,3 +404,7 @@ footer{
 	clear: both;
 	float: left;
 }
+
+.class_reple_writer_profile{
+	cursor: pointer;
+}

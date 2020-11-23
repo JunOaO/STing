@@ -341,7 +341,7 @@ public class STBoardController implements ServletContextAware{
 				//성공 -> blist
 				service.boardLeaderUpdate(vo);
 				mv.addObject("message","새글등록 성공");
-				mv.setViewName("redirect:football_Board");
+				mv.setViewName("redirect:football_Board?sports=football");
 			}else {
 				//실패 -> doFinish
 				mv.addObject("message","새글등록 실패");

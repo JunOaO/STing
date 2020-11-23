@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>야구 글쓰기</title>
+<title>테니스 글쓰기</title>
 <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
 <script src="resources/jqLib/memberCheck.js"></script>
 <script type="text/javascript"
@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>" />
 <link rel="stylesheet" type="text/css" href="resources/css/test.css">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/baseball_DetailForm.css">
+	href="resources/css/tennis_DetailForm.css">
 <script src="resources/jqLib/axST01.js"></script>
 
 <link rel="stylesheet" media="only screen and (min-width:981px)">
@@ -31,7 +31,7 @@
 <script>
 
 function matchingf() {
-	open('matchingf'+"?seq=${Detail.seq}&id=${logID}&sports=baseball","_blank",
+	open('matchingf'+"?seq=${Detail.seq}&id=${logID}&sports=tennis","_blank",
 	"toolbar=no,member=yes,scrollbars=yes,resizeble=yes,width=620,height=500");
 }
 
@@ -43,7 +43,7 @@ function matchingf() {
 		<div class="bord_header">
 			<div class="this_board">
 				<button type="button" class="board_button" id="board_button"
-					onclick="location.href='baseball_Board?sports=baseball'">야구 게시판</button>
+					onclick="location.href='tennis_Board?sports=tennis'">테니스 게시판</button>
 			</div>
 			<div class="board_title">
 				<h3>STing 을 통해</h3>
@@ -86,14 +86,14 @@ function matchingf() {
 				</div>
 				<c:if test="${logID == Detail.id }">
 					<div id="div_delete">
-						<a href="baseball_Delete?seq=${Detail.seq}" id="button_delete"
+						<a href="tennis_Delete?seq=${Detail.seq}" id="button_delete"
 							onclick="if(!confirm('정말 삭제 하시겠습니까')){return false;}">삭제</a>
-						<%-- <button type="button" id="button_delete" onclick="location.href='baseball_Delete?seq=${Detail.seq}'">삭제</button> --%>
+						<%-- <button type="button" id="button_delete" onclick="location.href='tennis_Delete?seq=${Detail.seq}'">삭제</button> --%>
 					</div>
 
 					<div id="div_update">
 						<button type="button" id="button_update"
-							onclick="location.href='baseball_Detail?seq=${Detail.seq}&code=U&sports=baseball'">수정</button>
+							onclick="location.href='tennis_Detail?seq=${Detail.seq}&code=U&sports=tennis'">수정</button>
 					</div>
 				</c:if>
 			</div>
@@ -103,11 +103,11 @@ function matchingf() {
 			<div id="div_list_home">
 				<div>
 					<button type="button" id="button_insert"
-						onclick="location.href='baseballf'">글쓰기</button>
+						onclick="location.href='tennisf'">글쓰기</button>
 				</div>
 				<div>
 					<button type="button" id="button_list"
-						onclick="location.href='baseball_Board?sports=baseball'">목록</button>
+						onclick="location.href='tennis_Board?sports=tennis'">목록</button>
 				</div>
 				<div>
 					<button type="button" id="button_home"
@@ -124,7 +124,7 @@ function matchingf() {
 		<input type="hidden" value="${Detail.seq}" name="seq">
 		<input type="hidden" placeholder="아이디" name="id" value="${logID}"><br>
 		<input type="hidden" placeholder="닉네임" name="nickname" value="${logNickname}">
-		<input type="hidden" name="sports" value="baseball">
+		<input type="hidden" name="sports" value="tennis">
 		<input type="hidden" name="profile" value="${logProfile}">
 		<div id="div_reple_output">
 			<c:forEach var="cment" items="${cment}">
