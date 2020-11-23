@@ -6,13 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>테니스게시판</title>
+<title>자전거게시판</title>
 <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
 <script src="resources/jqLib/memberCheck.js"></script>
 <script src="resources/jqLib/axST01.js"></script>
 
 <link rel="stylesheet" type="text/css"
-	href="resources/css/tennis_board.css">
+	href="resources/css/bicycle_board.css">
 <link rel="stylesheet" type="text/css" href="resources/css/top.css">
 
 <link rel="stylesheet" media="only screen and (min-width:981px)">
@@ -60,7 +60,7 @@
 	<div class="bord_header">
 		<div class="this_board">
 			<button type="button" class="board_button" id="board_button"
-				onclick="location.href='tennis_Board?sports=tennis'">테니스
+				onclick="location.href='bicycle_Board?sports=bicycle'">자전거
 				게시판</button>
 		</div>
 		<div class="board_title">
@@ -69,10 +69,10 @@
 		</div>
 		<div id="searchBar">
 			<select name="searchType" id="searchType" hidden="hidden">
-				<option value="tennis"
-					<c:out value="${pageMaker.cri.searchType eq 'tennis' ? 'selected' : '' }" />>
-					테니스</option>
-			</select> <input type="text" class="tennissearch" id="keyword"
+				<option value="bicycle"
+					<c:out value="${pageMaker.cri.searchType eq 'bicycle' ? 'selected' : '' }" />>
+					자전거</option>
+			</select> <input type="text" class="bicyclesearch" id="keyword"
 				name="keyword" value="${pageMaker.cri.keyword}">
 			<button id="searchBtn">확인</button>
 		</div>
@@ -92,7 +92,7 @@
 				<td class="title_over">
 					<%-- <c:if test="${logID != null}"> --%> <c:if
 						test="${logID != null }">
-						<a href="tennis_Detail?seq=${mm.seq}&sports=tennis">[${mm.local}][${mm.team}]&nbsp;${mm.title}</a>
+						<a href="bicycle_Detail?seq=${mm.seq}&sports=bicycle">[${mm.local}][${mm.team}]&nbsp;${mm.title}</a>
 					</c:if> <c:if test="${logID == null }">
 						<a href="javascript:;"
 							onclick="javascript: alert('로그인 후 이용해 주세요.');">[${mm.local}][${mm.team}]&nbsp;${mm.title}</a>
@@ -109,8 +109,8 @@
 	<div align="center">
 		<!-- 1) First <<, Prev < : enabled 여부 -->
 		<c:if test="${pageMaker.prev && pageMaker.sPageNo>1}">
-			<a href="sports${pageMaker.searchmakeQuery(1)}&sports=tennis">처음</a>&nbsp;
-		    <a href="sports${pageMaker.searchmakeQuery(pageMaker.sPageNo -1)}&sports=tennis">이전</a>&nbsp;
+			<a href="sports${pageMaker.searchmakeQuery(1)}&sports=bicycle">처음</a>&nbsp;
+		    <a href="sports${pageMaker.searchmakeQuery(pageMaker.sPageNo -1)}&sports=bicycle">이전</a>&nbsp;
       </c:if>
 		<!-- 2) sPage ~ ePage까지 perPageNo값 만큼 출력 -->
 		<c:forEach var="i" begin="${pageMaker.sPageNo}"
@@ -119,7 +119,7 @@
 				<font size="5" color="Orange">${i}&nbsp;</font>
 			</c:if>
 			<c:if test="${i!=pageMaker.cri.currPage}">
-				<a href="sports${pageMaker.searchmakeQuery(i)}&sports=tennis">${i }</a>
+				<a href="sports${pageMaker.searchmakeQuery(i)}&sports=bicycle">${i }</a>
 			</c:if>
 			
 			<%-- <c:out value="${pageMaker.cri.currpage==i ? 'class=active' : '' }">
@@ -127,8 +127,8 @@
          
 		</c:forEach>
 		<c:if test="${pageMaker.next && pageMaker.ePageNo >0}">
-			<a href="sports${pageMaker.searchmakeQuery(pageMaker.ePageNo+1)}&sports=tennis">&nbsp;다음</a>&nbsp;
-		<a href="sports${pageMaker.searchmakeQuery(pageMaker.lastPageNo)}&sports=tennis">마지막</a>
+			<a href="sports${pageMaker.searchmakeQuery(pageMaker.ePageNo+1)}&sports=bicycle">&nbsp;다음</a>&nbsp;
+		<a href="sports${pageMaker.searchmakeQuery(pageMaker.lastPageNo)}&sports=bicycle">마지막</a>
 		</c:if>
 	</div>
 	
@@ -140,7 +140,7 @@
 		<c:if test="${logID != null }">
 			<div>
 				<button type="button" class="input_button" id="login_btn1"
-					onclick="location.href='tennisf'">글쓰기</button>
+					onclick="location.href='bicyclef'">글쓰기</button>
 			</div>
 		</c:if>
 	</div>

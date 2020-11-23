@@ -41,7 +41,7 @@
 	</div>
 	<ul id="topnavbar">
 		<li class="topmenubar"><a href="sports?sports=football">축구</a></li>
-		<li class="topmenubar"><a href="sports?sports=basketball">농구</a></li>
+		<li class="topmenubar"><a href="sports?sports=baseball">야구</a></li>
 		<li class="topmenubar"><a href="sports?sports=basketball">농구</a></li>
 		<li class="topmenubar"><a href="#">테니스</a></li>
 		<li class="topmenubar"><a href="#">자전거</a></li>
