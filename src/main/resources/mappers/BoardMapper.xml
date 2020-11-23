@@ -211,13 +211,15 @@
 	</delete>
 	
 	<!-- ************************* 댓글 입력 & 삭제 end ***************************** -->
-	<!-- <select id="profileSelect" resultType="vo.STCommentVO">
-		select distinct stmember.id, stmember.profile from stmember stmember,boardcomment boardcomment where stmember.id = boardcomment.id
-	</select> -->
+	<select id="profileSelect" resultType="vo.STMemberVO">
+		select * from stmember where id = #{id}
+	</select>
 	
 	<select id="profileSelect2" resultType="vo.STBoardVO">
 		select * from stmember where id = #{id}
 	</select>
 	
-	<select id="profileSelectOne"></select>
+	<select id="profileSelectOne" resultType="vo.STMemberVO">
+	select * from stmember where id = #{id}
+	</select>
 </mapper>

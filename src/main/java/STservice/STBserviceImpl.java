@@ -178,8 +178,8 @@ public class STBserviceImpl implements STBservice{
 	}
 	
 	@Override
-	public STCommentVO profileSelectOne(STCommentVO cvo) {
-		return dao.pfofileSelectOne(cvo);
+	public STMemberVO profileSelectOne(STMemberVO memvo) {
+		return dao.pfofileSelectOne(memvo);
 	}
 	
 }

@@ -191,14 +191,18 @@ public class STBoardController implements ServletContextAware{
 	
 	/******************* 디테일, 수정 & 삭제 start *******************/
 	@RequestMapping(value="/baseball_Detail")
-	public ModelAndView baseballDetail(HttpServletRequest request, ModelAndView mv , STBoardVO vo, STMatchingVO mvo) {
+	public ModelAndView baseballDetail(HttpServletRequest request, ModelAndView mv , STBoardVO vo, STMatchingVO mvo, STMemberVO memvo) {
+		String id = null;
+		HttpSession session = request.getSession(false);
+		id = (String)session.getAttribute("logID");
 		
 		vo = service.boardSelectOne(vo);
-		
+		memvo.setId(id);
 		if(vo != null) {
 			mv.addObject("Detail",vo);
 			mv.addObject("cment",service.clist(vo));
-			mv.addObject("profile2",service.profileSelect2(vo)); //글쓴이
+			mv.addObject("profile",service.profileSelect(memvo)); //댓글 프로필
+			mv.addObject("profile2",service.profileSelect2(vo)); //글쓴이 프로필
 			//Detail or Update 확인
 			if("U".equals(request.getParameter("code"))) {
 				//update
@@ -451,11 +455,9 @@ public class STBoardController implements ServletContextAware{
 	}
 	
 	@RequestMapping(value = "/comment_insert")
-	public ModelAndView commentInsert(ModelAndView mv, STBoardVO vo, STCommentVO cvo) {
-		System.out.println(cvo);
-		cvo = service.profileSelectOne(cvo);
-		System.out.println("select"+cvo);
-		cvo.setProfile(cvo.getProfile());
+	public ModelAndView commentInsert(ModelAndView mv, STBoardVO vo, STCommentVO cvo,STMemberVO memvo) {
+		memvo = service.profileSelectOne(memvo);
+		cvo.setProfile(memvo.getProfile());
 		service.commentInsert(cvo);
 		mv.setViewName("redirect:"+vo.getSports()+"_Detail?seq=" + cvo.getSeq()+"&sports="+vo.getSports());
 		return mv;

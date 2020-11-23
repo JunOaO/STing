@@ -180,8 +180,8 @@ public class STBoardDAO {
 		return sqlSession.selectOne(NS + "totalRowCount");
 	} // totalRowCount
 	
-	public STCommentVO pfofileSelectOne(STCommentVO cvo) {
-		   return sqlSession.selectOne(NS+"profileSelectOne",cvo);
+	public STMemberVO pfofileSelectOne(STMemberVO memvo) {
+		   return sqlSession.selectOne(NS+"profileSelectOne",memvo);
 	   }
 
 }// class

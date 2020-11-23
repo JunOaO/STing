@@ -11,6 +11,7 @@ public interface STMservice {
 	int insert(STMemberVO vo);
 
 	STMemberVO selectOne(STMemberVO vo);
+	STBoardVO selectInfo(STBoardVO bvo);
 
 	int delete(STMemberVO vo);
 	

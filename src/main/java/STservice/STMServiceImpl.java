@@ -56,5 +56,10 @@ public class STMServiceImpl implements STMservice {
 		return dao.update(vo);
 	}
 
+	@Override
+	public STBoardVO selectInfo(STBoardVO bvo) {
+		return dao.selectInfo(bvo);
+	}
+
 
 } // class

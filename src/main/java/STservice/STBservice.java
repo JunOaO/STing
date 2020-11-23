@@ -63,7 +63,7 @@ public interface STBservice{
 	  STMemberVO profileSelect(STMemberVO memvo);
 	  STBoardVO profileSelect2(STBoardVO vo);
 	  
-	  STCommentVO profileSelectOne(STCommentVO cvo);
+	  STMemberVO profileSelectOne(STMemberVO memvo);
 
 
 }

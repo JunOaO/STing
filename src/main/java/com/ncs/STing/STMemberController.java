@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import STservice.STMservice;
 import vo.STBoardVO;
+import vo.STCommentVO;
 import vo.STMatchingVO;
 import vo.STMemberVO;
 
@@ -401,5 +402,57 @@ public class STMemberController {
 		}
 		
 	//***************************** 회원 profile 수정  end ********************************
+	// ***************************** profileDetail start ********************************
+		@RequestMapping(value = "/profiledetailf")
+		public ModelAndView detailf(ModelAndView mv, HttpServletRequest request, STMemberVO vo, STBoardVO bvo, STCommentVO cvo) {
+			String id = null;
+			String message = null;
+			String url = "loginf";
+			System.out.println("aaaaaaaaaaaaaaaa");
+			HttpSession session = request.getSession(false);
 
+			if ((session != null) && (session.getAttribute("logID") != null)) {
+
+				id = (String) session.getAttribute("logID");
+				if ("admin".equals(id))
+					id = request.getParameter("id");
+				vo.setId(id);
+
+				vo = service.selectOne(vo);
+				if (vo != null) {
+					service.selectInfo(bvo);
+					vo.setId(bvo.getId());
+					
+					vo = service.selectOne(vo);
+					mv.addObject("myInfo", vo);
+					System.out.println(service.selectOne(vo));
+					/* mv.addObject("reple", cvo); */
+					// myinfo or update 구분
+					if ("U".equals(request.getParameter("code")))
+						url = "member/updateForm";
+					else
+						url = "member/detailForm";
+					
+					
+				} else {
+					message = " 당신의 상세정보가 DB에 없습니다. ~~ ";
+					url = "home";
+				}
+				message = "Login 후에 다시 하세요 ~~~";
+
+				if (message != null)
+					mv.addObject("message", message);
+				mv.setViewName(url);
+			}
+
+			mv.setViewName("member/profileDetailForm");
+			return mv;
+		}
+		
+		
+		/*
+		 * @RequestMapping(value = "/profiledetail") public ModelAndView
+		 * profileDetail(ModelAndView mv, HttpServletRequest request, STMemberVO vo,
+		 * STCommentVO cvo) { }// detail
+		 */		// ***************************** 회원 정보(detail) end ********************************
 }

@@ -56,5 +56,8 @@ public class STMemberDAO {
 	public int update(STMemberVO vo) {
 		return sqlSession.update(NS+"update",vo);
 	}
+	public STBoardVO selectInfo(STBoardVO vo) {
+		return sqlSession.selectOne(NS+"selectInfo",vo);
+	}
 
 } // class
