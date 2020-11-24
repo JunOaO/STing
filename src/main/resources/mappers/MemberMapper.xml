@@ -21,18 +21,28 @@
 	<delete id="delete">
 		delete from stmember where id=#{id}
 	</delete>
+
 	<sql id="detailSelect">
-	<choose>
-	<when test="sports == 'football' ">
-		from footballboard
-	</when>
-	<when test="sports == 'baseball' ">
-		from baseballboard
-	</when>
-	<when test="sports == '' ">
-		from baseballboard
-	</when>
-	</choose>
+		<choose>
+			<when test="sports == 'football' ">
+				from footballboard
+			</when>
+			<when test="sports == 'baseball' ">
+				from baseballboard
+			</when>
+			<when test="sports == 'basketball' ">
+				from basketballboard
+			</when>
+			<when test="sports == 'tennis' ">
+				from tennisboard
+			</when>
+			<when test="sports == 'bicycle' ">
+				from bicycleboard
+			</when>
+			<when test="sports == '' ">
+				from baseballboard
+			</when>
+		</choose>
 	</sql>
 	
 	<select id="matchingTitle" resultType="vo.STBoardVO">

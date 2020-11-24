@@ -12,7 +12,6 @@ $(function() {
 		
 	$('.class_reple_writer_profile').click(function() {
 		var id = $(this).attr('alt');
-		alert("되는감?");
 		open('profiledetailf?id='+id,"_blank",
 				"toolbar=no,member=yes,scrollbars=yes,resizeble=yes,width=855,height=840");
 		}); //profileDetail

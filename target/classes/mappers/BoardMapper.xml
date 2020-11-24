@@ -43,13 +43,13 @@
 			<when test="searchType=='baseball'.toString() || sports == 'baseball'">
 				from baseballboard
 			</when>
-			<when test="searchType=='basketball'.toString()">
+			<when test="searchType=='basketball'.toString() || sports == 'basketball'">
 				from basketballboard
 			</when>
-			<when test="searchType=='tennis'.toString()">
+			<when test="searchType=='tennis'.toString() || sports == 'tennis'">
 				from tennisboard
 			</when>
-			<when test="searchType=='bicycle'.toString()">
+			<when test="searchType=='bicycle'.toString() || sports == 'bicycle'">
 				from bicycleboard
 			</when>
 		</choose>
@@ -57,6 +57,9 @@
 	<select id="searchRowCount" resultType="int">
 			select count(*) <include refid="sportsFrom"></include> <![CDATA[ where ( seq> 0 ]]>
 		<include refid="search"></include>
+	</select>
+	<select id="repleRowCount" resultType="int">
+			select count(*) from boardcomment where sports = #{sports} and seq = #{seq}
 	</select>
 
 	<select id="searchList" resultType="vo.STBoardVO">
@@ -104,6 +107,60 @@
 		,'')
 	</insert>
 	<!-- ***************** 축구 새글 등록 end ***************** -->
+	<!-- ***************** 농구 새글 등록 start ***************** -->
+	<insert id="basketballInsert">
+		insert into basketballboard values
+	 	((select nvl(max(seq),0)+1 from basketballboard)
+		,#{id}
+		,#{nickname}
+		,#{title}
+		,#{content}
+		,sysdate
+		,#{team}
+		,#{person}
+		,#{local}
+		,''
+		,#{sports}
+		,0
+		,'')
+	</insert>
+	<!-- ***************** 농구 새글 등록 end ***************** -->
+	<!-- ***************** 테니스 새글 등록 start ***************** -->
+	<insert id="tennisInsert">
+		insert into tennisboard values
+	 	((select nvl(max(seq),0)+1 from tennisboard)
+		,#{id}
+		,#{nickname}
+		,#{title}
+		,#{content}
+		,sysdate
+		,#{team}
+		,#{person}
+		,#{local}
+		,''
+		,#{sports}
+		,0
+		,'')
+	</insert>
+	<!-- ***************** 테니스 새글 등록 end ***************** -->
+	<!-- ***************** 자전거 새글 등록 start ***************** -->
+	<insert id="bicycleInsert">
+		insert into bicycleboard values
+	 	((select nvl(max(seq),0)+1 from bicycleboard)
+		,#{id}
+		,#{nickname}
+		,#{title}
+		,#{content}
+		,sysdate
+		,#{team}
+		,#{person}
+		,#{local}
+		,''
+		,#{sports}
+		,0
+		,'')
+	</insert>
+	<!-- ***************** 자전거 새글 등록 end ***************** -->
 	
 	<!-- *************************  매칭 모집 횟수 start ************************* -->
 	<update id="boardLeaderUpdate">
@@ -138,6 +195,37 @@
 		select * from bicycleboard order by seq desc
 	</select>
 	
+	<!-- <select id="baseballCriList" resultType="vo.STCommentVO">
+	<![CDATA[
+      select * from(select b.* ,ROW_NUMBER()OVER(order by seq asc)
+	 rnum from baseballboard b where seq>0]]><include refid="search"></include>
+	 where rnum between #{sno} and #{eno} 
+	</select>
+	<select id="footballCriList" resultType="vo.STCommentVO">
+	<![CDATA[
+      select * from(select b.* ,ROW_NUMBER()OVER(order by seq asc)
+	 rnum from footballboard b where seq>0]]><include refid="search"></include>
+	 where rnum between #{sno} and #{eno}
+	</select>
+	<select id="basketballCriList" resultType="vo.STCommentVO">
+	<![CDATA[
+      select * from(select b.* ,ROW_NUMBER()OVER(order by seq asc)
+	 rnum from basketballboard b where seq>0]]><include refid="search"></include>
+	 where rnum between #{sno} and #{eno}
+	</select>
+	<select id="tennisCriList" resultType="vo.STCommentVO">
+	<![CDATA[
+      select * from(select b.* ,ROW_NUMBER()OVER(order by seq asc)
+	 rnum from tennisboard b where seq>0]]><include refid="search"></include>
+	 where rnum between #{sno} and #{eno}
+	</select>
+	<select id="bicycleCriList" resultType="vo.STCommentVO">
+	<![CDATA[
+      select * from(select b.* ,ROW_NUMBER()OVER(order by seq asc)
+	 rnum from bicycleboard b where seq>0]]><include refid="search"></include>
+	 where rnum between #{sno} and #{eno}
+	</select> -->
+	
 	<!-- ************************* 최신글 새로 고침 end ***************************** -->
 	
 	<!-- ************************* board 수정 & 삭제 start ***************************** -->
@@ -157,6 +245,31 @@
 		delete from footballboard where seq=#{seq}
 	</delete>
 	
+	<update id="basketballUpdate">
+		update basketballboard set title=#{title},team=#{team},person=#{person},local=#{local},content=#{content} where seq=#{seq}
+	</update>
+	
+	<delete id="basketballDelete">
+		delete from basketballboard where seq=#{seq}
+	</delete>
+	
+	<update id="tennisUpdate">
+		update tennisboard set title=#{title},team=#{team},person=#{person},local=#{local},content=#{content} where seq=#{seq}
+	</update>
+	
+	<delete id="tennisDelete">
+		delete from tennisboard where seq=#{seq}
+	</delete>
+	
+	<update id="bicycleUpdate">
+		update bicycleboard set title=#{title},team=#{team},person=#{person},local=#{local},content=#{content} where seq=#{seq}
+	</update>
+	
+	<delete id="bicycleDelete">
+		delete from bicycleboard where seq=#{seq}
+	</delete>
+	
+	
 	
 	<!-- ************************* board 수정 & 삭제 end ***************************** -->
 	
@@ -166,7 +279,7 @@
 	</insert>
 	
 	<select id="matchingSelect" resultType="vo.STMatchingVO">
-	select * from matchingboard where seq = #{seq}
+	select * from matchingboard where seq = #{seq} and sports = #{sports}
 	</select>
 
 	<select id="idcheckSelect2" resultType="vo.STMatchingVO">
@@ -185,6 +298,15 @@
 		<when test="sports == 'baseball' ">
 		from baseballboard
 		</when>
+		<when test="sports == 'basketball' ">
+		from basketballboard
+		</when>
+		<when test="sports == 'tennis' ">
+		from tennisboard
+		</when>
+		<when test="sports == 'bicycle' ">
+		from bicycleboard
+		</when>
 	</choose>
 	</sql>
 	
@@ -194,11 +316,11 @@
 	</select>
 	
 	<!-- ************************* 댓글 입력 & 삭제 start ***************************** -->
-	<select id="clist" resultType="vo.STCommentVO">
-   		 select * from boardcomment where seq = #{seq} order by root
-	</select>
+	<!-- <select id="clist" resultType="vo.STCommentVO">
+   		 select * from boardcomment where sports = #{sports} and seq = #{seq} order by root
+	</select> -->
 	<select id="clistID" resultType="vo.STCommentVO">
-   		 select id from boardcomment where seq = #{seq} order by root
+   		 select id from boardcomment where sports = #{sports} and seq = #{seq} order by root
 	</select>
 	
 	<insert id="commentInsert" >
@@ -221,5 +343,40 @@
 	
 	<select id="profileSelectOne" resultType="vo.STMemberVO">
 	select * from stmember where id = #{id}
+	</select>
+	
+	<!-- 조회수 증가 start -->
+	
+	<sql id="countU">
+	<choose>
+		<when test="sports =='football' ">
+		footballboard
+		</when>
+		<when test="sports == 'baseball' ">
+		baseballboard
+		</when>
+		<when test="sports == 'basketball' ">
+		basketballboard
+		</when>
+		<when test="sports == 'tennis' ">
+		tennisboard
+		</when>
+		<when test="sports == 'bicycle' ">
+		bicycleboard
+		</when>
+	</choose>
+	</sql>
+	
+	<update id="countUP">
+	update <include refid="countU"></include> set cnt = (select cnt <include refid="boardSelect"></include> where seq = #{seq})+1
+	where seq = #{seq}<!--  and id != #{id} -->
+	</update>
+	<!-- 조회수 증가 end -->
+	
+	<select id="repleList" resultType="vo.STCommnetVO">
+	<![CDATA[
+      select * from(select b.* ,ROW_NUMBER()OVER(order by root asc)
+	 rnum from boardcomment b where seq = #{seq} and sports = #{sports} )]]>
+	 where rnum between #{sno} and #{eno}
 	</select>
 </mapper>

@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>" />
 <link rel="stylesheet" type="text/css" href="resources/css/test.css">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/tennis_DetailForm.css">
+	href="resources/css/sports_DetailForm.css">
 <script src="resources/jqLib/axST01.js"></script>
 
 <link rel="stylesheet" media="only screen and (min-width:981px)">
@@ -61,7 +61,7 @@ function matchingf() {
 					alt="${Detail.id}">
 			</div>
 			<div id="div_id">
-				<p>${Detail.id}</p>
+				<p>${Detail.nickname}</p>
 			</div>
 			<div>
 				<div id="div_regdate">
@@ -141,6 +141,34 @@ function matchingf() {
 				</div>
 			</c:forEach>
 		</div>
+		<!-- 댓글 페이징 start -->
+		<hr>
+	<div align="center">
+		<!-- 1) First <<, Prev < : enabled 여부 -->
+		<c:if test="${pageMaker.prev && pageMaker.sPageNo>1}">
+			<a href="tennis_Detail${pageMaker.searchmakeQuery(1)}&sports=tennis&seq=${Detail.seq}">처음</a>&nbsp;
+		    <a href="tennis_Detail${pageMaker.searchmakeQuery(pageMaker.sPageNo -1)}&sports=tennis&seq=${Detail.seq}">이전</a>&nbsp;
+      </c:if>
+		<!-- 2) sPage ~ ePage까지 perPageNo값 만큼 출력 -->
+		<c:forEach var="i" begin="${pageMaker.sPageNo}"
+			end="${pageMaker.ePageNo}">
+			<c:if test="${i==pageMaker.cri.currPage}">
+				<font size="5" color="Orange">${i}&nbsp;</font>
+			</c:if>
+			<c:if test="${i!=pageMaker.cri.currPage}">
+				<a href="tennis_Detail${pageMaker.searchmakeQuery(i)}&sports=tennis&seq=${Detail.seq}">${i}</a>
+			</c:if>
+			
+			<%-- <c:out value="${pageMaker.cri.currpage==i ? 'class=active' : '' }">
+         </c:out> --%>
+         
+		</c:forEach>
+		<c:if test="${pageMaker.next && pageMaker.ePageNo >0}">
+			<a href="tennis_Detail${pageMaker.searchmakeQuery(pageMaker.ePageNo+1)}&sports=tennis&seq=${Detail.seq}">&nbsp;다음</a>&nbsp;
+		<a href="tennis_Detail${pageMaker.searchmakeQuery(pageMaker.lastPageNo)}&sports=tennis&seq=${Detail.seq}">마지막</a>
+		</c:if>
+	</div>
+	<!-- 댓글 페이징 end -->
 		<div id="div_reple_box">
 			<div>
 				<img src="${profile.profile}" width="40" height="40" id="logprofile">

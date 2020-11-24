@@ -260,25 +260,7 @@ body{
          
 		 <div class="form_group">
              <img src="" class="profile_place">
-             
-             
-             <input type="text" name="pofile" value="${myInfo.profile}" hidden="true"><br>
-             <input type="file" name="uploadfilef" id="uploadfilef"><br>
-              
-              
-              <script>
-				$('#uploadfilef').change(function(){
-					if(this.files && this.files[0]){
-						var reader = new FileReader;
-						reader.onload = function(e){
-						$(".profile_place").attr("src",e.target.result)
-								.width(70).height(100);
-						}//onload_function
-						reader.readAsDataURL(this.files[0]);
-					}//if
-				});//change				
-			</script>			
-			 
+             <input type="text" name="profile" value="${myInfo.profile}" hidden="true"><br>			
          </div>
       </div>
       

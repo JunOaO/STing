@@ -10,7 +10,6 @@
 <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/js/jquery-1.11.3.min.js"/>"></script>
-<script src="resources/jqLib/memberCheck.js"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/smarteditor/js/HuskyEZCreator.js"/>"
 	charset="utf-8"></script>
@@ -21,7 +20,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 
 <link rel="stylesheet" type="text/css"
-	href="resources/css/bicycle_InsertForm.css">
+	href="resources/css/sports_InsertForm.css">
 
 <link rel="stylesheet" media="only screen and (min-width:981px)">
 <link rel="stylesheet" media="only screen and (max-width:980px)">

@@ -21,7 +21,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/test.css">
 
 <link rel="stylesheet" type="text/css"
-	href="resources/css/tennis_InsertForm.css">
+	href="resources/css/sports_InsertForm.css">
 
 <link rel="stylesheet" media="only screen and (min-width:981px)">
 <link rel="stylesheet" media="only screen and (max-width:980px)">

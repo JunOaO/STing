@@ -82,13 +82,12 @@ $(function() {
 		</div>
         
 	  <div id="div_button">
-         <input type="button" id="button_update" value="수정"  onclick="location.href='detail?id=${myInfo.id}&code=U&sports=${matchingTitle.sports}'">
          <c:if test="${logID =='admin' }">
-                  	<input type="button" id="button_update" value="수정"  onclick="location.href='detail?id=${myInfo.id}&code=U'">
+                  	<input type="button" id="button_update" value="강제탈퇴"  onclick="location.href='detail?id=${myInfo.id}&code=U'">
             <a href="delete?id=${myInfo.id}" class="button_out" onclick="if(!confirm('정말 탈퇴 하시겠습니까?')){return false;}">강제탈퇴</a>
          </c:if>
          <c:if test="${logID != 'admin' }">
-         <input type="button" id="button_update" value="수정"  onclick="location.href='detail?id=${myInfo.id}&code=U'">
+         <input type="button" id="button_update" value="수정"  onclick="location.href='detail?id=${myInfo.id}&code=U&sports='">
             <a href="delete" class="button_out" onclick="if(!confirm('정말 탈퇴 하시겠습니까?')){return false;}">회원탈퇴</a>
          </c:if>
       </div>

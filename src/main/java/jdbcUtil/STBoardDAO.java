@@ -30,9 +30,15 @@ public class STBoardDAO {
 	public int searchRowCount(SearchCriteria cri) {
 		return sqlSession.selectOne(NS + "searchRowCount", cri);
 	}
+	public int repleRowCount(SearchCriteria cri) {
+		return sqlSession.selectOne(NS + "repleRowCount", cri);
+	}
 
 	public List<STBoardVO> searchList(SearchCriteria cri) {
 		return sqlSession.selectList(NS + "searchList", cri);
+	}
+	public List<STCommentVO> repleList(SearchCriteria cri) {
+		return sqlSession.selectList(NS + "repleList", cri);
 	}
 
 	public STBoardVO fbdetail(STBoardVO vo) {
@@ -40,11 +46,23 @@ public class STBoardDAO {
 	}
 
 	public int baseballInsert(STBoardVO vo) {
-		return sqlSession.update(NS + "baseballInsert", vo);
+		return sqlSession.insert(NS + "baseballInsert", vo);
 	}
 
 	public int footballInsert(STBoardVO vo) {
-		return sqlSession.update(NS + "footballInsert", vo);
+		return sqlSession.insert(NS + "footballInsert", vo);
+	}
+	
+	public int basketballInsert(STBoardVO vo) {
+		return sqlSession.insert(NS + "basketballInsert", vo);
+	}
+	
+	public int tennisInsert(STBoardVO vo) {
+		return sqlSession.insert(NS + "tennisInsert", vo);
+	}
+	
+	public int bicycleInsert(STBoardVO vo) {
+		return sqlSession.insert(NS + "bicycleInsert", vo);
 	}
 
 	/******************* 모집글 횟수 start *******************/
@@ -65,6 +83,12 @@ public class STBoardDAO {
 
 	public List<STBoardVO> basketballSelectList(Criteria cri) {
 		return sqlSession.selectList(NS + "basketballSelectList", cri);
+	}
+	public List<STBoardVO> tennisSelectList(Criteria cri) {
+		return sqlSession.selectList(NS + "tennisSelectList", cri);
+	}
+	public List<STBoardVO> bicycleSelectList(Criteria cri) {
+		return sqlSession.selectList(NS + "bicycleSelectList", cri);
 	}
 
 	/******************* 게시판 출력 start *******************/
@@ -116,6 +140,28 @@ public class STBoardDAO {
 
 	public int footballDelete(STBoardVO vo) {
 		return sqlSession.delete(NS + "footballDelete", vo);
+	}
+	
+	public int basketballUpdate(STBoardVO vo) {
+		return sqlSession.update(NS + "basketballUpdate", vo);
+	}
+	
+	public int basketballDelete(STBoardVO vo) {
+		return sqlSession.delete(NS + "basketballDelete", vo);
+	}
+	public int tennisUpdate(STBoardVO vo) {
+		return sqlSession.update(NS + "tennisUpdate", vo);
+	}
+	
+	public int tennisDelete(STBoardVO vo) {
+		return sqlSession.delete(NS + "tennisDelete", vo);
+	}
+	public int bicycleUpdate(STBoardVO vo) {
+		return sqlSession.update(NS + "bicycleUpdate", vo);
+	}
+	
+	public int bicycleDelete(STBoardVO vo) {
+		return sqlSession.delete(NS + "bicycleDelete", vo);
 	}
 
 	/************************** board 수정 & 삭제 end ******************************/
@@ -182,6 +228,10 @@ public class STBoardDAO {
 	
 	public STMemberVO pfofileSelectOne(STMemberVO memvo) {
 		   return sqlSession.selectOne(NS+"profileSelectOne",memvo);
-	   }
+	}
+	
+	public int countUP(STBoardVO vo) {
+		return sqlSession.update(NS+"countUP",vo);
+	}
 
 }// class

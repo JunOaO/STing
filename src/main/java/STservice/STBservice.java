@@ -12,11 +12,16 @@ import vo.STMemberVO;
 public interface STBservice{
 
 	List<STBoardVO> searchList(SearchCriteria cri);
+	List<STCommentVO> repleList(SearchCriteria cri);
 	
 	int searchRowCount(SearchCriteria cri);
+	int repleRowCount(SearchCriteria cri);
 
 	int baseballInsert(STBoardVO vo);
 	int footballInsert(STBoardVO vo);
+	int basketballInsert(STBoardVO vo);
+	int tennisInsert(STBoardVO vo);
+	int bicycleInsert(STBoardVO vo);
 
 	/******************* 모집글 횟수 start *******************/
 	int boardLeaderUpdate(STBoardVO vo);
@@ -27,6 +32,8 @@ public interface STBservice{
 	List<STBoardVO> baseballSelectList(Criteria cri);
 	List<STBoardVO> footballSelectList(Criteria cri);
 	List<STBoardVO> basketballSelectList(Criteria cri);
+	List<STBoardVO> tennisSelectList(Criteria cri);
+	List<STBoardVO> bicycleSelectList(Criteria cri);
 
 	/************************** 최신글 새로 고침 start **************************/
 	List<STBoardVO> baseballSelectList();
@@ -39,8 +46,18 @@ public interface STBservice{
 	/************************** 수정 & 삭제 start **************************/
 	int baseballUpdate(STBoardVO vo);
 	int baseballDelete(STBoardVO vo);
+	
 	int footballUpdate(STBoardVO vo);
 	int footballDelete(STBoardVO vo);
+	
+	int basketballUpdate(STBoardVO vo);
+	int basketballDelete(STBoardVO vo);
+	
+	int tennisUpdate(STBoardVO vo);
+	int tennisDelete(STBoardVO vo);
+	
+	int bicycleUpdate(STBoardVO vo);
+	int bicycleDelete(STBoardVO vo);
 	/************************** 수정 & 삭제 end **************************/
 	
 	/**************************  매칭 start ******************************/
@@ -64,6 +81,8 @@ public interface STBservice{
 	  STBoardVO profileSelect2(STBoardVO vo);
 	  
 	  STMemberVO profileSelectOne(STMemberVO memvo);
+	  
+	  int countUP(STBoardVO vo);
 
 
 }

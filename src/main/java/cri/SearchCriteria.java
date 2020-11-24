@@ -6,7 +6,16 @@ public class SearchCriteria extends Criteria {
 	private String searchType = "";
 	private String keyword = "";
 	private String sports;
+	private int seq;
 	
+	public int getSeq() {
+		return seq;
+	}
+
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+
 	public String getSports() {
 		return sports;
 	}
@@ -33,7 +42,8 @@ public class SearchCriteria extends Criteria {
 
 	@Override
 	public String toString() {
-		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + ", sports=" + sports + "]";
+		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + ", sports=" + sports + ", seq="
+				+ seq + "]";
 	}
 
 } // class

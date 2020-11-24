@@ -68,8 +68,8 @@
 		<li class="topmenubar"><a href="sports?sports=football">축구</a></li>
 		<li class="topmenubar"><a href="sports?sports=baseball">야구</a></li>
 		<li class="topmenubar"><a href="sports?sports=basketball">농구</a></li>
-		<li class="topmenubar"><a href="#">테니스</a></li>
-		<li class="topmenubar"><a href="#">자전거</a></li>
+		<li class="topmenubar"><a href="sports?sports=tennis">테니스</a></li>
+		<li class="topmenubar"><a href="sports?sports=bicycle">자전거</a></li>
 		<li class="topmenubar" id="freeboard"><a href="#">자유 게시판</a></li>
 		<c:if test="${logID == 'admin' }">
 			<li class="topmenubar"><a href="list">회원 목록</a></li>
@@ -162,12 +162,12 @@
 					<th class="nickname">닉네임</th>
 					<th class="regdate">날짜</th>
 				</tr>
-				<c:forEach var="newTennis" items="${newTennis}" end="2">
+				<c:forEach var="newBasketBall" items="${newBasketBall}" end="2">
 					<tr align="center" height="30">
 						<td>${newBasketBall.seq}</td>
 						<td class="title_over">
 						<c:if test="${logID != null }">
-						<a href="javascript:;">[${newBasketBall.local}][${newBasketBall.team}]&nbsp;${newBasketBall.title}</a>
+						<a href="basketball_Detail?seq=${newBasketBall.seq}&sports=basketball">[${newBasketBall.local}][${newBasketBall.team}]&nbsp;${newBasketBall.title}</a>
 						</c:if>
 						<c:if test="${logID == null }">
 						[${newBasketBall.local}][${newBasketBall.team}]&nbsp;${newBasketBall.title}
@@ -195,7 +195,7 @@
 						<td>${newTennis.seq}</td>
 						<td class="title_over">
 						<c:if test="${logID != null }">
-						<a href="javascript:;">[${newTennis.local}][${newTennis.team}]&nbsp;${newTennis.title}</a>
+						<a href="tennis_Detail?seq=${newTennis.seq}&sports=tennis">[${newTennis.local}][${newTennis.team}]&nbsp;${newTennis.title}</a>
 						</c:if>
 						<c:if test="${logID == null }">
 						[${newTennis.local}][${newTennis.team}]&nbsp;${newTennis.title}
@@ -222,7 +222,7 @@
 						<td>${newBicycle.seq}</td>
 						<td class="title_over">
 						<c:if test="${logID != null }">
-						<a href="javascript:;">[${newBicycle.local}][${newBicycle.team}]&nbsp;${newBicycle.title}</a>
+						<a href="bicycle_Detail?seq=${newBicycle.seq}&sports=bicycle">[${newBicycle.local}][${newBicycle.team}]&nbsp;${newBicycle.title}</a>
 						</c:if>
 						<c:if test="${logID == null }">
 						[${newBicycle.local}][${newBicycle.team}]&nbsp;${newBicycle.title}
@@ -334,6 +334,13 @@ nickname varchar2(10),
 regdate date,
 recontent varchar2(100),
 profile varchar2(100));
+
+create  table matchingboard (    
+seq number(5) ,
+leader_id varchar2(30),
+matching_id varchar2(30)  primary key,
+sports varchar2(20));
+
 -->
 
 

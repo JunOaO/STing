@@ -44,10 +44,6 @@ window.close();
 </c:if>
 
 <!-- ** Baord ** -->
-<c:if test="${fCode=='BF'}">
- => ${message} &nbsp;&nbsp;
-<a href="#" onclick="history.back()">[다시하기]</a> <br>
-</c:if>
 <c:if test="${fCode=='FF'}">
  => ${message} &nbsp;&nbsp;
 <a href="#" onclick="history.back()">[다시하기]</a> <br>

@@ -12,7 +12,7 @@
 <script src="resources/jqLib/axST01.js"></script>
 
 <link rel="stylesheet" type="text/css"
-	href="resources/css/bicycle_board.css">
+	href="resources/css/sports_board.css">
 <link rel="stylesheet" type="text/css" href="resources/css/top.css">
 
 <link rel="stylesheet" media="only screen and (min-width:981px)">
@@ -43,8 +43,8 @@
 		<li class="topmenubar"><a href="sports?sports=football">축구</a></li>
 		<li class="topmenubar"><a href="sports?sports=baseball">야구</a></li>
 		<li class="topmenubar"><a href="sports?sports=basketball">농구</a></li>
-		<li class="topmenubar"><a href="#">테니스</a></li>
-		<li class="topmenubar"><a href="#">자전거</a></li>
+		<li class="topmenubar"><a href="sports?sports=tennis">테니스</a></li>
+		<li class="topmenubar"><a href="sports?sports=bicycle">자전거</a></li>
 		<li class="topmenubar" id="freeboard"><a href="#">자유 게시판</a></li>
 		<c:if test="${logID == 'admin' }">
 			<li class="topmenubar"><a href="list">회원 목록</a></li>

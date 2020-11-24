@@ -23,10 +23,18 @@ public class STBserviceImpl implements STBservice{
 	public int searchRowCount(SearchCriteria cri) {
 		return dao.searchRowCount(cri);
 	}
+	@Override
+	public int repleRowCount(SearchCriteria cri) {
+		return dao.repleRowCount(cri);
+	}
 
 	@Override
 	public List<STBoardVO> searchList(SearchCriteria cri){
 		return dao.searchList(cri);
+	}
+	@Override
+	public List<STCommentVO> repleList(SearchCriteria cri){
+		return dao.repleList(cri);
 	}
 
 	@Override
@@ -36,6 +44,18 @@ public class STBserviceImpl implements STBservice{
 	@Override
 	public int footballInsert(STBoardVO vo) {  
 		return dao.footballInsert(vo);  // 처리된 row 갯수 return	 
+	} // insert
+	@Override
+	public int basketballInsert(STBoardVO vo) {  
+		return dao.basketballInsert(vo);  // 처리된 row 갯수 return	 
+	} // insert
+	@Override
+	public int tennisInsert(STBoardVO vo) {  
+		return dao.tennisInsert(vo);  // 처리된 row 갯수 return	 
+	} // insert
+	@Override
+	public int bicycleInsert(STBoardVO vo) {  
+		return dao.bicycleInsert(vo);  // 처리된 row 갯수 return	 
 	} // insert
 	
 	/******************* 모집글 횟수 start *******************/
@@ -57,6 +77,14 @@ public class STBserviceImpl implements STBservice{
 	@Override
 	public List<STBoardVO> basketballSelectList(Criteria cri){
 		return dao.basketballSelectList(cri);
+	}
+	@Override
+	public List<STBoardVO> tennisSelectList(Criteria cri){
+		return dao.tennisSelectList(cri);
+	}
+	@Override
+	public List<STBoardVO> bicycleSelectList(Criteria cri){
+		return dao.bicycleSelectList(cri);
 	}
 	
 	//********************* 게시판 출력 end *********************
@@ -107,12 +135,39 @@ public class STBserviceImpl implements STBservice{
 	@Override
 	public int footballUpdate(STBoardVO vo) {  
 		return dao.footballUpdate(vo);  	 
-	} // baseballUpdate
+	} // footballUpdate
 	
 	@Override
 	public int footballDelete(STBoardVO vo) {  
 		return dao.footballDelete(vo);  	 
-	} // baseballDelete
+	} // footballUpdate
+	@Override
+	public int basketballUpdate(STBoardVO vo) {  
+		return dao.basketballUpdate(vo);  	 
+	} // footballUpdate
+	
+	@Override
+	public int basketballDelete(STBoardVO vo) {  
+		return dao.basketballUpdate(vo);  	 
+	} // footballUpdate
+	@Override
+	public int tennisUpdate(STBoardVO vo) {  
+		return dao.tennisUpdate(vo);  	 
+	} // footballUpdate
+	
+	@Override
+	public int tennisDelete(STBoardVO vo) {  
+		return dao.tennisDelete(vo);  	 
+	} // footballUpdate
+	@Override
+	public int bicycleUpdate(STBoardVO vo) {  
+		return dao.bicycleUpdate(vo);  	 
+	} // footballUpdate
+	
+	@Override
+	public int bicycleDelete(STBoardVO vo) {  
+		return dao.bicycleDelete(vo);  	 
+	} // footballUpdate
 	/************************** 수정 & 삭제 end ******************************/
 
 	/************************** board 매칭 start ******************************/
@@ -180,6 +235,11 @@ public class STBserviceImpl implements STBservice{
 	@Override
 	public STMemberVO profileSelectOne(STMemberVO memvo) {
 		return dao.pfofileSelectOne(memvo);
+	}
+
+	@Override
+	public int countUP(STBoardVO vo) {
+		return dao.countUP(vo);
 	}
 	
 }

@@ -290,46 +290,12 @@ public class STMemberController {
 		@RequestMapping(value="/update")
 		public ModelAndView update(ModelAndView mv,STMemberVO vo,HttpServletRequest request) throws IOException{
 			
-			
-			
-		// ** 배포 와 경로
-		String realPath = request.getRealPath("/");
-		
-		System.out.println("realpath =>" + realPath);
-		
-		if(realPath.contains(".eclipse")) {
-			realPath = "D:/408Mtest/MyWork/STing/src/main/webapp/resources/uploadImage/";		
-		}else {
-			realPath += "resources/uploadImage/";
-		}
-		
-		File f1 = new File(realPath);
-		System.out.println(" before mkDir f1 =>" +f1);
-		if(!f1.exists()) f1.mkdir();
-		
-		System.out.println(" uploadFilef 전송확인 =>" + vo.getUploadfilef());
-		
-		MultipartFile uploadfilef = null;
-		realPath = "D:/408Mtest/MyWork/STing/src/main/webapp/resources/uploadImage/";
-		String file1,file2 = "resources/uploadImage/basicman2.jpg";
-		
-		if(vo.getUploadfilef() != null) {
-			uploadfilef = vo.getUploadfilef();
-			if(!uploadfilef.isEmpty()) {
-				file1 = realPath+uploadfilef.getOriginalFilename();
-				uploadfilef.transferTo(new File(file1));
-				file2="resources/uploadImage/"+uploadfilef.getOriginalFilename();
-			}
-		}
-		vo.setProfile(file2);
-			
-			
 			String message = null;
 			String url = "member/doFinish";
 			
 			if(service.update(vo) > 0) {
 				message = "Update 성공";
-				 url= "redirect:detail";
+				 url= "redirect:detail?sports=";
 			}else {
 				message = "update 실패";
 				request.setAttribute("fCode", "MUF");
