@@ -18,6 +18,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -176,7 +177,7 @@ public class STBoardController implements ServletContextAware{
 			}
 		}else {
 			mv.addObject("message","출력할 자료가 없습니다.");
-			mv.setViewName("redirect:baseball_Board?sports=baseball");
+			mv.setViewName("redirect:sports?sports=baseball");
 		}
 		return mv;
 	}//baseballBoard
@@ -214,7 +215,7 @@ public class STBoardController implements ServletContextAware{
 		}
 		else {
 			mv.addObject("message","출력할 자료가 없습니다.");
-			mv.setViewName("redirect:football_Board?sports=football");
+			mv.setViewName("redirect:sports?sports=football");
 		}
 		return mv;
 	}//baseballBoard
@@ -252,7 +253,7 @@ public class STBoardController implements ServletContextAware{
 		}
 		else {
 			mv.addObject("message","출력할 자료가 없습니다.");
-			mv.setViewName("redirect:basketball_Board?sports=basketball");
+			mv.setViewName("redirect:sports?sports=basketball");
 		}
 		return mv;
 	}//baseballBoard
@@ -290,7 +291,7 @@ public class STBoardController implements ServletContextAware{
 		}
 		else {
 			mv.addObject("message","출력할 자료가 없습니다.");
-			mv.setViewName("redirect:tennis_Board?sports=tennis");
+			mv.setViewName("redirect:sports?sports=tennis");
 		}
 		return mv;
 	}//baseballBoard
@@ -328,7 +329,7 @@ public class STBoardController implements ServletContextAware{
 		}
 		else {
 			mv.addObject("message","출력할 자료가 없습니다.");
-			mv.setViewName("redirect:bicycle_Board?sports=bicycle");
+			mv.setViewName("redirect:sports?sports=bicycle");
 		}
 		return mv;
 	}//baseballBoard
@@ -358,7 +359,7 @@ public class STBoardController implements ServletContextAware{
 		if ( service.footballUpdate(vo) > 0 ) {
 			// Update 성공 => baseballBoard
 			mv.addObject("message","글 수정 성공");
-			mv.setViewName("redirect:sports?football");
+			mv.setViewName("redirect:sports?sports=football");
 			
 		}else {
 			// Update 실패 => 실패 message, doFinish 출력
@@ -375,7 +376,7 @@ public class STBoardController implements ServletContextAware{
 		if ( service.basketballUpdate(vo) > 0 ) {
 			// Update 성공 => baseballBoard
 			mv.addObject("message","글 수정 성공");
-			mv.setViewName("redirect:sports?basketball");
+			mv.setViewName("redirect:sports?sports=basketball");
 			
 		}else {
 			// Update 실패 => 실패 message, doFinish 출력
@@ -392,7 +393,7 @@ public class STBoardController implements ServletContextAware{
 		if ( service.tennisUpdate(vo) > 0 ) {
 			// Update 성공 => baseballBoard
 			mv.addObject("message","글 수정 성공");
-			mv.setViewName("redirect:sports?tennis");
+			mv.setViewName("redirect:sports?sports=tennis");
 			
 		}else {
 			// Update 실패 => 실패 message, doFinish 출력
@@ -409,7 +410,7 @@ public class STBoardController implements ServletContextAware{
 		if ( service.bicycleUpdate(vo) > 0 ) {
 			// Update 성공 => baseballBoard
 			mv.addObject("message","글 수정 성공");
-			mv.setViewName("redirect:sports?bicycle");
+			mv.setViewName("redirect:sports?sports=bicycle");
 			
 		}else {
 			// Update 실패 => 실패 message, doFinish 출력
@@ -429,7 +430,7 @@ public class STBoardController implements ServletContextAware{
 		
 		if(count > 0) {
 			mv.addObject("message","글삭제 성공");
-			mv.setViewName("redirect:baseball_Board");
+			mv.setViewName("redirect:sports?sports=baseball");
 		}else {
 			mv.addObject("message","글삭제 실패");
 			mv.setViewName("member/doFinish");
@@ -444,7 +445,7 @@ public class STBoardController implements ServletContextAware{
 		
 		if(count > 0) {
 			mv.addObject("message","글삭제 성공");
-			mv.setViewName("redirect:football_Board");
+			mv.setViewName("redirect:sports?sports=football");
 		}else {
 			mv.addObject("message","글삭제 실패");
 			mv.setViewName("member/doFinish");
@@ -460,7 +461,7 @@ public class STBoardController implements ServletContextAware{
 		
 		if(count > 0) {
 			mv.addObject("message","글삭제 성공");
-			mv.setViewName("redirect:basketball_Board");
+			mv.setViewName("redirect:sports?sports=basketball");
 		}else {
 			mv.addObject("message","글삭제 실패");
 			mv.setViewName("member/doFinish");
@@ -475,7 +476,7 @@ public class STBoardController implements ServletContextAware{
 		
 		if(count > 0) {
 			mv.addObject("message","글삭제 성공");
-			mv.setViewName("redirect:tennis_Board");
+			mv.setViewName("redirect:sports?sports=tennis");
 		}else {
 			mv.addObject("message","글삭제 실패");
 			mv.setViewName("member/doFinish");
@@ -490,7 +491,7 @@ public class STBoardController implements ServletContextAware{
 		
 		if(count > 0) {
 			mv.addObject("message","글삭제 성공");
-			mv.setViewName("redirect:bicycle_Board");
+			mv.setViewName("redirect:sports?sports=bicycle");
 		}else {
 			mv.addObject("message","글삭제 실패");
 			mv.setViewName("member/doFinish");
@@ -502,7 +503,14 @@ public class STBoardController implements ServletContextAware{
 	
 //================================ 최신글 불러오기 start ==========================================================
 	@RequestMapping(value = "/NewBoard")
-	public ModelAndView baseball_NewBoard(ModelAndView mv) {
+	public ModelAndView baseball_NewBoard(ModelAndView mv, STMemberVO memvo,HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		String id = null;
+		id = (String)session.getAttribute("logID");
+		if (id != null) {
+			memvo.setId(id);
+			mv.addObject("profile", service.profileSelect(memvo));
+		}
 		mv.addObject("newBaseball",service.baseballSelectList());		
 		mv.addObject("newFootBall",service.footballSelectList());		
 		mv.addObject("newBasketBall",service.basketballSelectList());		

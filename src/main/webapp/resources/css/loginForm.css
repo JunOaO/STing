@@ -1,0 +1,67 @@
+
+.join {
+	
+	margin-top:10px;
+	clear: left;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+.join>a {
+	font-size: 10px;
+	
+}
+
+img{
+	width: 300px;
+	height: 250px;
+}
+
+.logo {
+	width : 200px;
+	margin: 0 auto;
+	
+}
+
+.logintext {
+	margin: 0 auto;
+}
+input{
+	width: 250px;
+	height: 30px;
+	text-align: center;
+	border-radius: 5px;
+	outline: none;
+}
+#div_input{
+	text-align: center;
+}
+
+#div_input_id{
+	margin-bottom: 5px;
+}
+
+#div_input_pw{
+	margin-bottom: 5px;
+}
+span{
+	float: left;
+	font-size:12px;
+	margin-left: 65px;
+	color: gray;
+}
+
+
+#btn_login{
+	width: 255px;
+	height: 30px;
+	cursor: pointer;
+	
+}
+
+#btn_join{
+	margin-right: 10px;
+}
+button{border-radius: 5px;}

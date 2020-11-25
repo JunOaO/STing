@@ -66,7 +66,7 @@
 			<li class="topmenubar"><a href="sports?sports=basketball">농구</a></li>
 			<li class="topmenubar"><a href="sports?sports=tennis">테니스</a></li>
 			<li class="topmenubar"><a href="sports?sports=bicycle">자전거</a></li>
-			<li class="topmenubar" id="freeboard"><a href="#">자유 게시판</a></li>
+			<li class="topmenubar" id="freeboard"><a href="#">자유게시판</a></li>
 			<c:if test="${logID == 'admin' }">
 				<li class="topmenubar"><a href="list">회원 목록</a></li>
 			</c:if>
@@ -81,7 +81,7 @@
 				<button id="bjoinf">회원가입</button>
 			</c:if>
 			<c:if test="${logID != null}">
-				<p><img src="/////////////////수정할것////////////////(프로필)" onclick="location.href='detail?id=${logID}&sports='" width="60" height="60" id="logprofile"></p>
+				<p><img src="${profile.profile}" onclick="location.href='detail?id=${logID}&sports='" width="60" height="60" id="logprofile"></p>
 				<p id="login_after">${logID}<br>
 				 ${logNickname}</p>
 				<div id="logout_myinfo">	

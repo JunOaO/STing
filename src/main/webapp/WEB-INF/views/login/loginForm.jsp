@@ -8,6 +8,9 @@
 <script src="resources/jqLib/jquery-3.2.1.min.js"></script>
 <script src="resources/jqLib/memberCheck.js"></script>
 <script src="resources/jqLib/axST01.js"></script>
+
+<link rel="stylesheet" type="text/css" href="resources/css/loginForm.css">
+
 <script>
 	//1) 개별적 오류 확인을 위한 switch 변수 정의
 	var iCheck = false;
@@ -55,52 +58,33 @@
 		window.resizeTo(width, height);
 	}
 </script>
-<style>
-.join {
-	clear: left;
-}
 
-.join>a {
-	font-size: 10px;
-}
-
-.logo {
-	width : 200px;
-	margin: 0 auto;
-}
-
-.logintext {
-	margin: 0 auto;
-}
-</style>
 <title>Insert title here</title>
 </head>
 <body>
 	<form action="login" method="post">
 	<div class="logo">
-		<img src="resources/image/logo_transparent.png" width="200px" height="200px;" class="logo">
+		<img src="resources/image/logo_transparent.png" class="logo">
 	</div>
-		<table class="logintext">
-			<tr>
-				<td><label for="id">I D:</label></td>
-				<td><input type="text" name="id" id="id" placeholder="ID 입력"><br>
-					<span id="idMessage" class="Message"></span></td>
-			</tr>
-			<tr>
-				<td><label for="pw">P W:</label></td>
-				<td><input type="password" name="password" id="password"
-					placeholder="PW 입력"><br> <span id="pwMessage"
-					class="Message"></span></td>
-
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" value="Login" id="login" class="logintext">
-					<div class="join">
-						<a href="bjoinf" onclick="size()">회원가입</a>&nbsp;&nbsp; <a href="#">ID/PW 찾기</a>
-					</div></td>
-			</tr>
-		</table>
+	<div id="div_input">
+		<div id="div_input_id">
+			<input type="text" name="id" id="id" class="" placeholder="ID 입력">
+			<span id="idMessage" class="Message"></span>
+		</div>	
+		
+		<div id="div_input_pw">
+			<input type="password" name="password" id="password" placeholder="PW 입력"> 
+			<span id="pwMessage" class="Message"></span>
+		</div>
+		
+		<div id="div_button_login">
+			<button type="submit" id="btn_login">로그인</button>	
+		</div>
+		<div class="join">
+			<button id="btn_join"><a href="bjoinf" onclick="size()">회원가입</a></button>
+			<button><a href="#">ID/PW 찾기</a></button>
+		</div>
+	</div>
 	</form>
 	<c:if test="${loginSuccess=='T' }">
 		<script>

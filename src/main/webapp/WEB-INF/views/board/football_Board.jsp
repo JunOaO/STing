@@ -11,9 +11,7 @@
 <script src="resources/jqLib/memberCheck.js"></script>
 <script src="resources/jqLib/axST01.js"></script>
 
-<link rel="stylesheet" type="text/css"
-	href="resources/css/sports_board.css">
-<link rel="stylesheet" type="text/css" href="resources/css/top.css">
+<link rel="stylesheet" type="text/css" href="resources/css/sports_board.css">
 
 <link rel="stylesheet" media="only screen and (min-width:981px)">
 <link rel="stylesheet" media="only screen and (max-width:980px)">
@@ -30,38 +28,38 @@
 	}); //ready
 </script>
 </head>
-<body style="margin: 0 auto;">
-	<!----------------- TOP Start ----------------->
-	<div id="topsearch">
-		<a href="home"><img src="resources/image/logo_transparent.png"
-			id="homelogo"></a> <img alt="제리 인사 하는 짤"
-			src="resources/image/jerryInsa.gif"
-			style="height: 150px; width: 500px; margin: 25px 0;">
-
-	</div>
-	<ul id="topnavbar">
-		<li class="topmenubar"><a href="sports?sports=football">축구</a></li>
-		<li class="topmenubar"><a href="sports?sports=baseball">야구</a></li>
-		<li class="topmenubar"><a href="sports?sports=basketball">농구</a></li>
-		<li class="topmenubar"><a href="sports?sports=tennis">테니스</a></li>
-		<li class="topmenubar"><a href="sports?sports=bicycle">자전거</a></li>
-		<li class="topmenubar" id="freeboard"><a href="#">자유 게시판</a></li>
-		<c:if test="${logID == 'admin' }">
-			<li class="topmenubar"><a href="list">회원 목록</a></li>
-		</c:if>
-	</ul>
-	<div id="blurlogin">
-		<div>
-			<img id="blurbUp" alt="광고 자리" src="resources/image/modify.gif">
+<body>
+	<header>
+		<div id="img_wrap">
+			<a href="home"><img src="resources/image/logo_transparent.png"
+				id="homelogo"></a> <img src="resources/image/multi_sport2.jpg"
+				id="top_image">
 		</div>
+
+	</header>
+	<div id="topnavbar_wrap">
+		<ul id="topnavbar">
+			<li class="topmenubar"><a href="sports?sports=football">축구</a></li>
+			<li class="topmenubar"><a href="sports?sports=baseball">야구</a></li>
+			<li class="topmenubar"><a href="sports?sports=basketball">농구</a></li>
+			<li class="topmenubar"><a href="sports?sports=tennis">테니스</a></li>
+			<li class="topmenubar"><a href="sports?sports=bicycle">자전거</a></li>
+			<li class="topmenubar" id="freeboard"><a href="#">자유게시판</a></li>
+			<c:if test="${logID == 'admin' }">
+				<li class="topmenubar"><a href="list">회원 목록</a></li>
+			</c:if>
+		</ul>
+	</div>
+
+	<div id="blurlogin">
+		<img id="blurbUp" alt="광고 자리" src="resources/image/amazone.jpg">
 	</div>
 	<!----------------- TOP end ----------------->
 
 	<div class="bord_header">
 		<div class="this_board">
 			<button type="button" class="board_button" id="board_button"
-				onclick="location.href='football_Board?sports=football'">축구
-				게시판</button>
+				onclick="location.href='sports?sports=football'">축구 게시판</button>
 		</div>
 		<div class="board_title">
 			<h3>STing 을 통해</h3>
@@ -95,7 +93,8 @@
 						<a href="football_Detail?seq=${mm.seq}&sports=football">[${mm.local}][${mm.team}]&nbsp;${mm.title}&nbsp;[${mm.repleCnt}]</a>
 					</c:if> <c:if test="${logID == null }">
 						<a href="javascript:;"
-							onclick="javascript: alert('로그인 후 이용해 주세요.');">[${mm.local}][${mm.team}]&nbsp;${mm.title}&nbsp;[${mm.repleCnt}]</a>
+							onclick="javascript: alert('로그인 후 이용해 주세요.');">
+							[${mm.local}][${mm.team}]&nbsp;${mm.title}&nbsp;[${mm.repleCnt}]</a>
 					</c:if>
 				</td>
 				<td>${mm.nickname}</td>
@@ -105,12 +104,13 @@
 		</c:forEach>
 	</table>
 	<hr>
-	
+
 	<div align="center">
 		<!-- 1) First <<, Prev < : enabled 여부 -->
 		<c:if test="${pageMaker.prev && pageMaker.sPageNo>1}">
 			<a href="sports${pageMaker.searchmakeQuery(1)}&sports=football">처음</a>&nbsp;
-		    <a href="sports${pageMaker.searchmakeQuery(pageMaker.sPageNo -1)}&sports=football">이전</a>&nbsp;
+		    <a
+				href="sports${pageMaker.searchmakeQuery(pageMaker.sPageNo -1)}&sports=football">이전</a>&nbsp;
       </c:if>
 		<!-- 2) sPage ~ ePage까지 perPageNo값 만큼 출력 -->
 		<c:forEach var="i" begin="${pageMaker.sPageNo}"
@@ -121,17 +121,19 @@
 			<c:if test="${i!=pageMaker.cri.currPage}">
 				<a href="sports${pageMaker.searchmakeQuery(i)}&sports=football">${i }</a>
 			</c:if>
-			
+
 			<%-- <c:out value="${pageMaker.cri.currpage==i ? 'class=active' : '' }">
          </c:out> --%>
-         
+
 		</c:forEach>
 		<c:if test="${pageMaker.next && pageMaker.ePageNo >0}">
-			<a href="sports${pageMaker.searchmakeQuery(pageMaker.ePageNo+1)}&sports=football">&nbsp;다음</a>&nbsp;
-		<a href="sports${pageMaker.searchmakeQuery(pageMaker.lastPageNo)}&sports=football">마지막</a>
+			<a
+				href="sports${pageMaker.searchmakeQuery(pageMaker.ePageNo+1)}&sports=football">&nbsp;다음</a>&nbsp;
+		<a
+				href="sports${pageMaker.searchmakeQuery(pageMaker.lastPageNo)}&sports=football">마지막</a>
 		</c:if>
 	</div>
-	
+
 	<div class="btn_group">
 		<div>
 			<button type="button" class="input_button" id="login_btn2"
@@ -144,5 +146,16 @@
 			</div>
 		</c:if>
 	</div>
+	<hr>
+	<footer>
+		<p id="footer_p">
+
+			<br> Project Name : STing <br> Project Member : 윤성노 , 양호준 <br>
+			project period : 2020.10.27 ~ 2020.11.30 <br>
+
+		</p>
+	</footer>
+	<br>
+	<br>
 </body>
 </html>

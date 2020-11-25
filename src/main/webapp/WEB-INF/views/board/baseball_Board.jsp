@@ -51,11 +51,6 @@
 		</ul>
 	</div>
 
-
-
-
-
-
 	<div id="blurlogin">
 		<img id="blurbUp" alt="광고 자리" src="resources/image/amazone.jpg">
 	</div>

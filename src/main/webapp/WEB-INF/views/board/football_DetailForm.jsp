@@ -7,39 +7,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>축구 글쓰기</title>
-<script src="resources/jqLib/jquery-3.2.1.min.js"></script>
-<script src="resources/jqLib/memberCheck.js"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/smarteditor/js/HuskyEZCreator.js"/>"
-	charset="utf-8"></script>
-<script type="text/javascript" charset="utf-8"
-	src="<c:url value="/resources/js/writeForm.js"/>"></script>
 
-<link rel="stylesheet" href="<c:url value="/resources/css/common.css"/>" />
-<link rel="stylesheet" type="text/css" href="resources/css/test.css">
-<link rel="stylesheet" type="text/css"
-	href="resources/css/sports_DetailForm.css">
+<script src="resources/jqLib/jquery-3.2.1.min.js"></script>
 <script src="resources/jqLib/axST01.js"></script>
+<script src="resources/js/jquery-1.11.3.min.js"></script>
+<script src="resources/smarteditor/js/HuskyEZCreator.js"></script>
+<script src="resources/js/writeForm.js"></script>
 
 <link rel="stylesheet" media="only screen and (min-width:981px)">
 <link rel="stylesheet" media="only screen and (max-width:980px)">
+
+<link rel="stylesheet" type="text/css" href="resources/css/sports_DetailForm.css">
+<link rel="stylesheet" type="text/css" href="resources/css/common.css">
+
 
 <script type="text/javascript" charset="utf-8">
 		sessionStorage.setItem("contextpath", "${pageContext.request.contextPath}");
 </script>
 
 <script>
-
 function matchingf() {
 	open('matchingf'+"?seq=${Detail.seq}&id=${logID}&sports=football","_blank",
 	"toolbar=no,member=yes,scrollbars=yes,resizeble=yes,width=620,height=500");
 }
-
 </script>
 
 </head>
 <body>
-	<form action="board_Detail" method="post" enctype="multipart/form-data">
+		<form action="board_Detail" method="post" enctype="multipart/form-data">
+<header>
+	<div id="img_wrap">
+		<a href="home"><img src="resources/image/logo_transparent.png"
+			id="homelogo"></a>
+		<img src="resources/image/multi_sport2.jpg"
+			id="top_image">
+	</div>
+</header>
 		<div class="bord_header">
 			<div class="this_board">
 				<button type="button" class="board_button" id="board_button"
@@ -84,7 +87,7 @@ function matchingf() {
 				<div id="div_matching">
 					<button type="button" id="button_matching" onclick="matchingf()">매칭하기</button>
 				</div>
-				<c:if test="${logID == Detail.id }">
+				<c:if test="${logID == Detail.id || logID == 'admin' }">
 					<div id="div_delete">
 						<a href="football_Delete?seq=${Detail.seq}" id="button_delete"
 							onclick="if(!confirm('정말 삭제 하시겠습니까')){return false;}">삭제</a>
@@ -115,7 +118,6 @@ function matchingf() {
 				</div>
 			</div>
 		</div>
-		<footer> </footer>
 	</form>
 
 	<!------------------ 댓글 ------------------------->
@@ -134,10 +136,13 @@ function matchingf() {
 						id="reple_writer_profile" class="class_reple_writer_profile" style="width: 40px; height: 40px;"
 						alt="${cment.id}">&nbsp;${cment.nickname}
 					</span>
+					<c:if test="${logID == cment.id || logID == 'admin'}">
+						<a href="comment_delelte?seq=${cment.seq}&root=${cment.root}?sports=football"
+							onclick="if(!confirm('정말 삭제 하시겠습니까')){return false;}"><span id="repleDelete">삭제</span></a>
+					</c:if>
 					<span> ${cment.regdate}<br>
 					</span>
-					<pre>${cment.recontent}</pre>
-					<%-- <a href="comment_delelte?seq=${cment.seq}&root=${cment.root}"><span>삭제</span></a> --%>
+					<pre style="margin-left: 50px;">${cment.recontent}</pre>
 				</div>
 			</c:forEach>
 		</div>
