@@ -95,9 +95,8 @@ public class STBoardController implements ServletContextAware{
 	
 	
 	@RequestMapping(value = "/sports")
-	public ModelAndView sports (ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
+	public ModelAndView sports (ModelAndView mv, SearchCriteria cri, PageMaker pageMaker, STBoardVO vo) {
 		String  sports = null;
-		
 		sports = cri.getSports();
 		cri.setSports(sports);
 		
@@ -106,6 +105,7 @@ public class STBoardController implements ServletContextAware{
 		pageMaker.setCri(cri);
 		pageMaker.setTotalRow(service.searchRowCount(cri));
 		mv.addObject("pageMaker",pageMaker);
+		/* mv.addObject("repleCnt",service.rePleCnt(vo)); */
 		
 		if (cri.getSearchType().length() > 0) {
 			mv.setViewName("board/"+cri.getSearchType()+"_Board"); 
@@ -141,83 +141,6 @@ public class STBoardController implements ServletContextAware{
 		mv.setViewName("board/tennis_InsertForm");
 		return mv;
 	}
-	
-	@RequestMapping(value = "/stBoard")
-	public ModelAndView stboard(ModelAndView mv) {
-		mv.setViewName("board/stBoard");
-		return mv;
-	}	
-//===================== 야구 게시판 start =====================
-	@RequestMapping(value = "/baseball_Board")
-	public ModelAndView baseballList(HttpServletRequest request,ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
-		cri.setSnoEno();
-		mv.addObject("Banana",service.baseballSelectList(cri));
-		pageMaker.setCri(cri);
-		pageMaker.setTotalRow(service.searchRowCount(cri));
-		mv.addObject("pageMaker",pageMaker); 
-		mv.setViewName("board/baseball_Board");
-		return mv;
-	}
-//===================== 야구 게시판 end =====================
-
-//===================== 축구 게시판 start =====================
-	@RequestMapping(value = "/football_Board")
-	public ModelAndView footballList(HttpServletRequest request,ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
-		cri.setSnoEno();
-		mv.addObject("Banana",service.footballSelectList(cri));
-		pageMaker.setCri(cri);
-		pageMaker.setTotalRow(service.searchRowCount(cri));
-		
-		mv.addObject("pageMaker",pageMaker);
-		mv.setViewName("board/football_Board");
-		return mv;
-	}
-//===================== 축구 게시판 end =====================
-	
-//===================== 농구 게시판 start =====================
-	@RequestMapping(value = "/basketball_Board")
-	public ModelAndView basketballList(HttpServletRequest request,ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
-		
-		cri.setSnoEno();
-		mv.addObject("Banana",service.basketballSelectList(cri));
-		pageMaker.setCri(cri);
-		pageMaker.setTotalRow(service.searchRowCount(cri));
-		
-		mv.addObject("pageMaker",pageMaker);
-		mv.setViewName("board/basketball_Board");
-		return mv;
-	}
-//===================== 농구 게시판 end =====================
-	
-//===================== 테니스 게시판 start =====================
-	@RequestMapping(value = "/tennis_Board")
-	public ModelAndView tnnisList(HttpServletRequest request,ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
-		
-		cri.setSnoEno();
-		mv.addObject("Banana",service.tennisSelectList(cri));
-		pageMaker.setCri(cri);
-		pageMaker.setTotalRow(service.searchRowCount(cri));
-		
-		mv.addObject("pageMaker",pageMaker);
-		mv.setViewName("board/tennis_Board");
-		return mv;
-	}
-//===================== 테니스 게시판 end =====================
-	
-//===================== 자전거 게시판 start =====================
-	@RequestMapping(value = "/bicycle_Board")
-	public ModelAndView bicycleList(HttpServletRequest request,ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
-		
-		cri.setSnoEno();
-		mv.addObject("Banana",service.bicycleSelectList(cri));
-		pageMaker.setCri(cri);
-		pageMaker.setTotalRow(service.searchRowCount(cri));
-		
-		mv.addObject("pageMaker",pageMaker);
-		mv.setViewName("board/bicycle_Board");
-		return mv;
-	}
-//===================== 자전거 게시판 end =====================
 	
 /******************* 디테일, 수정 & 삭제 start *******************/
 	
@@ -273,11 +196,13 @@ public class STBoardController implements ServletContextAware{
 		if(vo != null) {
 			cri.setSnoEno();
 			mv.addObject("Detail",vo);
-			mv.addObject("cment",service.clist(vo));
+			/* mv.addObject("cment",service.clist(vo)); */
 			mv.addObject("profile",service.profileSelect(memvo)); //댓글 프로필
 			mv.addObject("profile2",service.profileSelect2(vo)); //글쓴이 프로필
+			
+			mv.addObject("cment",service.repleList(cri));
 			pageMaker.setCri(cri);
-			pageMaker.setTotalRow(service.searchRowCount(cri));
+			pageMaker.setTotalRow(service.repleRowCount(cri));
 			mv.addObject("pageMaker",pageMaker); 
 			//Detail or Update 확인
 			if("U".equals(request.getParameter("code"))) {
@@ -309,11 +234,13 @@ public class STBoardController implements ServletContextAware{
 		if(vo != null) {
 			cri.setSnoEno();
 			mv.addObject("Detail",vo);
-			mv.addObject("cment",service.clist(vo));
+			/* mv.addObject("cment",service.clist(vo)); */
 			mv.addObject("profile",service.profileSelect(memvo)); //댓글 프로필
 			mv.addObject("profile2",service.profileSelect2(vo)); //글쓴이 프로필
+			
+			mv.addObject("cment",service.repleList(cri));
 			pageMaker.setCri(cri);
-			pageMaker.setTotalRow(service.searchRowCount(cri));
+			pageMaker.setTotalRow(service.repleRowCount(cri));
 			mv.addObject("pageMaker",pageMaker); 
 			//Detail or Update 확인
 			if("U".equals(request.getParameter("code"))) {
@@ -345,11 +272,13 @@ public class STBoardController implements ServletContextAware{
 		if(vo != null) {
 			cri.setSnoEno();
 			mv.addObject("Detail",vo);
-			mv.addObject("cment",service.clist(vo));
+			/* mv.addObject("cment",service.clist(vo)); */
 			mv.addObject("profile",service.profileSelect(memvo)); //댓글 프로필
 			mv.addObject("profile2",service.profileSelect2(vo)); //글쓴이 프로필
+			
+			mv.addObject("cment",service.repleList(cri));
 			pageMaker.setCri(cri);
-			pageMaker.setTotalRow(service.searchRowCount(cri));
+			pageMaker.setTotalRow(service.repleRowCount(cri));
 			mv.addObject("pageMaker",pageMaker); 
 			//Detail or Update 확인
 			if("U".equals(request.getParameter("code"))) {
@@ -372,7 +301,6 @@ public class STBoardController implements ServletContextAware{
 		String id = null;
 		HttpSession session = request.getSession(false);
 		id = (String)session.getAttribute("logID");
-		
 		vo = service.boardSelectOne(vo);
 		if (vo.getId().equals(id)) {
 		}else {
@@ -380,12 +308,15 @@ public class STBoardController implements ServletContextAware{
 		}
 		memvo.setId(id);
 		if(vo != null) {
+			cri.setSnoEno();
 			mv.addObject("Detail",vo);
-			mv.addObject("cment",service.clist(vo));
+			/* mv.addObject("cment",service.clist(vo)); */
 			mv.addObject("profile",service.profileSelect(memvo)); //댓글 프로필
 			mv.addObject("profile2",service.profileSelect2(vo)); //글쓴이 프로필
+			
+			mv.addObject("cment",service.repleList(cri));
 			pageMaker.setCri(cri);
-			pageMaker.setTotalRow(service.searchRowCount(cri));
+			pageMaker.setTotalRow(service.repleRowCount(cri));
 			mv.addObject("pageMaker",pageMaker); 
 			//Detail or Update 확인
 			if("U".equals(request.getParameter("code"))) {
@@ -410,7 +341,7 @@ public class STBoardController implements ServletContextAware{
 		if ( service.baseballUpdate(vo) > 0 ) {
 			// Update 성공 => baseballBoard
 			mv.addObject("message","글 수정 성공");
-			mv.setViewName("redirect:baseball_Board");
+			mv.setViewName("redirect:sports?sports=baseball");
 			
 		}else {
 			// Update 실패 => 실패 message, doFinish 출력
@@ -427,7 +358,7 @@ public class STBoardController implements ServletContextAware{
 		if ( service.footballUpdate(vo) > 0 ) {
 			// Update 성공 => baseballBoard
 			mv.addObject("message","글 수정 성공");
-			mv.setViewName("redirect:football_Board");
+			mv.setViewName("redirect:sports?football");
 			
 		}else {
 			// Update 실패 => 실패 message, doFinish 출력
@@ -444,7 +375,7 @@ public class STBoardController implements ServletContextAware{
 		if ( service.basketballUpdate(vo) > 0 ) {
 			// Update 성공 => baseballBoard
 			mv.addObject("message","글 수정 성공");
-			mv.setViewName("redirect:basketball_Board");
+			mv.setViewName("redirect:sports?basketball");
 			
 		}else {
 			// Update 실패 => 실패 message, doFinish 출력
@@ -461,7 +392,7 @@ public class STBoardController implements ServletContextAware{
 		if ( service.tennisUpdate(vo) > 0 ) {
 			// Update 성공 => baseballBoard
 			mv.addObject("message","글 수정 성공");
-			mv.setViewName("redirect:tennis_Board");
+			mv.setViewName("redirect:sports?tennis");
 			
 		}else {
 			// Update 실패 => 실패 message, doFinish 출력
@@ -478,7 +409,7 @@ public class STBoardController implements ServletContextAware{
 		if ( service.bicycleUpdate(vo) > 0 ) {
 			// Update 성공 => baseballBoard
 			mv.addObject("message","글 수정 성공");
-			mv.setViewName("redirect:bicycle_Board");
+			mv.setViewName("redirect:sports?bicycle");
 			
 		}else {
 			// Update 실패 => 실패 message, doFinish 출력
@@ -571,10 +502,7 @@ public class STBoardController implements ServletContextAware{
 	
 //================================ 최신글 불러오기 start ==========================================================
 	@RequestMapping(value = "/NewBoard")
-	public ModelAndView baseball_NewBoard(ModelAndView mv, SearchCriteria cri, PageMaker pageMaker) {
-		cri.setSnoEno();
-		pageMaker.setCri(cri);
-		mv.addObject("pageMaker",pageMaker);
+	public ModelAndView baseball_NewBoard(ModelAndView mv) {
 		mv.addObject("newBaseball",service.baseballSelectList());		
 		mv.addObject("newFootBall",service.footballSelectList());		
 		mv.addObject("newBasketBall",service.basketballSelectList());		
@@ -592,7 +520,7 @@ public class STBoardController implements ServletContextAware{
 			if(service.baseballInsert(vo)>0) {
 				//성공 -> blist
 				service.boardLeaderUpdate(vo);
-				mv.setViewName("redirect:baseball_Board?sports=baseball");
+				mv.setViewName("redirect:sports?sports=baseball");
 			}else {
 				//실패 -> doFinish
 				mv.addObject("message","새글등록 실패");
@@ -607,7 +535,7 @@ public class STBoardController implements ServletContextAware{
 				//성공 -> blist
 				service.boardLeaderUpdate(vo);
 				mv.addObject("message","새글등록 성공");
-				mv.setViewName("redirect:football_Board?sports=football");
+				mv.setViewName("redirect:sports?sports=football");
 			}else {
 				//실패 -> doFinish
 				mv.addObject("message","새글등록 실패");
@@ -622,7 +550,7 @@ public class STBoardController implements ServletContextAware{
 				//성공 -> blist
 				service.boardLeaderUpdate(vo);
 				mv.addObject("message","새글등록 성공");
-				mv.setViewName("redirect:basketball_Board?sports=basketball");
+				mv.setViewName("redirect:sports?sports=basketball");
 			}else {
 				//실패 -> doFinish
 				mv.addObject("message","새글등록 실패");
@@ -637,7 +565,7 @@ public class STBoardController implements ServletContextAware{
 				//성공 -> blist
 				service.boardLeaderUpdate(vo);
 				mv.addObject("message","새글등록 성공");
-				mv.setViewName("redirect:tennis_Board?sports=tennis");
+				mv.setViewName("redirect:sports?sports=tennis");
 			}else {
 				//실패 -> doFinish
 				mv.addObject("message","새글등록 실패");
@@ -652,7 +580,7 @@ public class STBoardController implements ServletContextAware{
 				//성공 -> blist
 				service.boardLeaderUpdate(vo);
 				mv.addObject("message","새글등록 성공");
-				mv.setViewName("redirect:bicycle_Board?sports=bicycle");
+				mv.setViewName("redirect:sports?sports=bicycle");
 			}else {
 				//실패 -> doFinish
 				mv.addObject("message","새글등록 실패");

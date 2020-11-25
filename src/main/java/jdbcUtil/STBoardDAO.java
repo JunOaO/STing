@@ -198,12 +198,11 @@ public class STBoardDAO {
 	/************************** board 매칭 end ******************************/
 
 	/************************** 댓글 입력 & 삭제 start ******************************/
-	public List<STCommentVO> clist(STBoardVO vo) {
-		return sqlSession.selectList(NS + "clist", vo);
-	}
-	public String clistID(STBoardVO vo) {
-		return sqlSession.selectOne(NS + "clistID", vo);
-	}
+	/*
+	 * public List<STCommentVO> clist(STBoardVO vo) { return
+	 * sqlSession.selectList(NS + "clist", vo); } public String clistID(STBoardVO
+	 * vo) { return sqlSession.selectOne(NS + "clistID", vo); }
+	 */
 
 	public int commentInsert(STCommentVO cvo) {
 		return sqlSession.insert(NS + "commentInsert", cvo);
@@ -232,6 +231,10 @@ public class STBoardDAO {
 	
 	public int countUP(STBoardVO vo) {
 		return sqlSession.update(NS+"countUP",vo);
+	}
+	
+	public int rePleCnt(STBoardVO vo) {
+		return sqlSession.selectOne(NS+"rePleCnt",vo);
 	}
 
 }// class

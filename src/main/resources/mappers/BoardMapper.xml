@@ -62,13 +62,25 @@
 			select count(*) from boardcomment where sports = #{sports} and seq = #{seq}
 	</select>
 
-	<select id="searchList" resultType="vo.STBoardVO">
-		SELECT * FROM
+<!-- 		SELECT * FROM
 		(select b.*, ROW_NUMBER() OVER(order by seq desc) rnum <include refid="sportsFrom"></include> b
 			<![CDATA[ where seq > 0 ]]>
 		<include refid="search"></include>
-		where rnum between #{sno} and #{eno}
-	</select>
+		where rnum between #{sno} and #{eno} -->
+	<select id="searchList" resultType="vo.STBoardVO">
+	SELECT DISTINCT a.*,(select count(*) 
+        				from boardcomment 
+        				where sports = a.sports 
+        				and seq = a.seq) as repleCnt
+	FROM (select b.*, ROW_NUMBER() OVER(order by seq desc) rnum
+	<include refid="sportsFrom"></include> b
+	<![CDATA[ where seq > 0 ]]>
+	<include refid="search"></include> a
+	join boardcomment b
+	on a.sports = b.sports
+	where rnum between #{sno} and #{eno}
+	ORDER by a.seq desc
+</select>
 	<!-- ***************** search 관련 end ***************** -->
 
 	<!-- ***************** 야구 새글 등록 start ***************** -->
@@ -180,52 +192,50 @@
 	
 	<!-- ************************* 최신글 새로 고침   start  ***************************** -->
 	<select id="baseballSelectList" resultType="vo.STBoardVO">
-		select * from baseballboard order by seq desc
+		select DISTINCT a.* ,
+		(select count(*)
+		from boardcomment
+		where sports = a.sports
+		and seq = a.seq) as repleCnt
+		from baseballboard a
+		order by a.seq desc
 	</select>
 	<select id="footballSelectList" resultType="vo.STBoardVO">
-		select * from footballboard order by seq desc
+		select DISTINCT a.* ,
+		(select count(*)
+		from boardcomment
+		where sports = a.sports
+		and seq = a.seq) as repleCnt
+		from footballboard a
+		order by a.seq desc
 	</select>
 	<select id="basketballSelectList" resultType="vo.STBoardVO">
-		select * from basketballboard order by seq desc
+		select DISTINCT a.*,
+		(select count(*)
+		from boardcomment
+		where sports = a.sports
+		and seq = a.seq) as repleCnt
+		from basketballboard a
+		order by a.seq desc
 	</select>
 	<select id="tennisSelectList" resultType="vo.STBoardVO">
-		select * from tennisboard order by seq desc
+		select DISTINCT a.* ,
+		(select count(*)
+		from boardcomment
+		where sports = a.sports
+		and seq = a.seq) as repleCnt
+		from tennisboard a
+		order by a.seq desc
 	</select>
 	<select id="bicycleSelectList" resultType="vo.STBoardVO">
-		select * from bicycleboard order by seq desc
+		select DISTINCT a.*,
+		(select count(*)
+		from boardcomment
+		where sports = a.sports
+		and seq = a.seq) as repleCnt
+		from bicycleboard a
+		order by a.seq desc
 	</select>
-	
-	<!-- <select id="baseballCriList" resultType="vo.STCommentVO">
-	<![CDATA[
-      select * from(select b.* ,ROW_NUMBER()OVER(order by seq asc)
-	 rnum from baseballboard b where seq>0]]><include refid="search"></include>
-	 where rnum between #{sno} and #{eno} 
-	</select>
-	<select id="footballCriList" resultType="vo.STCommentVO">
-	<![CDATA[
-      select * from(select b.* ,ROW_NUMBER()OVER(order by seq asc)
-	 rnum from footballboard b where seq>0]]><include refid="search"></include>
-	 where rnum between #{sno} and #{eno}
-	</select>
-	<select id="basketballCriList" resultType="vo.STCommentVO">
-	<![CDATA[
-      select * from(select b.* ,ROW_NUMBER()OVER(order by seq asc)
-	 rnum from basketballboard b where seq>0]]><include refid="search"></include>
-	 where rnum between #{sno} and #{eno}
-	</select>
-	<select id="tennisCriList" resultType="vo.STCommentVO">
-	<![CDATA[
-      select * from(select b.* ,ROW_NUMBER()OVER(order by seq asc)
-	 rnum from tennisboard b where seq>0]]><include refid="search"></include>
-	 where rnum between #{sno} and #{eno}
-	</select>
-	<select id="bicycleCriList" resultType="vo.STCommentVO">
-	<![CDATA[
-      select * from(select b.* ,ROW_NUMBER()OVER(order by seq asc)
-	 rnum from bicycleboard b where seq>0]]><include refid="search"></include>
-	 where rnum between #{sno} and #{eno}
-	</select> -->
-	
 	<!-- ************************* 최신글 새로 고침 end ***************************** -->
 	
 	<!-- ************************* board 수정 & 삭제 start ***************************** -->
@@ -319,9 +329,9 @@
 	<!-- <select id="clist" resultType="vo.STCommentVO">
    		 select * from boardcomment where sports = #{sports} and seq = #{seq} order by root
 	</select> -->
-	<select id="clistID" resultType="vo.STCommentVO">
+	<!-- <select id="clistID" resultType="vo.STCommentVO">
    		 select id from boardcomment where sports = #{sports} and seq = #{seq} order by root
-	</select>
+	</select> -->
 	
 	<insert id="commentInsert" >
   		 insert into boardcomment values(
@@ -373,10 +383,12 @@
 	</update>
 	<!-- 조회수 증가 end -->
 	
-	<select id="repleList" resultType="vo.STCommnetVO">
+	<!-- 댓글 페이징  start -->
+	<select id="repleList" resultType="vo.STCommentVO">
 	<![CDATA[
       select * from(select b.* ,ROW_NUMBER()OVER(order by root asc)
 	 rnum from boardcomment b where seq = #{seq} and sports = #{sports} )]]>
 	 where rnum between #{sno} and #{eno}
 	</select>
+	<!-- 댓글 페이징  end -->
 </mapper>

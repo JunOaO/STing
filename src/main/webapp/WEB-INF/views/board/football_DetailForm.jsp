@@ -43,7 +43,7 @@ function matchingf() {
 		<div class="bord_header">
 			<div class="this_board">
 				<button type="button" class="board_button" id="board_button"
-					onclick="location.href='football_Board?sports=football'">축구 게시판</button>
+					onclick="location.href='sports?sports=football'">축구 게시판</button>
 			</div>
 			<div class="board_title">
 				<h3>STing 을 통해</h3>
@@ -107,7 +107,7 @@ function matchingf() {
 				</div>
 				<div>
 					<button type="button" id="button_list"
-						onclick="location.href='football_Board?sports=football'">목록</button>
+						onclick="location.href='sports?sports=football'">목록</button>
 				</div>
 				<div>
 					<button type="button" id="button_home"
@@ -118,7 +118,7 @@ function matchingf() {
 		<footer> </footer>
 	</form>
 
-	<!------------------ 댓글 =------------------------->
+	<!------------------ 댓글 ------------------------->
 	<form action="comment_insert" method="post">
 
 		<input type="hidden" value="${Detail.seq}" name="seq">
@@ -137,11 +137,11 @@ function matchingf() {
 					<span> ${cment.regdate}<br>
 					</span>
 					<pre>${cment.recontent}</pre>
-					<a href="comment_delelte?seq=${cment.seq}&root=${cment.root}"><span>삭제</span></a>
+					<%-- <a href="comment_delelte?seq=${cment.seq}&root=${cment.root}"><span>삭제</span></a> --%>
 				</div>
 			</c:forEach>
 		</div>
-		<!-- 댓글 페이징 start -->
+	<!-- 댓글 페이징 start -->
 		<hr>
 	<div align="center">
 		<!-- 1) First <<, Prev < : enabled 여부 -->
@@ -169,6 +169,7 @@ function matchingf() {
 		</c:if>
 	</div>
 	<!-- 댓글 페이징 end -->
+		
 		<div id="div_reple_box">
 			<div>
 				<img src="${profile.profile}" width="40" height="40" id="logprofile">

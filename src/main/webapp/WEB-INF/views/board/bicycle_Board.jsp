@@ -92,10 +92,10 @@
 				<td class="title_over">
 					<%-- <c:if test="${logID != null}"> --%> <c:if
 						test="${logID != null }">
-						<a href="bicycle_Detail?seq=${mm.seq}&sports=bicycle">[${mm.local}][${mm.team}]&nbsp;${mm.title}</a>
+						<a href="bicycle_Detail?seq=${mm.seq}&sports=bicycle">[${mm.local}][${mm.team}]&nbsp;${mm.title}&nbsp;[${mm.repleCnt}]</a>
 					</c:if> <c:if test="${logID == null }">
 						<a href="javascript:;"
-							onclick="javascript: alert('로그인 후 이용해 주세요.');">[${mm.local}][${mm.team}]&nbsp;${mm.title}</a>
+							onclick="javascript: alert('로그인 후 이용해 주세요.');">[${mm.local}][${mm.team}]&nbsp;${mm.title}&nbsp;[${mm.repleCnt}]</a>
 					</c:if>
 				</td>
 				<td>${mm.nickname}</td>

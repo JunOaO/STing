@@ -43,7 +43,7 @@ function matchingf() {
 		<div class="bord_header">
 			<div class="this_board">
 				<button type="button" class="board_button" id="board_button"
-					onclick="location.href='bicycle_Board?sports=bicycle'">자전거 게시판</button>
+					onclick="location.href='sports?sports=bicycle'">자전거 게시판</button>
 			</div>
 			<div class="board_title">
 				<h3>STing 을 통해</h3>
@@ -107,7 +107,7 @@ function matchingf() {
 				</div>
 				<div>
 					<button type="button" id="button_list"
-						onclick="location.href='bicycle_Board?sports=bicycle'">목록</button>
+						onclick="location.href='sports?sports=bicycle'">목록</button>
 				</div>
 				<div>
 					<button type="button" id="button_home"
@@ -153,7 +153,7 @@ function matchingf() {
 		<c:forEach var="i" begin="${pageMaker.sPageNo}"
 			end="${pageMaker.ePageNo}">
 			<c:if test="${i==pageMaker.cri.currPage}">
-				<font size="5" color="Orange">${i}&nbsp;</font>
+				<font size="4" color="Orange">${i}&nbsp;</font>
 			</c:if>
 			<c:if test="${i!=pageMaker.cri.currPage}">
 				<a href="bicycle_Detail${pageMaker.searchmakeQuery(i)}&sports=bicycle&seq=${Detail.seq}">${i}</a>

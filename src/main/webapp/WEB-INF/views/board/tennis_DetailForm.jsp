@@ -43,7 +43,7 @@ function matchingf() {
 		<div class="bord_header">
 			<div class="this_board">
 				<button type="button" class="board_button" id="board_button"
-					onclick="location.href='tennis_Board?sports=tennis'">테니스 게시판</button>
+					onclick="location.href='sports?sports=tennis'">테니스 게시판</button>
 			</div>
 			<div class="board_title">
 				<h3>STing 을 통해</h3>
@@ -107,7 +107,7 @@ function matchingf() {
 				</div>
 				<div>
 					<button type="button" id="button_list"
-						onclick="location.href='tennis_Board?sports=tennis'">목록</button>
+						onclick="location.href='sports?sports=tennis'">목록</button>
 				</div>
 				<div>
 					<button type="button" id="button_home"

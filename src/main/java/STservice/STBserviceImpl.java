@@ -202,14 +202,13 @@ public class STBserviceImpl implements STBservice{
 	/************************** board 매칭 end ******************************/
 
 	/************************** 댓글입력 & 삭제 start ******************************/
-	@Override
-	public List<STCommentVO> clist(STBoardVO vo) {
-		return dao.clist(vo);
-	}
-	@Override
-	public String clistID(STBoardVO vo) {
-		return dao.clistID(vo);
-	}
+	/*
+	 * @Override public List<STCommentVO> clist(STBoardVO vo) { return
+	 * dao.clist(vo); }
+	 */
+	/*
+	 * @Override public String clistID(STBoardVO vo) { return dao.clistID(vo); }
+	 */
 
 	@Override
 	public int commentInsert(STCommentVO cvo) {
@@ -240,6 +239,10 @@ public class STBserviceImpl implements STBservice{
 	@Override
 	public int countUP(STBoardVO vo) {
 		return dao.countUP(vo);
+	}
+	@Override
+	public int rePleCnt(STBoardVO vo) {
+		return dao.rePleCnt(vo);
 	}
 	
 }

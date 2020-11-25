@@ -6,6 +6,106 @@ a{
 	color: black;
 	
 }
+
+/* -------- top(logo,image,menubar,) --------- */
+
+header{
+	width: 100vw;
+}
+
+#img_wrap{
+ 	height: 250px;
+ 	display: flex;
+ }
+
+#img_wrap>div:first-of-type {
+	/* background-color:gray; */
+	width: 20vw;
+}
+
+ #homelogo{ /*홈로고*/
+	width: 250px;
+	height: 250px;
+	float: left;
+	border-radius:10%;
+	margin-right: 20px;
+	margin-left: 40px;
+}
+
+#img_wrap>div:last-of-type {
+	/* background-color:lime; */
+	width: 80vw;
+}
+
+#top_image{
+	width: 1500px;
+	height: 250px;
+	border-radius:10px;
+	margin-right: 20px;
+	margin-left: 40px;
+}
+
+#topnavbar_wrap{
+    width: 100vw;
+	overflow:hidden;
+}
+
+/* #topsearch{로고옆 상단 이미지
+	width: 1200px;
+	height: 250px;
+	background-image: url("../image/Basebal_Board_Top.jpg");
+	background-repeat:no-repeat;
+	background-size : cover;
+	border-radius: 20px;
+	line-height: 250px;
+    margin: 0 auto;
+	float: left;
+} */
+
+#topnavbar_wrap{
+    width: 100vw;
+	overflow:hidden;
+}
+
+#topnavbar { /*메뉴바*/
+   clear: both;
+   width: 100%;
+   height:40px;
+   line-height:40px;
+   flex:content;
+   text-align : center;   
+  /* position: fixed;  오은*/
+   list-style-type: none;
+   background-color: #f8da5b;
+   float: left;
+   display : inline-flex;
+   justify-content: space-evenly
+}
+
+.topmenubar { /*메뉴바 li*/
+   width: 100px;
+   margin: 0 20px;
+   font-size: 20px;
+   font-weight: bold;
+}
+
+#blurlogin{ /*광고이미지로그인 통합div 오은*/
+    display: flex;
+    justify-content: center;
+    margin: 19px 0;
+} 
+
+#blurlogin>div:first-of-type{
+	width: calc( ( 100vw - 680px ) / 2);
+}
+
+#blurbUp {/*메뉴바 위 광고*/
+    width: 800px;
+    height: 150px;
+    /* margin: 0 133px 0 115px; */
+}
+
+/* ---------- body ---------- */
 .bord_header{
 	/* margin-top: 100px; */
 	width : 1100px;
@@ -24,6 +124,7 @@ a{
 	color:white;
 	border: none;
 	border-radius: 5px;
+	cursor: pointer;
 }
 .board_title{
 	height: 80px;
@@ -42,31 +143,16 @@ a{
 	margin-left : 350px;
 	float:left;
 	padding-top: 65px;
-	margin-bottom: 5px;
-}
-.logoh3 {
-	float: left;
+	margin-bottom: 10px;
+	
 }
 
 .title_over{
 	display : block;
-	width: 650px;
+	width: 450px;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
-}
-
-#topsearch{
-	margin-top:10px;
-	margin-bottom:10px;
-	
-	background-image: url("../image/Basebal_Board_Top4.png");
-	background-repeat:no-repeat;
-	background-size : cover;
-	
-	border-radius: 8px;
-	line-height: 250px;
-	
 }
 
 .baseballsearch{
@@ -115,19 +201,39 @@ table{
 .btn_group{
 	width: 1400px;
 	height: 50px;
-	margin-left: 50px;
+	margin-left: 160px;
 	margin-top: 20px;
 }
 
-.input_button{
+#login_btn1{
 	float:right;
+	cursor: pointer;
 }
 
 #login_btn2{
-	
+	float:right;
 	margin-left: 10px;
+	cursor: pointer;
 }
 
 #loginf{
 	float: right;
+	cursor: pointer;
+}
+
+/* ----- footer ------ */
+footer{
+	width: 100vw;
+	/* width:1000px; */
+	height:100px;
+	/* border-top:1px solid gray;
+	border-bottom:1px solid gray; */
+	margin-top:50px;
+	text-align:center;
+	
+	clear: both;
+}
+#footer_p{
+	color: gray;
+	
 }

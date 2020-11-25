@@ -18,6 +18,16 @@ public class STBoardVO {
 	private int leadermatching;
 	private String profile;
 	
+	private int repleCnt;
+	
+	public int getRepleCnt() {
+		return repleCnt;
+	}
+
+	public void setRepleCnt(int repleCnt) {
+		this.repleCnt = repleCnt;
+	}
+
 	public String getProfile() {
 		return profile;
 	}
@@ -151,7 +161,7 @@ public class STBoardVO {
 		return "STBoardVO [seq=" + seq + ", id=" + id + ", nickname=" + nickname + ", title=" + title + ", Content="
 				+ Content + ", regdate=" + regdate + ", team=" + team + ", person=" + person + ", local=" + local
 				+ ", map=" + map + ", sports=" + sports + ", reple=" + reple + ", cnt=" + cnt + ", image=" + image
-				+ ", leadermatching=" + leadermatching + ", profile=" + profile + "]";
+				+ ", leadermatching=" + leadermatching + ", profile=" + profile + ", repleCnt=" + repleCnt + "]";
 	}
 
 }

@@ -1,0 +1,294 @@
+#main {
+	clear: both;
+	/* border: 1px solid red; */
+}
+#main>h4 {
+	width: 800px;
+	margin: 50px auto 100px;
+	border: 1px solid blue;
+}
+
+h2{
+	color: #347ab5;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+ 
+ /* -------- top(logo,image,search,menubar,login) --------- */
+header{
+	width: 100vw;
+}
+
+#img_wrap{
+ 	height: 250px;
+ 	display: flex;
+ }
+
+#img_wrap>div:first-of-type {
+	/* background-color:gray; */
+	width: 20vw;
+}
+
+ #homelogo{ /*홈로고*/
+	width: 250px;
+	height: 250px;
+	float: left;
+	border-radius:10%;
+	margin-right: 20px;
+	margin-left: 40px;
+}
+
+#img_wrap>div:last-of-type {
+	/* background-color:lime; */
+	width: 80vw;
+}
+
+#top_image{
+	width: 1500px;
+	height: 250px;
+	border-radius:10px;
+	margin-right: 20px;
+	margin-left: 40px;
+}
+
+#searchBar{
+    align-items: center;
+    text-align: center;
+    margin:14px 0 12px 30px;
+}
+
+#searchBar>input{
+    border: 1px solid black;
+}
+
+#topnavbar_wrap{
+    width: 100vw;
+	overflow:hidden;
+}
+
+
+
+
+#topsearch{/* 로고옆 상단 이미지*/
+	width: 1200px;
+	height: 250px;
+	background-image: url("../image/multi_sport2.jpg");
+	background-repeat:no-repeat;
+	background-size : cover;
+	border-radius: 20px;
+	line-height: 250px;
+    margin: 0 auto;
+	float: left;
+}
+
+#topsearch{
+	width: 800px;
+	height: 250px;
+	background-repeat:no-repeat;
+	background-size : cover;
+	border-radius: 20px;
+	line-height: 250px;
+    margin: 0 auto;
+	float: left;
+}
+
+/* #searchBar{ 검색창 div
+	margin-top: 120px;
+}  오은*/
+
+/*.topsearch { 검색창,검색확인버튼
+   margin-top: 100px;
+} 오은*/
+
+#searchType{ /*검색 타입*/
+	height: 40px;
+	text-align: center;
+	margin-right: 10px;
+	border: none;
+	border-radius:5px;
+	outline:none;
+	/* background-color: red; */
+	font-size: 18px;
+}
+
+#keyword{ /*검색입력창*/
+	width:1300px;
+	height: 40px;
+	margin-right: 5px;
+	border: none;
+	border-radius:5px;
+	outline:none;
+}
+
+#searchBtn{ /*검색확인버튼*/
+	width:60px;
+	height: 42px;
+	margin-top:10px;
+	margin-left:5px;
+	border: none;
+	border-radius:15px;
+	outline:none;
+}
+
+#topnavbar { /*메뉴바*/
+   clear: both;
+   width: 100%;
+   height:40px;
+   line-height:40px;
+   flex:content;
+   text-align : center;   
+  /* position: fixed;  오은*/
+   list-style-type: none;
+   background-color: #f8da5b;
+   float: left;
+   display : inline-flex;
+   justify-content: space-evenly
+}
+
+.topmenubar { /*메뉴바 li*/
+   width: 100px;
+   margin: 0 20px;
+   font-size: 20px;
+   font-weight: bold;
+}
+
+#blurlogin{ /*광고이미지로그인 통합div 오은*/
+    display: flex;
+    justify-content: center;
+    margin: 19px 0;
+} 
+
+#blurlogin>div:first-of-type{
+	width: calc( ( 100vw - 680px ) / 2);
+}
+
+#blurbUp {/*메뉴바 위 광고 오은*/
+    width: 800px;
+    height: 150px;
+    /* margin: 0 133px 0 115px; */
+    margin-left: 545px;
+}
+
+#loginbox {/*로그인박스오은*/
+	width: calc( ( 100vw - 680px ) / 2 - 30px);
+    height: 150px;
+    text-align: center;
+} 
+
+#loginf:hover { /* 로그인 버튼 */ 
+	cursor: pointer;
+}
+
+#loginf{
+	width: 250px;
+	height: 40px;
+	border: none;
+	border-radius: 5px;
+	margin-top: 5px;
+}
+
+#bjoinf{
+	width: 250px;
+	height: 40px;
+	border: none;
+	border-radius: 5px;
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+#logprofile{
+	border-radius: 50%;
+	margin-left: 200px;
+	margin-top:50px;
+	float: left;
+	cursor: pointer;
+}
+
+#login_after{
+	font-size: 20px;
+	margin-left:10px;
+	margin-top:60px;
+	float: left;
+	font-weight: bold;
+}
+
+#logout_myinfo{
+	clear: both;
+}
+.loginText { /* 로그아웃,myinfo 텍스트 */
+	font-size: 12px;
+	border:none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+
+ 
+ /* ----------- menubar ----------------- */
+ .newBoardDiv{ /* 종목별 div */
+	width: 800px;
+	margin: 0 auto;
+	border-top: 1px solid gray;
+	height: 200px; 
+}
+
+
+.title{width: 500px;} /* 종목별 th_제목 */
+.nickname{width: 50px;}/* 종목별 th_닉네임 */
+.regdate{width: 150px;}/* 종목별 th_작성날짜 */
+
+.title_over{
+	display : block;
+	width: 450px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+
+ 
+ /* ----------- 종목별 최신글 목록 ----------------- */
+.atag_board{
+
+	color: #347ab5;
+} 
+ 
+ /* ----------- 사이드광고 --------------- */
+ 
+ #blurbR { /* 사이드광고 */
+	border: 1px solid red;
+	background-color:blue;
+	float: right;
+	width: 300px;
+	height: 300px;
+}
+ 
+  .topmenubar:hover>.topmenubar2 {
+   display: block;
+}
+ 
+ 
+ 
+/* ------ footer ------ */
+
+footer{
+	width: 100vw;
+	/* width:1000px; */
+	height:100px;
+	/* border-top:1px solid gray;
+	border-bottom:1px solid gray; */
+	margin-top:50px;
+	text-align:center;
+	
+	clear: both;
+}
+#footer_p{
+	color: gray;
+	
+}
+ 
+ 
+ 
+ 

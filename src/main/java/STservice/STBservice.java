@@ -34,6 +34,8 @@ public interface STBservice{
 	List<STBoardVO> basketballSelectList(Criteria cri);
 	List<STBoardVO> tennisSelectList(Criteria cri);
 	List<STBoardVO> bicycleSelectList(Criteria cri);
+	
+	int rePleCnt(STBoardVO vo);
 
 	/************************** 최신글 새로 고침 start **************************/
 	List<STBoardVO> baseballSelectList();
@@ -72,8 +74,8 @@ public interface STBservice{
 	/**************************  매칭 end ******************************/
 	
 	/************************** 댓글 입력 & 삭제 start **************************/
-	  List<STCommentVO> clist(STBoardVO vo);
-	  String clistID(STBoardVO vo);
+	  //List<STCommentVO> clist(STBoardVO vo);
+	  //String clistID(STBoardVO vo);
 	  int commentInsert(STCommentVO cvo);
 	  int commentDelete(STCommentVO cvo);
 	/************************** 댓글 입력 & 삭제 end **************************/

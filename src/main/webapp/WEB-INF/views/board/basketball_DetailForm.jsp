@@ -43,7 +43,7 @@ function matchingf() {
 		<div class="bord_header">
 			<div class="this_board">
 				<button type="button" class="board_button" id="board_button"
-					onclick="location.href='basketball_Board?sports=basketball'">농구 게시판</button>
+					onclick="location.href='sports?sports=basketball'">농구 게시판</button>
 			</div>
 			<div class="board_title">
 				<h3>STing 을 통해</h3>
@@ -107,7 +107,7 @@ function matchingf() {
 				</div>
 				<div>
 					<button type="button" id="button_list"
-						onclick="location.href='basketball_Board?sports=basketball'">목록</button>
+						onclick="location.href='sports?sports=basketball'">목록</button>
 				</div>
 				<div>
 					<button type="button" id="button_home"
@@ -143,35 +143,32 @@ function matchingf() {
 		</div>
 		<!-- 댓글 페이징 start -->
 		<hr>
-		<div align="center">
-			<!-- 1) First <<, Prev < : enabled 여부 -->
-			<c:if test="${pageMaker.prev && pageMaker.sPageNo>1}">
-				<a
-					href="basketball_Detail${pageMaker.searchmakeQuery(1)}&sports=basketball&seq=${Detail.seq}">처음</a>&nbsp;
-		    <a
-					href="basketball_Detail${pageMaker.searchmakeQuery(pageMaker.sPageNo -1)}&sports=basketball&seq=${Detail.seq}">이전</a>&nbsp;
+	<div align="center">
+		<!-- 1) First <<, Prev < : enabled 여부 -->
+		<c:if test="${pageMaker.prev && pageMaker.sPageNo>1}">
+			<a href="basketball_Detail${pageMaker.searchmakeQuery(1)}&sports=basketball&seq=${Detail.seq}">처음</a>&nbsp;
+		    <a href="basketball_Detail${pageMaker.searchmakeQuery(pageMaker.sPageNo -1)}&sports=basketball&seq=${Detail.seq}">이전</a>&nbsp;
       </c:if>
-			<!-- 2) sPage ~ ePage까지 perPageNo값 만큼 출력 -->
-			<c:forEach var="i" begin="${pageMaker.sPageNo}"
-				end="${pageMaker.ePageNo}">
-				<c:if test="${i==pageMaker.cri.currPage}">
-					<font size="5" color="Orange">${i}&nbsp;</font>
-				</c:if>
-				<c:if test="${i!=pageMaker.cri.currPage}">
-					<a
-						href="basketball_Detail${pageMaker.searchmakeQuery(i)}&sports=basketball&seq=${Detail.seq}">${i}</a>
-				</c:if>
-
-				<%-- <c:out value="${pageMaker.cri.currpage==i ? 'class=active' : '' }">
-         </c:out> --%>
-
-			</c:forEach>
-			<c:if test="${pageMaker.next && pageMaker.ePageNo >0}">
-				<a href="basketball_Detail${pageMaker.searchmakeQuery(pageMaker.ePageNo+1)}&sports=basketball&seq=${Detail.seq}">&nbsp;다음</a>&nbsp;
-				<a href="basketball_Detail${pageMaker.searchmakeQuery(pageMaker.lastPageNo)}&sports=basketball&seq=${Detail.seq}">마지막</a>
+		<!-- 2) sPage ~ ePage까지 perPageNo값 만큼 출력 -->
+		<c:forEach var="i" begin="${pageMaker.sPageNo}"
+			end="${pageMaker.ePageNo}">
+			<c:if test="${i==pageMaker.cri.currPage}">
+				<font size="5" color="Orange">${i}&nbsp;</font>
 			</c:if>
-		</div>
-		<!-- 댓글 페이징 end -->
+			<c:if test="${i!=pageMaker.cri.currPage}">
+				<a href="basketball_Detail${pageMaker.searchmakeQuery(i)}&sports=basketball&seq=${Detail.seq}">${i}</a>
+			</c:if>
+			
+			<%-- <c:out value="${pageMaker.cri.currpage==i ? 'class=active' : '' }">
+         </c:out> --%>
+         
+		</c:forEach>
+		<c:if test="${pageMaker.next && pageMaker.ePageNo >0}">
+			<a href="basketball_Detail${pageMaker.searchmakeQuery(pageMaker.ePageNo+1)}&sports=basketball&seq=${Detail.seq}">&nbsp;다음</a>&nbsp;
+		<a href="basketball_Detail${pageMaker.searchmakeQuery(pageMaker.lastPageNo)}&sports=basketball&seq=${Detail.seq}">마지막</a>
+		</c:if>
+	</div>
+	<!-- 댓글 페이징 end -->
 		<div id="div_reple_box">
 			<div>
 				<img src="${profile.profile}" width="40" height="40" id="logprofile">
